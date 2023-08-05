@@ -1,0 +1,53 @@
+﻿@model RealEstateRulesListViewModel
+<div class="text-center my-2">
+    <div class="display-6">
+        Rules
+    </div>
+</div>
+<div class="my-3 d-flex justify-content-end">
+    <a class="btn btn-outline-secondary" asp-area="RealEstateManagement" 
+    asp-controller="Rules" asp-action="Create">Create</a>
+</div>
+<table table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rules in Model.Rules ?? new List<RulesDto>())
+        {
+            <tr>
+                <td>@rules.Rule_Title_Tr</td>
+                <td>
+                    <div class="btn-group">
+                        <a data-toggle="tooltip" 
+                        data-placement="top" title="Edit" 
+                        class="btn btn-sm btn-warning rounded-3" 
+                        asp-route-id="@rules.Id" 
+                        asp-action="Update">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <form method="post" asp-action="Delete">
+                            <input type="hidden" name="Rules" value="@rules.Id" />
+                            <button data-toggle="tooltip" data-placement="top" title="Delete" type="submit" class="btn btn-sm btn-danger rounded-3">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="text-center my-5">
+    <div class="btn-group"
+         page-class="btn"
+         page-class-enabled="true"
+         page-class-normal="btn-outline-secondary"
+         page-class-selected="btn-secondary"
+         page-model="@Model?.Pagination"
+         page-action="Index">
+    </div>
+</div>

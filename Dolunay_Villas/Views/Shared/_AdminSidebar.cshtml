@@ -1,0 +1,62 @@
+﻿<div class="wrapper d-flex align-items-stretch h-100">
+    <nav id="sidebar" class="active bg-secondary">
+        <ul class="components bg-secondary">
+            <li class="active">
+                <a type="button" id="sidebarCollapse" class="btn">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Dashboard" asp-action="Index"><span class="fa fa-home"></span> Dashboard</a>
+            </li>
+            <li>
+                <a href="#propertyManagement" class="list-group-item list-group-item-action d-flex" data-bs-toggle="collapse">
+                    <div><span class="fa fa-user"></span>Property Management</div>
+                </a>
+                <div class="collapse" id="propertyManagement">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Add new property</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Real Estate</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Batch Edit</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Property Types</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Real Estate Zones</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Real Estate Features</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Dahil Olanlar</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Highlights</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Mesafeler</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Mesafe Cetveli</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Yatak Tipleri & Eşyalar</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Odalar</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Oda Özellikleri</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Isıtma Seçenekleri</a>
+                        <a asp-area="RealEstateManagement" asp-controller="Rules" asp-action="Index" class="list-group-item list-group-item-action bg-secondary">Rules</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-user"></span> Roles</a>
+            </li>
+
+            <li class="list-group-item">
+                <a href="#user" class="list-group-item list-group-item-action d-flex" data-bs-toggle="collapse">
+                    <div><span class="fa fa-user"></span>Users</div>
+                </a>
+                <div class="collapse" id="user">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">User 1</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">User 2</a>
+                        <a href="#" class="list-group-item list-group-item-action bg-secondary">User 3</a>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+        <div class="footer">
+            <p>
+                Eğer Buraya bir copyright eklemek istiyorsanız yapın yoksa silebilirsiniz
+            </p>
+        </div>
+    </nav>
+</div>

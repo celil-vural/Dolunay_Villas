@@ -1,0 +1,27 @@
+﻿@model ModelForVilla
+<div>
+    <h4>Villas</h4>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        @await Component.InvokeAsync("VillaFilterMenu",Model.villaRequestParameters)
+    </div>
+    <div class="col-md-9">
+        <div class="row my-3">
+            @foreach (VillaDto villa in Model.villas)
+            {
+                <partial name="_VillaCard" model="@villa" />
+            }
+        </div>
+    </div>
+    <div class="text-center my-5">
+        <div class="btn-group"
+             page-class="btn"
+             page-class-enabled="true"
+             page-class-normal="btn-outline-secondary"
+             page-class-selected="btn-secondary"
+             page-model="@Model.Pagination"
+             page-action="Index">
+        </div>
+    </div>
+</div>

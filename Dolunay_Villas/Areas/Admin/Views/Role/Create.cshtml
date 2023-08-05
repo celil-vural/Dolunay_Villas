@@ -1,0 +1,22 @@
+﻿@model RoleCreateDto
+<div class="text-center my-5">
+    <div class="display-6">
+        Create Role
+    </div>
+</div>
+<div class="text-center text-danger" asp-validation-summary="All"></div>
+<form method="post" asp-area="Admin" asp-controller="Role" asp-action="Create">
+    <div class="form-group my-3">
+        <label class="form-label" asp-for="RoleName"></label>
+        <input asp-for="RoleName" class="form-control" />
+    </div>
+    <div class="lead my-3">
+        <h4>Authorized Permissions</h4>
+        <partial name="_PermissionsCheckBox" model="@Model.Permissions" />
+        <span id="permissionsError" class="text-danger" style="display:none">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            You must choose at least one role!
+        </span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

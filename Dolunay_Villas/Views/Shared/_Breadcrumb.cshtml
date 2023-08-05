@@ -1,0 +1,50 @@
+﻿@{
+    var pathUrl= ViewContext.HttpContext.Request.Path.ToString();
+    var paths = pathUrl.Split("/");
+    paths = paths.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+}
+@if(paths!=null && paths.Length>0){
+    <nav class="bg-body-secondary" style="--bs-breadcrumb-divider:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&quot;);" aria-label="breadcrumb">
+        <ol class="breadcrumb py-2 px-3">
+            @foreach (var path in paths)
+            {
+                int index = pathUrl.IndexOf("/" + path, StringComparison.OrdinalIgnoreCase);
+                string resultPath = pathUrl.Substring(0, index + path.Length + 1);
+                if (path == paths.First() && paths.Length == 1)
+                {
+                    <li class="breadcrumb-item">
+                        <a aria-current="page" class="text-body-secondary" style="text-decoration: none;">
+                            <i class="fa-solid fa-house-chimney me-1 fs-6"></i>
+                            @(path[0].ToString().ToUpper() + path.Substring(1))
+                        </a>
+                    </li>
+                }
+                else if (path == paths.First() && paths.Length > 1)
+                {
+                    <li class="breadcrumb-item">
+                        <a href="@resultPath" class="text-body-secondary" style="text-decoration: none;">
+                            <i class="fa-solid fa-house-chimney me-1 fs-6"></i>
+                            @(path[0].ToString().ToUpper() + path.Substring(1))
+                        </a>
+                    </li>
+                }
+                else if (path == paths.Last())
+                {
+                    <li class="breadcrumb-item">
+                        <a aria-current="page" class="text-body-secondary" style="text-decoration: none;">
+                            @(path[0].ToString().ToUpper() + path.Substring(1))
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="breadcrumb-item">
+                        <a href="@resultPath" class="text-body-secondary" style="text-decoration: none;">
+                            @(path[0].ToString().ToUpper() + path.Substring(1))
+                        </a>
+                    </li>
+                }
+            }
+        </ol>
+    </nav>
+}

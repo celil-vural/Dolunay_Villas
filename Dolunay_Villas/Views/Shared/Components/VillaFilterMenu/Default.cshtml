@@ -1,0 +1,41 @@
+﻿@model VillaRequestParameters?
+<div class="my-3">
+    <h6 class="lead">
+        <i class="fa-solid fa-filter text-secondary"></i>
+        Filters
+    </h6>
+</div>
+<div class="my-2">
+    <form method="post" asp-controller="Villa" asp-action="Index">
+        <div class="form-group my-2">
+            <label class="form-label">Search</label>
+            <input class="form-control" name="SearchTerm" placeholder="Search" value="@(Context.Request.Query["SearchTerm"])" />
+        </div>
+        <div class="form-group my-2">
+            <label class="form-label">Price</label>
+            <div class="input-group">
+                <input type="number" id="minPriceInput" pattern="[0-9]*" class="form-control" name="MinPrice" placeholder="Min. Price" value="@(Model?.MinPrice ?? 0)" />
+                <span class="input-group-text">-</span>
+                <input type="number" id="maxPriceInput" class="form-control" name="MaxPrice" placeholder="Max. Price" value="@(Model?.MaxPrice ?? 1000)" />
+            </div>
+        </div>
+        <div class="form-group my-2">
+            <label class="form-label">Sort By</label>
+            <select class="form-select" name="SortBy">
+                <option value="NameAsc" selected="@(Model?.SortBy==Entity.Enums.SortBy.NameAsc)">Name Ascending</option>
+                <option value="NameDesc" selected="@(Model?.SortBy==Entity.Enums.SortBy.NameDesc)">Name Descending</option>
+                @if (User.Identity.IsAuthenticated && User.Claims.Any())
+                {
+                    <option value="IdAsc" selected="@(Model?.SortBy==Entity.Enums.SortBy.IdAsc)">Id Ascending</option>
+                    <option value="IdDesc" selected="@(Model?.SortBy==Entity.Enums.SortBy.IdDesc)">Id Descending</option>
+                }
+                <option value="PriceAsc" selected="@(Model?.SortBy==Entity.Enums.SortBy.PriceAsc)">Price Ascending</option>
+                <option value="PriceDesc" selected="@(Model?.SortBy==Entity.Enums.SortBy.PriceDesc)">Price Descending</option>
+            </select>
+        </div>
+        <div class="form-group m-2 d-flex justify-content-between">
+            <a asp-controller="Product" asp-action="Index" type="button" class="btn btn-sm btn-secondary">Clear</a>
+            <button type="submit" class="btn btn-sm btn-secondary">Filter</button>
+        </div>
+    </form>
+</div>

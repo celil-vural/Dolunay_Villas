@@ -1,0 +1,8 @@
+﻿@model List<Powers>
+@foreach (var item in Model)
+{
+    <div class="form-check my-2">
+        <input class="form-check-input" type="checkbox" value="@item.ToString()" name="Permissions" />
+        <label class="form-check-label">@item.ToString()</label>
+    </div>
+}

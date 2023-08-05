@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" asp-append-version="true" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" asp-append-version="true" href="~/css/site.css" />
+    <link rel="stylesheet" asp-append-version="true" href="~/lib/font-awesome/css/all.css" />
+    <link asp-append-version="true" rel="stylesheet" href="~/css/sidebar.css" />
+</head>
+<body>
+    <header>
+        <partial name="_AdminNavbar" />
+        @RenderSection("Top",false)
+    </header>
+    <main role="main" class="pb-3">
+        <div class="row">
+            <div class="col-1">
+                <partial name="_AdminSidebar" />
+            </div>
+            <div class="col-11">
+                <div id="content" class="p-3 px-md-5 py-md-3">
+                    <div class="mx-2">
+                        <partial name="_Breadcrumb" />
+                        <partial name="_Notification" />
+                    </div>
+                    <div class="container">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        @RenderSection("Footer",false)
+    </footer>
+    <script asp-append-version="true" src="~/lib/jquery/jquery.min.js"></script>
+    <script asp-append-version="true" src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script asp-append-version="true" src="~/js/site.js"></script>
+    <script asp-append-version="true" src="~/lib/font-awesome/js/all.min.js"></script>
+    <script asp-append-version="true" src="~/js/sidebar.js"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    @await RenderSectionAsync("Scripts",false)
+</body>
+</html>

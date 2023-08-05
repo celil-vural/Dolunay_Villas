@@ -1,0 +1,34 @@
+﻿@model RulesDtoForInsertion
+<div class="text-center">
+    <div class="display-6">
+        Create Rules
+    </div>
+</div>
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group mb-3">
+        <label asp-for="Rule_Title_Tr" class="form-label"></label>
+        <input required asp-for="Rule_Title_Tr" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Rule_Title_En" class="form-label"></label>
+        <input required asp-for="Rule_Title_En" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="IconString" class="form-label"></label>
+        <div class=" mx-1 mb-1 text-danger">* Go to font awesome site, find the icon you want and enter the string in the icon class property you selected here.</div>
+        <input asp-for="IconString" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <div class="btn-group">
+            <button type="submit" class="btn btn-outline-secondary">
+                <i class="fa fa-save"></i>
+                Create
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="fa fa-list"></i>
+                Rules
+            </a>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,80 @@
+﻿@using System.Text;
+@using System;
+@{
+    string AddSpacesBeforeUppercase(string? input)
+    {
+        if (input is null)
+        {
+            return string.Empty;
+        }
+        else
+        {
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (char.IsUpper(input[i]) && i > 0)
+                {
+                    result.Append(" ");
+                }
+                result.Append(input[i]);
+            }
+            string newtring = result.ToString();
+            newtring = newtring.First().ToString().ToUpper() + newtring.Substring(1);
+            return newtring.ToString();
+        }
+    }
+}
+<nav class="navbar bg-dark border-bottom navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dolunay Villias Admin</a>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between pe-2" id="navbarNav">
+            <ul class="navbar-nav flex-grow-1">
+                @if (User.Claims.Any(c => c.Type == nameof(Powers.CanManageDashboard)))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                    </li>
+                }
+                @if (User.Claims.Any(c => c.Type == nameof(Powers.CanManageRoles)))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" asp-controller="Role" asp-action="Index">Roles</a>
+                    </li>
+                }
+                @if (User.Claims.Any(c => c.Type == nameof(Powers.CanManageUsers)))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" asp-controller="User" asp-action="Index">Users</a>
+                    </li>
+                }
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i>
+                        @(AddSpacesBeforeUppercase(User.Identity?.Name))
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">My Account</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-area="" asp-controller="Account" asp-action="Logout">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <title>Dolunay Villias</title>
+    <link asp-append-version="true" rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link asp-append-version="true" rel="stylesheet" href="~/css/site.css" />
+    <link asp-append-version="true" rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+    @RenderSection("Styles",false)
+</head>
+<body>
+    <header>
+        <partial name="_Navbar"/>
+        <partial class="mt-4 mx-2" name="_Breadcrumb" />
+        @RenderSection("Top",false)
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+        @RenderSection("Footer",false)
+        <partial name="_Footer"/>
+    </footer>
+    <script asp-append-version="true" src="~/lib/jquery/jquery.min.js"></script>
+    <script asp-append-version="true" src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script asp-append-version="true" src="~/js/site.js"></script>
+    <script asp-append-version="true" src="~/lib/font-awesome/js/all.min.js"></script>
+    @await RenderSectionAsync("Scripts",false)
+</body>
+</html>

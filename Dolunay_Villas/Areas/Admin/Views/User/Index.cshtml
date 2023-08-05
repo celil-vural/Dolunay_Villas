@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+<div class="text-center my-2">
+    <div class="display-6">
+        Users
+    </div>
+</div>
+<table table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>UserName</th>
+        <th>Roles</th>
+        <th>Operations</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (IdentityUser user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td user-name="@user.UserName" user-role></td>
+                <td>
+                    <div class="btn-group">
+                        <a data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-sm btn-warning rounded-3" asp-route-id="@user.UserName" asp-action="Update">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Reset" class="btn btn-sm btn-info rounded-3" asp-route-id="@user.UserName" asp-action="ResetPassword">
+                            <i class="fa-solid fa-rotate"></i>
+                          </a>
+                        <form method="post" asp-action="DeleteUser">
+                            <input type="hidden" name="UserName" value="@user.UserName" />
+                            <button data-toggle="tooltip" data-placement="top" title="Delete" type="submit" class="btn btn-sm btn-danger rounded-3">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="my-3 d-flex justify-content-end">
+    <a class="btn btn-outline-secondary" asp-action="Create">Create</a>
+</div>
