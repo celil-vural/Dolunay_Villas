@@ -34,5 +34,15 @@ namespace Repository.Extensions
             }
             return entity.Skip((int)((pageNumber - 1) * pageSize)).Take((int)pageSize).ToList();
         }
+        public static IEnumerable<Rooms> ToPaginatedList(this List<Rooms>? entity, int? pageNumber, int? pageSize)
+        {
+            pageNumber ??= 1;
+            pageSize ??= 20;
+            if (entity == null)
+            {
+                return new List<Rooms>();
+            }
+            return entity.Skip((int)((pageNumber - 1) * pageSize)).Take((int)pageSize).ToList();
+        }
     }
 }

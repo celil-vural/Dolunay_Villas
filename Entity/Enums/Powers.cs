@@ -8,7 +8,8 @@
         CanManageDashboard,
         CanManagerealEstateHeatingOptions,
         CanManageRealEstateRules,
-        CanManageRoomFeatures,
+        CanManageRealEstateRoomFeatures,
+        CanManageRealEstateRooms
     }
     public static class PowersDictionary
     {
@@ -20,7 +21,8 @@
             { Powers.CanManageDashboard, "CanManageDashboard" },
             { Powers.CanManagerealEstateHeatingOptions, "CanManagerealEstateHeatingOptions" },
             { Powers.CanManageRealEstateRules, "CanManageRealEstateRules" },
-            { Powers.CanManageRoomFeatures, "CanManageRoomFeatures" },
+            { Powers.CanManageRealEstateRoomFeatures, "CanManageRealEstateRoomFeatures" },
+            { Powers.CanManageRealEstateRooms, "CanManageRealEstateRooms" },
         };
     }
 }

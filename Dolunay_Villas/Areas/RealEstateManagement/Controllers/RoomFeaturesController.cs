@@ -11,7 +11,7 @@ using System.Diagnostics;
 namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
 {
     [Area("RealEstateManagement")]
-    [Authorize(Policy = nameof(Powers.CanManageRoomFeatures))]
+    [Authorize(Policy = nameof(Powers.CanManageRealEstateRoomFeatures))]
     public class RoomFeaturesController : Controller
     {
         private readonly IRealEstateRoomFeaturesService _realEstateRoomFeaturesService;
@@ -43,11 +43,11 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 Entities = entity,
                 Pagination = pagination
             };
-            return View(model);
+            return View("Index", model);
         }
         public IActionResult Create()
         {
-            return View();
+            return View("Create");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -66,13 +66,12 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
-            return View(dtoForInsertion);
+            return View("Create", dtoForInsertion);
         }
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
             var entity = _realEstateRoomFeaturesService.GetEntity<RoomFeaturesDtoForUpdate>(id);
-            Debug.WriteLine(entity.CreatedByUser + "\n" + entity.CreatedAt + "****************");
-            return View(entity);
+            return View("Update", entity);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -92,11 +91,11 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
-            return View(dtoForUpdate);
+            return View("Update", dtoForUpdate);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete([FromForm(Name = "RoomFeatures")] int id)
+        public IActionResult Delete([FromForm(Name = "Entity")] int id)
         {
             try
             {

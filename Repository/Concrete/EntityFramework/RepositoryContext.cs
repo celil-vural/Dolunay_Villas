@@ -10,6 +10,7 @@ namespace Repository.Concrete.EntityFramework
         public DbSet<Rules> Rules { get; set; }
         public DbSet<HeatingOptions> HeatingOptions { get; set; }
         public DbSet<RoomFeatures> RoomFeatures { get; set; }
+        public DbSet<Rooms> Rooms { get; set; }
         public RepositoryContext(DbContextOptions<RepositoryContext> options)
         : base(options)
         {

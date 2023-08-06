@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entity.Dtos.HeatingOptions;
 using Entity.Dtos.RoomFeatures;
+using Entity.Dtos.Rooms;
 using Entity.Dtos.Rules;
 using Entity.Dtos.User;
 using Entity.Dtos.Villa;
@@ -26,6 +27,9 @@ namespace StoreApp.Infrastructure.Mapper
             CreateMap<RoomFeatures, RoomFeaturesDto>().ReverseMap();
             CreateMap<RoomFeatures, RoomFeaturesDtoForUpdate>().ReverseMap();
             CreateMap<RoomFeatures, RoomFeaturesDtoForInsertions>().ReverseMap();
+            CreateMap<Rooms, RoomsDto>().ReverseMap();
+            CreateMap<Rooms, RoomsDtoForInsertions>().ReverseMap();
+            CreateMap<Rooms, RoomsDtoForUpdate>().ReverseMap();
         }
     }
 }

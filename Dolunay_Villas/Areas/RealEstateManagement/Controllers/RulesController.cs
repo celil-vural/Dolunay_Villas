@@ -29,7 +29,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                     PageSize = 10
                 };
             }
-            var rules = _realEstateRulesService.GetRulesWithDetail(r)?.ToList() ?? new();
+            var entity = _realEstateRulesService.GetRulesWithDetail(r)?.ToList() ?? new();
             var pagination = new Pagination
             {
                 CurrentPage = r.PageNumber,
@@ -38,14 +38,14 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             };
             var model = new RealEstateRulesListViewModel
             {
-                Entities = rules,
+                Entities = entity,
                 Pagination = pagination
             };
-            return View(model);
+            return View("Index", model);
         }
         public IActionResult Create()
         {
-            return View();
+            return View("Create");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -57,19 +57,19 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 {
                     dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
                     _realEstateRulesService.CreateWithDto(dtoForInsertion);
-                    return RedirectToAction("Index", "Rules");
+                    return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
                 }
             }
-            return View(dtoForInsertion);
+            return View("Create", dtoForInsertion);
         }
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
-            var rule = _realEstateRulesService.GetEntity<RulesDtoForUpdate>(id);
-            return View(rule);
+            var entity = _realEstateRulesService.GetEntity<RulesDtoForUpdate>(id);
+            return View("Update", entity);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -81,18 +81,18 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 {
                     dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
                     _realEstateRulesService.Update(dtoForUpdate);
-                    return RedirectToAction("Index", "Rules");
+                    return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
                 }
             }
-            return View(dtoForUpdate);
+            return View("Update", dtoForUpdate);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete([FromForm(Name = "Rules")] int id)
+        public IActionResult Delete([FromForm(Name = "Entity")] int id)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             {
                 ModelState.AddModelError("", e.Message);
             }
-            return RedirectToAction("Index", "Rules");
+            return RedirectToAction("Index");
         }
     }
 }

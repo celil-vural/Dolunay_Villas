@@ -4,10 +4,7 @@
         Room Features
     </div>
 </div>
-<div class="my-3 d-flex justify-content-end">
-    <a class="btn btn-outline-secondary" asp-area="RealEstateManagement"
-       asp-controller="RoomFeatures" asp-action="Create">Create</a>
-</div>
+@await Html.PartialAsync("_DefaultPartialHtmlForCreateButton")
 <table table>
     <thead>
         <tr>
@@ -16,10 +13,10 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var entity in Model?.Entities ?? new List<RoomFeaturesDto>())
+        @foreach (var entity in Model?.Entities ?? new())
         {
             <tr>
-                <td>@entity.Room_Features_Title_Tr</td>
+                <td>@entity.Title_Tr</td>
                 <td>
                     <div class="btn-group">
                         <a data-toggle="tooltip"
@@ -30,7 +27,7 @@
                             <i class="fa fa-edit"></i>
                         </a>
                         <form method="post" asp-action="Delete">
-                            <input type="hidden" name="RoomFeatures" value="@entity.Id" />
+                            <input type="hidden" name="Entity" value="@entity.Id" />
                             <button data-toggle="tooltip" data-placement="top" title="Delete" type="submit" class="btn btn-sm btn-danger rounded-3">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
@@ -41,13 +38,4 @@
         }
     </tbody>
 </table>
-<div class="text-center my-5">
-    <div class="btn-group"
-         page-class="btn"
-         page-class-enabled="true"
-         page-class-normal="btn-outline-secondary"
-         page-class-selected="btn-secondary"
-         page-model="@Model?.Pagination"
-         page-action="Index">
-    </div>
-</div>
+@await Html.PartialAsync("_DefaultPartialHtmlForPagination", Model.Pagination)

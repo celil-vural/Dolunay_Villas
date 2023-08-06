@@ -17,11 +17,13 @@ namespace Dolunay_Villas.Infrastructure.Extensions
             services.AddScoped<IRealEstateRulesRepository, RealEstateRulesRepository>();
             services.AddScoped<IRealEstateHeatingOptionsRepository, RealEstateHeatingOptionsRepository>();
             services.AddScoped<IRealEstateRoomFeaturesRepository, RealEstateRoomFeaturesRepository>();
+            services.AddScoped<IRealEstateRoomsRepository, RealEstateRoomsRepository>();
 
             //Repositories Base
             services.AddScoped<IRepositoryBase<Rules>, RealEstateRulesRepository>();
             services.AddScoped<IRepositoryBase<HeatingOptions>, RealEstateHeatingOptionsRepository>();
             services.AddScoped<IRepositoryBase<RoomFeatures>, RealEstateRoomFeaturesRepository>();
+            services.AddScoped<IRepositoryBase<Rooms>, RealEstateRoomsRepository>();
 
             //Services
             services.AddScoped<IAuthService, AuthService>();
@@ -29,7 +31,7 @@ namespace Dolunay_Villas.Infrastructure.Extensions
             services.AddScoped<IRealEstateRulesService, RealEstateRulesService>();
             services.AddScoped<IRealEstateHeatingOptionsService, RealEstateHeatingOptionsService>();
             services.AddScoped<IRealEstateRoomFeaturesService, RealEstateRoomFeaturesService>();
-
+            services.AddScoped<IRealEstateRoomsService, RealEstateRoomsService>();
             //Others
         }
     }

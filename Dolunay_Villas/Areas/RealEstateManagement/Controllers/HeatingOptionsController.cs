@@ -40,11 +40,11 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 Entities = entity,
                 Pagination = pagination
             };
-            return View(model);
+            return View("Index", model);
         }
         public IActionResult Create()
         {
-            return View();
+            return View("Create");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -63,12 +63,12 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
-            return View(dtoForInsertion);
+            return View("Create", dtoForInsertion);
         }
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
             var entity = _realEstateHeatingOptionsService.GetEntity<HeatingOptionsDtoForUpdate>(id);
-            return View(entity);
+            return View("Update", entity);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -87,11 +87,11 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
-            return View(dtoForUpdate);
+            return View("Update", dtoForUpdate);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete([FromForm(Name = "HeatingOptions")] int id)
+        public IActionResult Delete([FromForm(Name = "Entity")] int id)
         {
             try
             {

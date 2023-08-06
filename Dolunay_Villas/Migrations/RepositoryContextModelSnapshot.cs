@@ -37,11 +37,11 @@ namespace Dolunay_Villas.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Heating_Options_Title_En")
+                    b.Property<string>("Title_En")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Heating_Options_Title_Tr")
+                    b.Property<string>("Title_Tr")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -72,11 +72,11 @@ namespace Dolunay_Villas.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Room_Features_Title_En")
+                    b.Property<string>("Title_En")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Room_Features_Title_Tr")
+                    b.Property<string>("Title_Tr")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -90,6 +90,41 @@ namespace Dolunay_Villas.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RoomFeatures");
+                });
+
+            modelBuilder.Entity("Entity.Models.Rooms", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title_En")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title_Tr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("Entity.Models.Rules", b =>
@@ -111,11 +146,11 @@ namespace Dolunay_Villas.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rule_Title_En")
+                    b.Property<string>("Title_En")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rule_Title_Tr")
+                    b.Property<string>("Title_Tr")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -160,15 +195,15 @@ namespace Dolunay_Villas.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c3a0f2b4-8e58-4476-8b40-e4ee385a9d96",
-                            ConcurrencyStamp = "afe476f8-b83e-4d9c-bd81-42af4c9515d1",
+                            Id = "a8c5d64d-4048-4a5c-b6c9-70325539ecb5",
+                            ConcurrencyStamp = "986dc024-3cf4-4632-b980-0f1450aca990",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "297befe7-5fc2-4f08-ad76-9ea97a030a49",
-                            ConcurrencyStamp = "541b6f43-9fe0-464c-a23e-bce06962638c",
+                            Id = "94f07ccc-5731-4a90-815a-26c20f3c3ea4",
+                            ConcurrencyStamp = "b90f0382-ba29-4ab1-a9e7-a8d69c0f49cf",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
