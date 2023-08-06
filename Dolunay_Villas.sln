@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dolunay_Villas", "Dolunay_Villas\Dolunay_Villas.csproj", "{2C7FEB57-D679-4CED-B9B9-41F44C5D9AF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dolunay_Villas", "Dolunay_Villas\Dolunay_Villas.csproj", "{2C7FEB57-D679-4CED-B9B9-41F44C5D9AF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{4FB47EDB-4C38-4A36-AC1B-93B7E2D052C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csproj", "{4FB47EDB-4C38-4A36-AC1B-93B7E2D052C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{D014CF3F-1641-48C4-9324-4B32270CD35F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{D014CF3F-1641-48C4-9324-4B32270CD35F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{5E71ABD1-62C0-49BF-9800-7C391F3BA77B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{5E71ABD1-62C0-49BF-9800-7C391F3BA77B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,7 +3,6 @@ using Entity.RequestParameters;
 using Repository.Concrete.EntityFramework;
 using Repository.Contracts;
 using Repository.Extensions;
-
 namespace Repository.Concrete
 {
     public class RealEstateRulesRepository : RepositoryBase<Rules>, IRealEstateRulesRepository
@@ -13,7 +12,7 @@ namespace Repository.Concrete
 
         }
 
-        public IEnumerable<Rules>? GetAllRulesWithDetials(RealEsateRequestParameters? parameters)
+        public IEnumerable<Rules>? GetAllRulesWithDetials(PageRequestParameters? parameters)
         {
             if (parameters == null)
             {

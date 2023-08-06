@@ -1,15 +1,11 @@
 ﻿using Entity.Dtos.Rules;
+using Entity.Models;
 using Entity.RequestParameters;
 
 namespace Service.Contract
 {
-    public interface IRealEstateRulesService
+    public interface IRealEstateRulesService : IBaseService<Rules>
     {
-        IEnumerable<RulesDto>? GetRules();
-        IEnumerable<RulesDto>? GetRulesWithDetail(RealEsateRequestParameters? parameters);
-        RulesDtoForUpdate? GetRule(int id);
-        void UpdateRules(RulesDto rulesDto);
-        void CreateRules(RulesDtoForInsertion rulesDto);
-        void DeleteRules(int id);
+        IEnumerable<RulesDto>? GetRulesWithDetail(PageRequestParameters? parameters);
     }
 }

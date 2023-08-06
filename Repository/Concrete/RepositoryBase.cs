@@ -34,6 +34,7 @@ namespace Repository.Concrete
             : _context.Set<TEntity>().AsNoTracking().Where(filter).SingleOrDefault();
         }
 
+
         public IEnumerable<TEntity>? GetList(bool trackChanges = false)
         {
             return trackChanges

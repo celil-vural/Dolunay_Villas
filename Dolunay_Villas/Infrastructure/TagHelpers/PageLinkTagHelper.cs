@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using System.Diagnostics;
 
 namespace Dolunay_Villas.Infrastructure.TagHelpers
 {
@@ -42,7 +41,6 @@ namespace Dolunay_Villas.Infrastructure.TagHelpers
                     tag.InnerHtml.Append(i.ToString());
                     result.InnerHtml.AppendHtml(tag);
                 }
-                Debug.WriteLine("********************\n" + result.InnerHtml + "\n" + PageModel.TotalPages + "\n" + PageModel.TotalItems);
                 output.Content.AppendHtml(result.InnerHtml);
             }
         }

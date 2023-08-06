@@ -5,7 +5,10 @@
         CanManageUsers,
         CanManageRoles,
         CanManageVillas,
-        CanManageDashboard
+        CanManageDashboard,
+        CanManagerealEstateHeatingOptions,
+        CanManageRealEstateRules,
+        CanManageRoomFeatures,
     }
     public static class PowersDictionary
     {
@@ -14,7 +17,10 @@
             { Powers.CanManageRoles, "CanManageRoles" },
             { Powers.CanManageUsers, "CanManageUsers" },
             { Powers.CanManageVillas, "CanManageVillas" },
-            { Powers.CanManageDashboard, "CanManageDashboard" }
+            { Powers.CanManageDashboard, "CanManageDashboard" },
+            { Powers.CanManagerealEstateHeatingOptions, "CanManagerealEstateHeatingOptions" },
+            { Powers.CanManageRealEstateRules, "CanManageRealEstateRules" },
+            { Powers.CanManageRoomFeatures, "CanManageRoomFeatures" },
         };
     }
 }

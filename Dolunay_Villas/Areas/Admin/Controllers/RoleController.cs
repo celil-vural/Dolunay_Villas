@@ -1,5 +1,6 @@
 ﻿using Entity.Dtos.Role;
 using Entity.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contract;
@@ -8,6 +9,7 @@ namespace StoreApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
     //[Authorize(Roles = "Admin")]
+    [Authorize(Policy = nameof(Powers.CanManageRoles))]
     public class RoleController : Controller
     {
         private readonly IAuthService _authService;

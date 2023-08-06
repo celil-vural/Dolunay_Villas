@@ -22,6 +22,76 @@ namespace Dolunay_Villas.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Entity.Models.HeatingOptions", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Heating_Options_Title_En")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Heating_Options_Title_Tr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HeatingOptions");
+                });
+
+            modelBuilder.Entity("Entity.Models.RoomFeatures", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Room_Features_Title_En")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Room_Features_Title_Tr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoomFeatures");
+                });
+
             modelBuilder.Entity("Entity.Models.Rules", b =>
                 {
                     b.Property<int>("Id")
@@ -29,6 +99,13 @@ namespace Dolunay_Villas.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IconString")
                         .IsRequired()
@@ -39,6 +116,13 @@ namespace Dolunay_Villas.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Rule_Title_Tr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedByUser")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -76,15 +160,15 @@ namespace Dolunay_Villas.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1e9d6604-22d1-42f4-9465-e07a5881d4a4",
-                            ConcurrencyStamp = "4daf28c3-67b5-48fe-b277-bab6ecca32ea",
+                            Id = "c3a0f2b4-8e58-4476-8b40-e4ee385a9d96",
+                            ConcurrencyStamp = "afe476f8-b83e-4d9c-bd81-42af4c9515d1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "e4d82fa2-033c-4737-971d-e96caf089ecf",
-                            ConcurrencyStamp = "f49f254d-811e-431b-af1b-a81d6f49c803",
+                            Id = "297befe7-5fc2-4f08-ad76-9ea97a030a49",
+                            ConcurrencyStamp = "541b6f43-9fe0-464c-a23e-bce06962638c",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });

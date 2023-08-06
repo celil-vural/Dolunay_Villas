@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li>
-                <a asp-controller="Dashboard" asp-action="Index"><span class="fa fa-home"></span> Dashboard</a>
+                <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index"><span class="fa fa-home"></span> Dashboard</a>
             </li>
             <li>
                 <a href="#propertyManagement" class="list-group-item list-group-item-action d-flex" data-bs-toggle="collapse">
@@ -28,8 +28,8 @@
                         <a href="#" class="list-group-item list-group-item-action bg-secondary">Mesafe Cetveli</a>
                         <a href="#" class="list-group-item list-group-item-action bg-secondary">Yatak Tipleri & Eşyalar</a>
                         <a href="#" class="list-group-item list-group-item-action bg-secondary">Odalar</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Oda Özellikleri</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-secondary">Isıtma Seçenekleri</a>
+                        <a asp-area="RealEstateManagement" asp-controller="RoomFeatures" asp-action="Index" class="list-group-item list-group-item-action bg-secondary">Oda Özellikleri</a>
+                        <a asp-area="RealEstateManagement" asp-controller="HeatingOptions" asp-action="Index" class="list-group-item list-group-item-action bg-secondary">Isıtma Seçenekleri</a>
                         <a asp-area="RealEstateManagement" asp-controller="Rules" asp-action="Index" class="list-group-item list-group-item-action bg-secondary">Rules</a>
                     </div>
                 </div>

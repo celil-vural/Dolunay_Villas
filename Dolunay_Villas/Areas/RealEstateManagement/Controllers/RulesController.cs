@@ -1,13 +1,16 @@
 ﻿using Dolunay_Villas.Areas.RealEstateManagement.Models;
 using Dolunay_Villas.Models;
 using Entity.Dtos.Rules;
+using Entity.Enums;
 using Entity.RequestParameters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contract;
 
 namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
 {
     [Area("RealEstateManagement")]
+    [Authorize(Policy = nameof(Powers.CanManageRealEstateRules))]
     public class RulesController : Controller
     {
         private readonly IRealEstateRulesService _realEstateRulesService;
@@ -15,7 +18,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         {
             _realEstateRulesService = realEstateRulesService;
         }
-        public IActionResult Index([FromQuery] RealEsateRequestParameters? r)
+        public IActionResult Index([FromQuery] PageRequestParameters? r)
         {
 
             if (r == null)
@@ -31,11 +34,11 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             {
                 CurrentPage = r.PageNumber,
                 ItemsPerPage = r.PageSize,
-                TotalItems = _realEstateRulesService.GetRules()?.Count() ?? 0
+                TotalItems = _realEstateRulesService.GetList<RulesDto>()?.Count() ?? 0
             };
             var model = new RealEstateRulesListViewModel
             {
-                Rules = rules,
+                Entities = rules,
                 Pagination = pagination
             };
             return View(model);
@@ -52,7 +55,8 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             {
                 try
                 {
-                    _realEstateRulesService.CreateRules(dtoForInsertion);
+                    dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
+                    _realEstateRulesService.CreateWithDto(dtoForInsertion);
                     return RedirectToAction("Index", "Rules");
                 }
                 catch (Exception e)
@@ -64,18 +68,19 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         }
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
-            var rule = _realEstateRulesService.GetRule(id);
+            var rule = _realEstateRulesService.GetEntity<RulesDtoForUpdate>(id);
             return View(rule);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update([FromForm] RulesDtoForUpdate rulesDtoForUpdate)
+        public IActionResult Update([FromForm] RulesDtoForUpdate dtoForUpdate)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _realEstateRulesService.UpdateRules(rulesDtoForUpdate);
+                    dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
+                    _realEstateRulesService.Update(dtoForUpdate);
                     return RedirectToAction("Index", "Rules");
                 }
                 catch (Exception e)
@@ -83,7 +88,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
-            return View(rulesDtoForUpdate);
+            return View(dtoForUpdate);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -91,7 +96,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         {
             try
             {
-                _realEstateRulesService.DeleteRules(id);
+                _realEstateRulesService.Delete(id);
             }
             catch (Exception e)
             {

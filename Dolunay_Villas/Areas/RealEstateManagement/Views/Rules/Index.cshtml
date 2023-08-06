@@ -16,21 +16,21 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var rules in Model.Rules ?? new List<RulesDto>())
+        @foreach (var entity in Model.Entities ?? new List<RulesDto>())
         {
             <tr>
-                <td>@rules.Rule_Title_Tr</td>
+                <td>@entity.Rule_Title_Tr</td>
                 <td>
                     <div class="btn-group">
                         <a data-toggle="tooltip" 
                         data-placement="top" title="Edit" 
-                        class="btn btn-sm btn-warning rounded-3" 
-                        asp-route-id="@rules.Id" 
-                        asp-action="Update">
+                        class="btn btn-sm btn-warning rounded-3"
+                           asp-route-id="@entity.Id"
+                           asp-action="Update">
                             <i class="fa fa-edit"></i>
                         </a>
                         <form method="post" asp-action="Delete">
-                            <input type="hidden" name="Rules" value="@rules.Id" />
+                            <input type="hidden" name="Rules" value="@entity.Id" />
                             <button data-toggle="tooltip" data-placement="top" title="Delete" type="submit" class="btn btn-sm btn-danger rounded-3">
                                 <i class="fa-solid fa-trash"></i>
                             </button>

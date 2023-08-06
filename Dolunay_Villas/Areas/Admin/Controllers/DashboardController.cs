@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entity.Enums;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Dolunay_Villas.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Policy = nameof(Powers.CanManageDashboard))]
+    [Authorize(Policy = nameof(Powers.CanManageDashboard))]
     //[Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
