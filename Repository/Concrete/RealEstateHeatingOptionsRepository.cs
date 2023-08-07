@@ -11,18 +11,13 @@ namespace Repository.Concrete
         public RealEstateHeatingOptionsRepository(RepositoryContext context) : base(context)
         {
         }
-        public IEnumerable<HeatingOptions>? GetAllHeatingOptionsWithDetails(PageRequestParameters? parameters)
+        public IEnumerable<HeatingOptions>? GetAllWithDetails(PageRequestParameters? parameters)
         {
             if (parameters == null)
             {
                 return GetList();
             }
             return GetList()?.ToList().ToPaginatedList(parameters.PageNumber, parameters.PageSize);
-        }
-
-        public HeatingOptions? GetHeatingOptionWithId(int id)
-        {
-            return Get((r) => r.Id == id);
         }
     }
 }

@@ -13,10 +13,10 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
     [Authorize(Policy = nameof(Powers.CanManagerealEstateHeatingOptions))]
     public class HeatingOptionsController : Controller
     {
-        private readonly IRealEstateHeatingOptionsService _realEstateHeatingOptionsService;
+        private readonly IRealEstateHeatingOptionsService _service;
         public HeatingOptionsController(IRealEstateHeatingOptionsService realEstateHeatingOptionsService)
         {
-            _realEstateHeatingOptionsService = realEstateHeatingOptionsService;
+            _service = realEstateHeatingOptionsService;
         }
         public IActionResult Index([FromQuery] PageRequestParameters? p)
         {
@@ -28,12 +28,12 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                     PageSize = 10
                 };
             }
-            var entity = _realEstateHeatingOptionsService.GetHeatingOptionsWithDetail(p)?.ToList() ?? new();
+            var entity = _service.GetWithDetail(p)?.ToList() ?? new();
             var pagination = new Pagination
             {
                 CurrentPage = p.PageNumber,
                 ItemsPerPage = p.PageSize,
-                TotalItems = _realEstateHeatingOptionsService.GetList<HeatingOptionsDto>()?.Count() ?? 0
+                TotalItems = _service.GetList<HeatingOptionsDto>()?.Count() ?? 0
             };
             var model = new RealEstateHeatingOptionsListViewModel
             {
@@ -55,7 +55,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 try
                 {
                     dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
-                    _realEstateHeatingOptionsService.CreateWithDto(dtoForInsertion);
+                    _service.CreateWithDto(dtoForInsertion);
                     return RedirectToAction("Index", "HeatingOptions");
                 }
                 catch (Exception e)
@@ -67,7 +67,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         }
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
-            var entity = _realEstateHeatingOptionsService.GetEntity<HeatingOptionsDtoForUpdate>(id);
+            var entity = _service.GetEntity<HeatingOptionsDtoForUpdate>(id);
             return View("Update", entity);
         }
         [HttpPost]
@@ -79,7 +79,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 try
                 {
                     dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
-                    _realEstateHeatingOptionsService.Update(dtoForUpdate);
+                    _service.Update(dtoForUpdate);
                     return RedirectToAction("Index", "HeatingOptions");
                 }
                 catch (Exception e)
@@ -95,7 +95,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         {
             try
             {
-                _realEstateHeatingOptionsService.Delete(id);
+                _service.Delete(id);
             }
             catch (Exception e)
             {
@@ -103,6 +103,5 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             }
             return RedirectToAction("Index", "HeatingOptions");
         }
-
     }
 }

@@ -15,19 +15,19 @@ namespace Repository.Concrete
             _context = context;
         }
 
-        public void Add(TEntity entity, bool trackChanges = false)
+        public virtual void Add(TEntity entity, bool trackChanges = false)
         {
             _context.Set<TEntity>().Add(entity);
             SaveChanges();
         }
 
-        public void Delete(TEntity entity, bool trackChanges = false)
+        public virtual void Delete(TEntity entity, bool trackChanges = false)
         {
             _context.Set<TEntity>().Remove(entity);
             SaveChanges();
         }
 
-        public TEntity? Get(Expression<Func<TEntity, bool>> filter, bool trackChanges = false)
+        public virtual TEntity? Get(Expression<Func<TEntity, bool>> filter, bool trackChanges = false)
         {
             return trackChanges
             ? _context.Set<TEntity>().Where(filter).SingleOrDefault()
@@ -35,18 +35,24 @@ namespace Repository.Concrete
         }
 
 
-        public IEnumerable<TEntity>? GetList(bool trackChanges = false)
+        public virtual IEnumerable<TEntity>? GetList(bool trackChanges = false)
         {
             return trackChanges
                 ? _context.Set<TEntity>()
                 : _context.Set<TEntity>().AsNoTracking();
         }
+
+        public virtual TEntity? GetWithId(int id, bool trackChanges = false)
+        {
+            return Get((r) => r.Id == id);
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
             _context.SaveChanges();

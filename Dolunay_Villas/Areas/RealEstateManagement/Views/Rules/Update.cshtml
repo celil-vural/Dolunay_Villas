@@ -4,27 +4,20 @@
 </div>
 <form method="post" asp-action="Update">
     <div asp-validation-summary="All" class="text-center text-danger"></div>
-    <div class="row my-5">
-        <div class="col-md-6">
-            <div>
-                <input type="hidden" asp-for="Id" />
-                <input type="hidden" asp-for="CreatedByUser" />
-                <input type="hidden" asp-for="CreatedAt" />
-            </div>
-            <div class="form-group my-3">
-                <label class="form-label" asp-for="Title_Tr"></label>
-                <input asp-for="Title_Tr" class="form-control" />
-            </div>
-            <div class="form-group my-3">
-                <label class="form-label" asp-for="Title_En"></label>
-                <input asp-for="Title_En" class="form-control" />
-            </div>
-
-            <div class="form-group my-3">
-                <label class="form-label" asp-for="IconString"></label>
-                <input asp-for="IconString" class="form-control" />
-            </div>
-            <partial name="_DefaultPartialHtmlForUpdateByBackButton" />
-        </div>
+    <div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CreatedByUser" />
+        <input type="hidden" asp-for="CreatedAt" />
     </div>
+    <div class="form-group my-3">
+        <label class="form-label" asp-for="Title_Tr"></label>
+        <input asp-for="Title_Tr" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label class="form-label" asp-for="Title_En"></label>
+        <input asp-for="Title_En" class="form-control" />
+    </div>
+    <input type="hidden" asp-for="IconString" id="IconString" value="@((ViewBag.Icons as List<string>)?.First())" />
+    <partial name="_SelectIcon" model="@(ViewBag.Icons as List<string>)" />
+    <partial name="_DefaultPartialHtmlForUpdateByBackButton" />
 </form>

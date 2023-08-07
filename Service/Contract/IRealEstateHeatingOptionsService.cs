@@ -6,6 +6,6 @@ namespace Service.Contract
 {
     public interface IRealEstateHeatingOptionsService : IBaseService<HeatingOptions>
     {
-        IEnumerable<HeatingOptionsDto>? GetHeatingOptionsWithDetail(PageRequestParameters? parameters);
+        IEnumerable<HeatingOptionsDto>? GetWithDetail(PageRequestParameters? parameters);
     }
 }

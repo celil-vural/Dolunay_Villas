@@ -1,0 +1,71 @@
+﻿@model List<string>
+<style>
+    .custom-dropdown-toggle {
+        border: 1px solid #ced4da;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .custom-dropdown-toggle i {
+        margin-right: 5px;
+    }
+    .custom-dropdown-menu {
+        max-height: 200px; 
+        overflow-y: auto;
+        list-style: none;
+        position: absolute;
+        z-index: 1;
+        top: 40px; 
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        display: none;
+        z-index: 2;
+    }
+
+    .custom-dropdown-menu li:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        color: #000; 
+    }
+</style>
+<label class="form-label" for="selectList">Icon</label>
+<ul class="navbar-nav border mb-4 rounded-2" id="selectList">
+    <li class="nav-item  dropdown">
+        <div class="custom-dropdown-toggle rounded-2 p-2" id="Select" onclick="toggleOptions()">
+            <i id="selectIcon" class="@(Model.First())"></i>
+            <div class="mx-2" id="selectText" style="display:inline-block">@Model.First()</div>
+        </div>
+        <ul class="custom-dropdown-menu ps-1" id="optionsList" style="display:none;">
+            @foreach (string icon in Model ?? new List<string>())
+            {
+                <li class="px-1">
+                    <a class="dropdown-item" href="#" onclick="selectOption('@icon')">
+                        <i class="@icon mx-2"></i>
+                        @icon
+                    </a>
+                </li>
+            })
+        </ul>
+    </li>
+</ul>
+<script>
+    function toggleOptions() {
+        const optionsList = document.getElementById("optionsList");
+        optionsList.style.display = optionsList.style.display === "none" ? "block" : "none";
+        document.querySelector(".custom-dropdown-toggle").style.borderColor = optionsList.style.display === "none" ? "#ced4da" : "#007bff";
+    }
+    function selectOption(string) {
+        toggleOptions();
+        document.getElementById("selectText").innerHTML = string;
+        document.getElementById("IconString").value = string;
+        var select = document.getElementById("Select");
+        select.removeChild(select.firstChild);
+        select.removeChild(select.firstChild);
+        var i = document.createElement("i");
+        i.className = string;
+        var first = select.firstChild;
+        select.insertBefore(i, first);
+    }
+</script>

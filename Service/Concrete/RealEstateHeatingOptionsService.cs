@@ -19,9 +19,9 @@ namespace Service.Concrete
         }
 
 
-        public IEnumerable<HeatingOptionsDto>? GetHeatingOptionsWithDetail(PageRequestParameters? parameters)
+        public IEnumerable<HeatingOptionsDto>? GetWithDetail(PageRequestParameters? parameters)
         {
-            var entity = _realEstateHeatingOptionsRepository.GetAllHeatingOptionsWithDetails(parameters);
+            var entity = _realEstateHeatingOptionsRepository.GetAllWithDetails(parameters);
             var dto = _mapper.Map<IEnumerable<HeatingOptionsDto>>(entity);
             return dto;
         }

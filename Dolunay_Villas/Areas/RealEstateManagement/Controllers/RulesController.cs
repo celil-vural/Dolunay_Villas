@@ -14,9 +14,11 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
     public class RulesController : Controller
     {
         private readonly IRealEstateRulesService _realEstateRulesService;
-        public RulesController(IRealEstateRulesService realEstateRulesService)
+        private readonly IFontAwesomeService _fontAwesomeService;
+        public RulesController(IRealEstateRulesService realEstateRulesService, IFontAwesomeService fontAwesomeService)
         {
             _realEstateRulesService = realEstateRulesService;
+            _fontAwesomeService = fontAwesomeService;
         }
         public IActionResult Index([FromQuery] PageRequestParameters? r)
         {
@@ -43,8 +45,10 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             };
             return View("Index", model);
         }
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var icons = await _fontAwesomeService.GetAllFreeIcons();
+            ViewBag.Icons = icons;
             return View("Create");
         }
         [HttpPost]
@@ -66,9 +70,12 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             }
             return View("Create", dtoForInsertion);
         }
-        public IActionResult Update([FromRoute(Name = "id")] int id)
+        public async Task<IActionResult> Update([FromRoute(Name = "id")] int id)
         {
+            var icons = await _fontAwesomeService.GetAllFreeIcons();
             var entity = _realEstateRulesService.GetEntity<RulesDtoForUpdate>(id);
+            if (entity != null) icons.Insert(0, entity.IconString);
+            ViewBag.Icons = icons;
             return View("Update", entity);
         }
         [HttpPost]

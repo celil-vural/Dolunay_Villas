@@ -22,6 +22,61 @@ namespace Dolunay_Villas.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Entity.Models.BedTypes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IconString")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ItemTypeKey")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ItemTypesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title_En")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title_Tr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ValueTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ValueTypeKey")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemTypesId");
+
+                    b.HasIndex("ValueTypeId");
+
+                    b.ToTable("BedTypes");
+                });
+
             modelBuilder.Entity("Entity.Models.HeatingOptions", b =>
                 {
                     b.Property<int>("Id")
@@ -55,6 +110,93 @@ namespace Dolunay_Villas.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HeatingOptions");
+                });
+
+            modelBuilder.Entity("Entity.Models.ItemTypes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ItemTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3571),
+                            CreatedByUser = "",
+                            Name = "Structural Product",
+                            UpdatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3580),
+                            UpdatedByUser = ""
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3585),
+                            CreatedByUser = "",
+                            Name = "Built-in Furniture",
+                            UpdatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3586),
+                            UpdatedByUser = ""
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3587),
+                            CreatedByUser = "",
+                            Name = "Electronic Product",
+                            UpdatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3587),
+                            UpdatedByUser = ""
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3588),
+                            CreatedByUser = "",
+                            Name = "Bed",
+                            UpdatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3588),
+                            UpdatedByUser = ""
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3589),
+                            CreatedByUser = "",
+                            Name = "Furniture",
+                            UpdatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3589),
+                            UpdatedByUser = ""
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3590),
+                            CreatedByUser = "",
+                            Name = "Floor",
+                            UpdatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3590),
+                            UpdatedByUser = ""
+                        });
                 });
 
             modelBuilder.Entity("Entity.Models.RoomFeatures", b =>
@@ -166,6 +308,84 @@ namespace Dolunay_Villas.Migrations
                     b.ToTable("Rules");
                 });
 
+            modelBuilder.Entity("Entity.Models.ValueType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ValueTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3762),
+                            CreatedByUser = "",
+                            Name = "Yes/No",
+                            UpdatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3764),
+                            UpdatedByUser = ""
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3768),
+                            CreatedByUser = "",
+                            Name = "Letter",
+                            UpdatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3768),
+                            UpdatedByUser = ""
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3769),
+                            CreatedByUser = "",
+                            Name = "Numeric",
+                            UpdatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3769),
+                            UpdatedByUser = ""
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3770),
+                            CreatedByUser = "",
+                            Name = "Multiple Selection",
+                            UpdatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3770),
+                            UpdatedByUser = ""
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3771),
+                            CreatedByUser = "",
+                            Name = "One choice",
+                            UpdatedAt = new DateTime(2023, 8, 6, 23, 22, 26, 294, DateTimeKind.Local).AddTicks(3771),
+                            UpdatedByUser = ""
+                        });
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -195,15 +415,15 @@ namespace Dolunay_Villas.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a8c5d64d-4048-4a5c-b6c9-70325539ecb5",
-                            ConcurrencyStamp = "986dc024-3cf4-4632-b980-0f1450aca990",
+                            Id = "71049519-b93c-4ca4-8b82-d80f979d5734",
+                            ConcurrencyStamp = "6deb53b6-6544-4166-8f33-406f5e4a2020",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "94f07ccc-5731-4a90-815a-26c20f3c3ea4",
-                            ConcurrencyStamp = "b90f0382-ba29-4ab1-a9e7-a8d69c0f49cf",
+                            Id = "80a96350-a3b5-4390-83dc-10dff0e574e9",
+                            ConcurrencyStamp = "2e4eed36-8396-4d1e-b936-18cfc8392eec",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
@@ -380,6 +600,17 @@ namespace Dolunay_Villas.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Entity.Models.BedTypes", b =>
+                {
+                    b.HasOne("Entity.Models.ItemTypes", null)
+                        .WithMany("BedTypes")
+                        .HasForeignKey("ItemTypesId");
+
+                    b.HasOne("Entity.Models.ValueType", null)
+                        .WithMany("BedTypes")
+                        .HasForeignKey("ValueTypeId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -429,6 +660,16 @@ namespace Dolunay_Villas.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Entity.Models.ItemTypes", b =>
+                {
+                    b.Navigation("BedTypes");
+                });
+
+            modelBuilder.Entity("Entity.Models.ValueType", b =>
+                {
+                    b.Navigation("BedTypes");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,6 +6,5 @@ namespace Repository.Contracts
     public interface IRealEstateRulesRepository : IRepositoryBase<Rules>
     {
         IEnumerable<Rules>? GetAllRulesWithDetials(PageRequestParameters? parameters);
-        Rules? GetRuleWithId(int id);
     }
 }

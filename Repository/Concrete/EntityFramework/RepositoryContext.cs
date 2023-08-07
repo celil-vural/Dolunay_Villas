@@ -11,6 +11,9 @@ namespace Repository.Concrete.EntityFramework
         public DbSet<HeatingOptions> HeatingOptions { get; set; }
         public DbSet<RoomFeatures> RoomFeatures { get; set; }
         public DbSet<Rooms> Rooms { get; set; }
+        public DbSet<ItemTypes> ItemTypes { get; set; }
+        public DbSet<Entity.Models.ValueType> ValueTypes { get; set; }
+        public DbSet<BedTypes> BedTypes { get; set; }
         public RepositoryContext(DbContextOptions<RepositoryContext> options)
         : base(options)
         {

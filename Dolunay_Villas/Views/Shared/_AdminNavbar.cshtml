@@ -26,7 +26,7 @@
 }
 <nav class="navbar bg-dark border-bottom navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dolunay Villias Admin</a>
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dolunay Villas Admin</a>
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -61,7 +61,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-user"></i>
-                        @(AddSpacesBeforeUppercase(User.Identity?.Name))
+                        <div class="mx-2" style="display:inline-block">@(AddSpacesBeforeUppercase(User.Identity?.Name))</div>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">My Account</a></li>

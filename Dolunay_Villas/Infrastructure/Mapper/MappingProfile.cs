@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
+using Entity.Dtos.BedTypes;
 using Entity.Dtos.HeatingOptions;
+using Entity.Dtos.ItemTypes;
 using Entity.Dtos.RoomFeatures;
 using Entity.Dtos.Rooms;
 using Entity.Dtos.Rules;
 using Entity.Dtos.User;
+using Entity.Dtos.ValueTypes;
 using Entity.Dtos.Villa;
 using Entity.Models;
 using Microsoft.AspNetCore.Identity;
-
+using ValueType = Entity.Models.ValueType;
 namespace StoreApp.Infrastructure.Mapper
 {
     public class MappingProfile : Profile
@@ -30,6 +33,11 @@ namespace StoreApp.Infrastructure.Mapper
             CreateMap<Rooms, RoomsDto>().ReverseMap();
             CreateMap<Rooms, RoomsDtoForInsertions>().ReverseMap();
             CreateMap<Rooms, RoomsDtoForUpdate>().ReverseMap();
+            CreateMap<ItemTypes, ItemTypeDto>().ReverseMap();
+            CreateMap<ValueType, ValueTypeDto>().ReverseMap();
+            CreateMap<BedTypes, BedTypesDto>().ReverseMap();
+            CreateMap<BedTypes, BedTypesDtoForInsertion>().ReverseMap();
+            CreateMap<BedTypes, BedTypesDtoForUpdate>().ReverseMap();
         }
     }
 }

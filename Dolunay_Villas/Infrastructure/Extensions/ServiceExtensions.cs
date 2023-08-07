@@ -55,6 +55,8 @@ namespace Dolunay_Villas.Infrastructure.Extensions
                 options.SlidingExpiration = true;
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 options.Cookie.SameSite = SameSiteMode.Strict;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+
             });
         }
         public static void ConfigureIdentity(this IServiceCollection services)
@@ -173,7 +175,7 @@ namespace Dolunay_Villas.Infrastructure.Extensions
                 endpoint.MapAreaControllerRoute(
                         name: "RealEstateManagement",
                         areaName: "RealEstateManagement",
-                        pattern: "Admin/RealEstateManagement/{controller=RealEstate}/{action=Index}/{id?}"
+                        pattern: "Admin/RealEstateManagement/{controller=Rules}/{action=Index}/{id?}"
                     );
                 endpoint.MapControllerRoute(name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
