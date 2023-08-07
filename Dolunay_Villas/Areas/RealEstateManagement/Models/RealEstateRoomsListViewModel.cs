@@ -1,4 +1,4 @@
-﻿using Entity.Dtos.Rooms;
+﻿using Entity.Dtos.RealEstateManagement.Rooms;
 
 namespace Dolunay_Villas.Areas.RealEstateManagement.Models
 {

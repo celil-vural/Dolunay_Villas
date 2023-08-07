@@ -1,0 +1,43 @@
+﻿@model RealEstateHighlightsListViewModel
+<div class="text-center my-2">
+    <div class="display-6">
+        Highlights
+    </div>
+</div>
+@await Html.PartialAsync("_DefaultPartialHtmlForCreateButton")
+<table table>
+    <thead>
+        <tr>
+            <th>Order</th>
+            <th>Title</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entity in Model?.Entities ?? new())
+        {
+            <tr>
+                <td>@entity.Order</td>
+                <td>@entity.Title_Tr</td>
+                <td>
+                    <div class="btn-group">
+                        <a data-toggle="tooltip"
+                           data-placement="top" title="Edit"
+                           class="btn btn-sm btn-warning rounded-3"
+                           asp-route-id="@entity.Id"
+                           asp-action="Update">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <form method="post" asp-action="Delete">
+                            <input type="hidden" name="Entity" value="@entity.Id" />
+                            <button data-toggle="tooltip" data-placement="top" title="Delete" type="submit" class="btn btn-sm btn-danger rounded-3">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@await Html.PartialAsync("_DefaultPartialHtmlForPagination", Model.Pagination)

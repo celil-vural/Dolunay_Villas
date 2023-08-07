@@ -1,11 +1,11 @@
 ﻿using Dolunay_Villas.Areas.RealEstateManagement.Models;
 using Dolunay_Villas.Models;
-using Entity.Dtos.Rooms;
+using Entity.Dtos.RealEstateManagement.Rooms;
 using Entity.Enums;
 using Entity.RequestParameters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Service.Contract;
+using Service.Contract.RealEstateManagement;
 
 namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
 {
@@ -31,12 +31,12 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                     PageSize = 10
                 };
             }
-            var entity = _realEstateRoomsService.GetAllWithDetails(r)?.ToList() ?? new();
+            var entity = _realEstateRoomsService.GetWithDetail(r)?.ToList() ?? new();
             var pagination = new Pagination
             {
                 CurrentPage = r.PageNumber,
                 ItemsPerPage = r.PageSize,
-                TotalItems = _realEstateRoomsService.GetList<RoomsDto>()?.Count() ?? 0
+                TotalItems = _realEstateRoomsService.GetList()?.Count() ?? 0
             };
             var model = new RealEstateRoomsListViewModel
             {

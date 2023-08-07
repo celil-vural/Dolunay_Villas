@@ -1,4 +1,4 @@
-﻿using Entity.Models;
+﻿using Entity.Models.RealEstateManagement;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -12,8 +12,9 @@ namespace Repository.Concrete.EntityFramework
         public DbSet<RoomFeatures> RoomFeatures { get; set; }
         public DbSet<Rooms> Rooms { get; set; }
         public DbSet<ItemTypes> ItemTypes { get; set; }
-        public DbSet<Entity.Models.ValueType> ValueTypes { get; set; }
+        public DbSet<Entity.Models.RealEstateManagement.ValueType> ValueTypes { get; set; }
         public DbSet<BedTypes> BedTypes { get; set; }
+        public DbSet<Highlights> Highlights { get; set; }
         public RepositoryContext(DbContextOptions<RepositoryContext> options)
         : base(options)
         {

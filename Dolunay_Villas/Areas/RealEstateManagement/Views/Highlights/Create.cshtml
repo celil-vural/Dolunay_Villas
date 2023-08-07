@@ -1,0 +1,33 @@
+﻿@model HighlightsDtoForInsertions
+<div class="text-center">
+    <div class="display-6">
+        Create Highlights
+    </div>
+</div>
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group mb-3">
+        <label asp-for="Title_Tr" class="form-label"></label>
+        <input required asp-for="Title_Tr" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Title_En" class="form-label"></label>
+        <input required asp-for="Title_En" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Order" class="form-label"></label>
+        <input required asp-for="Order" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <div class="btn-group">
+            <button type="submit" class="btn btn-outline-secondary">
+                <i class="fa fa-save"></i>
+                Create
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="fa fa-list"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+</form>

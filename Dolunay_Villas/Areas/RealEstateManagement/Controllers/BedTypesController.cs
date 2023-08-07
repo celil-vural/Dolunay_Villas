@@ -1,14 +1,13 @@
 ﻿using Dolunay_Villas.Areas.RealEstateManagement.Models;
 using Dolunay_Villas.Models;
-using Entity.Dtos.BedTypes;
-using Entity.Dtos.ItemTypes;
-using Entity.Dtos.ValueTypes;
+using Entity.Dtos.RealEstateManagement.BedTypes;
 using Entity.Enums;
 using Entity.RequestParameters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Service.Contract;
+using Service.Contract.RealEstateManagement;
 
 namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
 {
@@ -43,7 +42,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             {
                 CurrentPage = p.PageNumber,
                 ItemsPerPage = p.PageSize,
-                TotalItems = _service.GetList<BedTypesDto>()?.Count() ?? 0
+                TotalItems = _service.GetList()?.Count() ?? 0
             };
             var model = new RealEstateBedTypesListViewModel
             {
@@ -54,8 +53,8 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         }
         public async Task<IActionResult> Create()
         {
-            var itemTypes = _itemTypeService.GetList<ItemTypeDto>();
-            var valueTypes = _valueTypeService.GetList<ValueTypeDto>();
+            var itemTypes = _itemTypeService.GetList();
+            var valueTypes = _valueTypeService.GetList();
             var model = new BedTypesInsertionModel
             {
                 ItemTypeOptions = new SelectList(itemTypes, "Id", "Name"),
@@ -82,15 +81,15 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
-            model.ItemTypeOptions = new SelectList(_itemTypeService.GetList<ItemTypeDto>(), "Id", "Name");
-            model.ValueTypeOptions = new SelectList(_valueTypeService.GetList<ValueTypeDto>(), "Id", "Name");
+            model.ItemTypeOptions = new SelectList(_itemTypeService.GetList(), "Id", "Name");
+            model.ValueTypeOptions = new SelectList(_valueTypeService.GetList(), "Id", "Name");
             return View(model);
         }
         public async Task<IActionResult> Update([FromRoute(Name = "id")] int id)
         {
             var entity = _service.GetEntity<BedTypesDtoForUpdate>(id);
-            var itemTypes = _itemTypeService.GetList<ItemTypeDto>();
-            var valueTypes = _valueTypeService.GetList<ValueTypeDto>();
+            var itemTypes = _itemTypeService.GetList();
+            var valueTypes = _valueTypeService.GetList();
             var model = new BedTypesUpdateModel
             {
                 BedTypesDtoForUpdate = entity ?? new(),

@@ -1,16 +1,17 @@
 ﻿using AutoMapper;
-using Entity.Dtos.BedTypes;
-using Entity.Dtos.HeatingOptions;
-using Entity.Dtos.ItemTypes;
-using Entity.Dtos.RoomFeatures;
-using Entity.Dtos.Rooms;
-using Entity.Dtos.Rules;
+using Entity.Dtos.RealEstateManagement.BedTypes;
+using Entity.Dtos.RealEstateManagement.HeatingOptions;
+using Entity.Dtos.RealEstateManagement.ItemTypes;
+using Entity.Dtos.RealEstateManagement.RoomFeatures;
+using Entity.Dtos.RealEstateManagement.Rooms;
+using Entity.Dtos.RealEstateManagement.Rules;
+using Entity.Dtos.RealEstateManagement.ValueTypes;
 using Entity.Dtos.User;
-using Entity.Dtos.ValueTypes;
 using Entity.Dtos.Villa;
 using Entity.Models;
+using Entity.Models.RealEstateManagement;
 using Microsoft.AspNetCore.Identity;
-using ValueType = Entity.Models.ValueType;
+using ValueType = Entity.Models.RealEstateManagement.ValueType;
 namespace StoreApp.Infrastructure.Mapper
 {
     public class MappingProfile : Profile

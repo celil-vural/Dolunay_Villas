@@ -1,7 +1,9 @@
 ﻿using Entity.Contracts;
+using Entity.RequestParameters;
 using Microsoft.EntityFrameworkCore;
 using Repository.Concrete.EntityFramework;
 using Repository.Contracts;
+using Repository.Extensions;
 using System.Linq.Expressions;
 
 namespace Repository.Concrete
@@ -56,6 +58,15 @@ namespace Repository.Concrete
         {
             _context.Set<TEntity>().Update(entity);
             _context.SaveChanges();
+        }
+
+        IEnumerable<TEntity>? IRepositoryBase<TEntity>.GetWithDetail(PageRequestParameters? parameters)
+        {
+            if (parameters == null)
+            {
+                return GetList();
+            }
+            return GetList()?.ToList().ToPaginatedList(parameters.PageNumber, parameters.PageSize);
         }
     }
 }

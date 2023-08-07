@@ -1,0 +1,109 @@
+﻿using Dolunay_Villas.Areas.RealEstateManagement.Models;
+using Dolunay_Villas.Models;
+using Entity.Dtos.RealEstateManagement.Highlights;
+using Entity.Enums;
+using Entity.RequestParameters;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Service.Contract.RealEstateManagement;
+
+namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
+{
+    [Area("RealEstateManagement")]
+    [Authorize(Policy = nameof(Powers.CanManageRealEstateHighlights))]
+    public class HighlightsController : Controller
+    {
+        private readonly IRealEstateHighlightsService _service;
+
+        public HighlightsController(IRealEstateHighlightsService service)
+        {
+            _service = service;
+        }
+
+        public IActionResult Index([FromQuery] PageRequestParameters? p)
+        {
+            if (p == null)
+            {
+                p = new()
+                {
+                    PageNumber = 1,
+                    PageSize = 10
+                };
+            }
+            var entity = _service.GetWithDetail(p)?.ToList() ?? new();
+            var pagination = new Pagination
+            {
+                CurrentPage = p.PageNumber,
+                ItemsPerPage = p.PageSize,
+                TotalItems = _service.GetList()?.Count() ?? 0
+            };
+            var model = new RealEstateHighlightsListViewModel
+            {
+                Entities = entity,
+                Pagination = pagination
+            };
+            return View("Index", model);
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([FromForm] HighlightsDtoForInsertions dtoForInsertion)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
+                    _service.CreateWithDto(dtoForInsertion);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            return View("Create", dtoForInsertion);
+        }
+        public IActionResult Update([FromRoute(Name = "id")] int id)
+        {
+            var entity = _service.GetEntity<HighlightsDtoForUpdate>(id);
+            return View("Update", entity);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update([FromForm] HighlightsDtoForUpdate dtoForUpdate)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
+                    _service.Update(dtoForUpdate);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            return View("Update", dtoForUpdate);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete([FromForm(Name = "Entity")] int id)
+        {
+            try
+            {
+                _service.Delete(id);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", e.Message);
+            }
+            return RedirectToAction("Index");
+        }
+    }
+}

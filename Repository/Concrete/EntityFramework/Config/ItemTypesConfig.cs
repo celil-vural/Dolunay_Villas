@@ -1,4 +1,4 @@
-﻿using Entity.Models;
+﻿using Entity.Models.RealEstateManagement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

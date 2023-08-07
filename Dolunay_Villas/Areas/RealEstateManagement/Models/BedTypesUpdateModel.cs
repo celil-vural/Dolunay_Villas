@@ -1,4 +1,4 @@
-﻿using Entity.Dtos.BedTypes;
+﻿using Entity.Dtos.RealEstateManagement.BedTypes;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Dolunay_Villas.Areas.RealEstateManagement.Models

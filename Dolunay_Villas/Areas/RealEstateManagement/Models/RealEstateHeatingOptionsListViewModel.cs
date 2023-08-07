@@ -1,4 +1,4 @@
-﻿using Entity.Dtos.HeatingOptions;
+﻿using Entity.Dtos.RealEstateManagement.HeatingOptions;
 
 namespace Dolunay_Villas.Areas.RealEstateManagement.Models
 {

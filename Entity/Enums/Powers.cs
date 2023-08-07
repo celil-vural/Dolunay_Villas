@@ -11,6 +11,7 @@
         CanManageRealEstateRoomFeatures,
         CanManageRealEstateRooms,
         CanManageRealEstateBedTypes,
+        CanManageRealEstateHighlights,
     }
     public static class PowersDictionary
     {
@@ -25,6 +26,7 @@
             { Powers.CanManageRealEstateRoomFeatures, "CanManageRealEstateRoomFeatures" },
             { Powers.CanManageRealEstateRooms, "CanManageRealEstateRooms" },
             { Powers.CanManageRealEstateBedTypes, "CanManageRealEstateBedTypes" },
+            { Powers.CanManageRealEstateHighlights, "CanManageRealEstateHighlights" },
         };
     }
 }

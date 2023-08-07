@@ -1,0 +1,29 @@
+﻿@model HighlightsDtoForUpdate
+<div class="text-center my-5">
+    <div class="dispaly-6">Update (@Model.Title_Tr)</div>
+</div>
+<form method="post" asp-action="Update">
+    <div asp-validation-summary="All" class="text-center text-danger"></div>
+    <div class="row my-5">
+        <div class="col-md-6">
+            <div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="CreatedByUser" />
+                <input type="hidden" asp-for="CreatedAt" />
+            </div>
+            <div class="form-group my-3">
+                <label class="form-label" asp-for="Title_Tr"></label>
+                <input asp-for="Title_Tr" class="form-control" />
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Order" class="form-label"></label>
+                <input required asp-for="Order" class="form-control" />
+            </div>
+            <div class="form-group my-3">
+                <label class="form-label" asp-for="Title_En"></label>
+                <input asp-for="Title_En" class="form-control" />
+            </div>
+            <partial name="_DefaultPartialHtmlForUpdateByBackButton" />
+        </div>
+    </div>
+</form>

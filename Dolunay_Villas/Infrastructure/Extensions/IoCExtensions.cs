@@ -1,8 +1,11 @@
-﻿using Entity.Models;
-using Repository.Concrete;
+﻿using Repository.Concrete;
+using Repository.Concrete.RealEstateManagement;
 using Repository.Contracts;
+using Repository.Contracts.RealEstateManagement;
 using Service.Concrete;
+using Service.Concrete.RealEstateManagement;
 using Service.Contract;
+using Service.Contract.RealEstateManagement;
 
 namespace Dolunay_Villas.Infrastructure.Extensions
 {
@@ -22,16 +25,16 @@ namespace Dolunay_Villas.Infrastructure.Extensions
             services.AddScoped<IRealEstateItemTypesRepository, RealEstateItemTypesRepository>();
             services.AddScoped<IRealEstateValueTypesRepository, RealEstateValueTypesRepository>();
             services.AddScoped<IFontAwesomeRepository, FontAwesomeRepository>();
-
+            services.AddScoped<IRealEstateHighlightsRepository, RealEstateHighlightsRepository>();
             //Repositories Base
-            services.AddScoped<IRepositoryBase<Rules>, RealEstateRulesRepository>();
+            /*services.AddScoped<IRepositoryBase<Rules>, RealEstateRulesRepository>();
             services.AddScoped<IRepositoryBase<HeatingOptions>, RealEstateHeatingOptionsRepository>();
             services.AddScoped<IRepositoryBase<RoomFeatures>, RealEstateRoomFeaturesRepository>();
             services.AddScoped<IRepositoryBase<Rooms>, RealEstateRoomsRepository>();
             services.AddScoped<IRepositoryBase<BedTypes>, RealEstateBedTypesRepository>();
             services.AddScoped<IRepositoryBase<ItemTypes>, RealEstateItemTypesRepository>();
-            services.AddScoped<IRepositoryBase<Entity.Models.ValueType>, RealEstateValueTypesRepository>();
-
+            services.AddScoped<IRepositoryBase<Entity.Models.RealEstateManagement.ValueType>, RealEstateValueTypesRepository>();
+            */
             //Services
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IRoleService, RoleService>();
@@ -43,6 +46,7 @@ namespace Dolunay_Villas.Infrastructure.Extensions
             services.AddScoped<IRealEstateItemTypesService, RealEstateItemTypesService>();
             services.AddScoped<IRealEstateValueTypesService, RealEstateValueTypesService>();
             services.AddScoped<IFontAwesomeService, FontAwesomeService>();
+            services.AddScoped<IRealEstateHighlightsService, RealEstateHighlightsService>();
             //Others
         }
     }

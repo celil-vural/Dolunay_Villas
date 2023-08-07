@@ -1,11 +1,11 @@
 ﻿using Dolunay_Villas.Areas.RealEstateManagement.Models;
 using Dolunay_Villas.Models;
-using Entity.Dtos.HeatingOptions;
+using Entity.Dtos.RealEstateManagement.HeatingOptions;
 using Entity.Enums;
 using Entity.RequestParameters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Service.Contract;
+using Service.Contract.RealEstateManagement;
 
 namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
 {
@@ -33,7 +33,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             {
                 CurrentPage = p.PageNumber,
                 ItemsPerPage = p.PageSize,
-                TotalItems = _service.GetList<HeatingOptionsDto>()?.Count() ?? 0
+                TotalItems = _service.GetList()?.Count() ?? 0
             };
             var model = new RealEstateHeatingOptionsListViewModel
             {

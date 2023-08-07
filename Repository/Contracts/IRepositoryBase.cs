@@ -1,4 +1,5 @@
 ﻿using Entity.Contracts;
+using Entity.RequestParameters;
 using System.Linq.Expressions;
 
 namespace Repository.Contracts
@@ -12,5 +13,6 @@ namespace Repository.Contracts
         void Update(TEntity entity);
         void Delete(TEntity entity, bool trackChanges = false);
         void SaveChanges();
+        IEnumerable<TEntity>? GetWithDetail(PageRequestParameters? parameters);
     }
 }
