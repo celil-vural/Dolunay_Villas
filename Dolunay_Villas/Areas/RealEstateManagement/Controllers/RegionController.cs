@@ -1,6 +1,6 @@
 ﻿using Dolunay_Villas.Areas.RealEstateManagement.Models;
 using Dolunay_Villas.Models;
-using Entity.Dtos.RealEstateManagement.Rooms;
+using Entity.Dtos.RealEstateManagement.Region;
 using Entity.Enums;
 using Entity.RequestParameters;
 using Microsoft.AspNetCore.Authorization;
@@ -10,19 +10,18 @@ using Service.Contract.RealEstateManagement;
 namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
 {
     [Area("RealEstateManagement")]
-    [Authorize(Policy = nameof(Powers.CanManageRealEstateRooms))]
-    public class RoomsController : Controller
+    [Authorize(Policy = nameof(Powers.CanManageRealEstateRegions))]
+    public class RegionController : Controller
     {
-        private readonly IRealEstateRoomsService _service;
+        private readonly IRealEstateRegionService _service;
 
-        public RoomsController(IRealEstateRoomsService service)
+        public RegionController(IRealEstateRegionService service)
         {
             _service = service;
         }
 
         public IActionResult Index([FromQuery] PageRequestParameters? r)
         {
-
             if (r == null)
             {
                 r = new()
@@ -38,20 +37,29 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 ItemsPerPage = r.PageSize,
                 TotalItems = _service.GetList()?.Count() ?? 0
             };
-            var model = new RealEstateRoomsListViewModel
+
+            var model = new BaseListViewModel<RegionDto>
             {
                 Entities = entity,
                 Pagination = pagination
             };
             return View("Index", model);
         }
-        public IActionResult Create()
+        public IActionResult Create([FromRoute(Name = "id")] int? id)
         {
+            if (id != null)
+            {
+                var model = new RegionDtoForInsertion
+                {
+                    ParentRegionID = id
+                };
+                return View("Create", model);
+            }
             return View("Create");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([FromForm] RoomsDtoForInsertions dtoForInsertion)
+        public IActionResult Create([FromForm] RegionDtoForInsertion dtoForInsertion)
         {
             if (ModelState.IsValid)
             {
@@ -70,12 +78,12 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         }
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
-            var entity = _service.GetEntity<RoomsDtoForUpdate>(id);
+            var entity = _service.GetEntity<RegionDtoForUpdate>(id);
             return View("Update", entity);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update([FromForm] RoomsDtoForUpdate dtoForUpdate)
+        public IActionResult Update([FromForm] RegionDtoForUpdate dtoForUpdate)
         {
             if (ModelState.IsValid)
             {

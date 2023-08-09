@@ -2,7 +2,7 @@
 
 namespace Dolunay_Villas.Areas.RealEstateManagement.Models
 {
-    public abstract class BaseListViewModel<TDto>
+    public class BaseListViewModel<TDto>
     {
         public List<TDto>? Entities { get; set; } = new List<TDto>();
         public Pagination Pagination { get; set; } = new();

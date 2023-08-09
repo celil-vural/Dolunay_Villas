@@ -2,6 +2,7 @@
 using Entity.Dtos.RealEstateManagement.BedTypes;
 using Entity.Dtos.RealEstateManagement.HeatingOptions;
 using Entity.Dtos.RealEstateManagement.ItemTypes;
+using Entity.Dtos.RealEstateManagement.Region;
 using Entity.Dtos.RealEstateManagement.RoomFeatures;
 using Entity.Dtos.RealEstateManagement.Rooms;
 using Entity.Dtos.RealEstateManagement.Rules;
@@ -39,6 +40,9 @@ namespace StoreApp.Infrastructure.Mapper
             CreateMap<BedTypes, BedTypesDto>().ReverseMap();
             CreateMap<BedTypes, BedTypesDtoForInsertion>().ReverseMap();
             CreateMap<BedTypes, BedTypesDtoForUpdate>().ReverseMap();
+            CreateMap<Region, RegionDto>().ReverseMap();
+            CreateMap<Region, RegionDtoForUpdate>().ReverseMap();
+            CreateMap<Region, RegionDtoForInsertion>().ReverseMap();
         }
     }
 }

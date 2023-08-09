@@ -1,15 +1,15 @@
-﻿@model RealEstateHighlightsListViewModel
+﻿@model BaseListViewModel<RegionDto>
 <div class="text-center my-2">
     <div class="display-6">
-        Highlights
+        Regions
     </div>
 </div>
-@await Html.PartialAsync("_DefaultPartialHtmlForCreateButton")
+<partial name="_DefaultPartialHtmlForCreateButton" />
 <table table>
     <thead>
         <tr>
-            <th>Order</th>
-            <th>Title</th>
+            <th>Region</th>
+            <th>SubRegion</th>
             <th>Operations</th>
         </tr>
     </thead>
@@ -17,10 +17,17 @@
         @foreach (var entity in Model?.Entities ?? new())
         {
             <tr>
-                <td>@entity.Order</td>
-                <td>@entity.Title_Tr</td>
+                <td>@(entity.ParentRegion?.Name ?? "Index")</td>
+                <td>@entity.Name</td>
                 <td>
-                    <div class="btn-group"> 
+                    <div class="btn-group">
+                        <a data-toggle="tooltip"
+                           data-placement="top" title="Edit"
+                           class="btn btn-sm btn-success rounded-3"
+                           asp-route-id="@entity.Id"
+                           asp-action="Create">
+                            <i class="fa fa-plus"></i>
+                        </a>
                         <a data-toggle="tooltip"
                            data-placement="top" title="Edit"
                            class="btn btn-sm btn-warning rounded-3"
@@ -40,4 +47,6 @@
         }
     </tbody>
 </table>
-@await Html.PartialAsync("_DefaultPartialHtmlForPagination", Model.Pagination)
+<partial name="_DefaultPartialHtmlForPagination" model="@(Model?.Pagination)" />
+
+

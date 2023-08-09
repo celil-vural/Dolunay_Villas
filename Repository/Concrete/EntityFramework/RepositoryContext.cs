@@ -7,6 +7,7 @@ namespace Repository.Concrete.EntityFramework
 {
     public class RepositoryContext : IdentityDbContext<IdentityUser>
     {
+        #region DbSet
         public DbSet<Rules> Rules { get; set; }
         public DbSet<HeatingOptions> HeatingOptions { get; set; }
         public DbSet<RoomFeatures> RoomFeatures { get; set; }
@@ -15,19 +16,16 @@ namespace Repository.Concrete.EntityFramework
         public DbSet<Entity.Models.RealEstateManagement.ValueType> ValueTypes { get; set; }
         public DbSet<BedTypes> BedTypes { get; set; }
         public DbSet<Highlights> Highlights { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        #endregion
         public RepositoryContext(DbContextOptions<RepositoryContext> options)
         : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // modelBuilder.ApplyConfiguration(new ProductConfig());
-            // modelBuilder.ApplyConfiguration(new CategoryConfig());
-
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }

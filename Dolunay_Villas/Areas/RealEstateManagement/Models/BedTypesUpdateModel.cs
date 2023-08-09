@@ -7,7 +7,6 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Models
     {
         public SelectList? ItemTypeOptions { get; set; }
         public SelectList? ValueTypeOptions { get; set; }
-
         public BedTypesDtoForUpdate BedTypesDtoForUpdate { get; set; } = new();
     }
 }

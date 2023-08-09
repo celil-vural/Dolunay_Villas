@@ -184,57 +184,93 @@ namespace Dolunay_Villas.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1118),
+                            CreatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2403),
                             CreatedByUser = "",
                             Name = "Structural Product",
-                            UpdatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1125),
+                            UpdatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2412),
                             UpdatedByUser = ""
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1131),
+                            CreatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2417),
                             CreatedByUser = "",
                             Name = "Built-in Furniture",
-                            UpdatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1131),
+                            UpdatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2418),
                             UpdatedByUser = ""
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1132),
+                            CreatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2419),
                             CreatedByUser = "",
                             Name = "Electronic Product",
-                            UpdatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1132),
+                            UpdatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2419),
                             UpdatedByUser = ""
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1133),
+                            CreatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2420),
                             CreatedByUser = "",
                             Name = "Bed",
-                            UpdatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1133),
+                            UpdatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2420),
                             UpdatedByUser = ""
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1134),
+                            CreatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2421),
                             CreatedByUser = "",
                             Name = "Furniture",
-                            UpdatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1135),
+                            UpdatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2421),
                             UpdatedByUser = ""
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1135),
+                            CreatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2422),
                             CreatedByUser = "",
                             Name = "Floor",
-                            UpdatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1136),
+                            UpdatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2422),
                             UpdatedByUser = ""
                         });
+                });
+
+            modelBuilder.Entity("Entity.Models.RealEstateManagement.Region", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ParentRegionID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedByUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentRegionID");
+
+                    b.ToTable("Regions");
                 });
 
             modelBuilder.Entity("Entity.Models.RealEstateManagement.RoomFeatures", b =>
@@ -380,46 +416,46 @@ namespace Dolunay_Villas.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1256),
+                            CreatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3986),
                             CreatedByUser = "",
                             Name = "Yes/No",
-                            UpdatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1257),
+                            UpdatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3988),
                             UpdatedByUser = ""
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1259),
+                            CreatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3990),
                             CreatedByUser = "",
                             Name = "Letter",
-                            UpdatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1259),
+                            UpdatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3991),
                             UpdatedByUser = ""
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1260),
+                            CreatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3992),
                             CreatedByUser = "",
                             Name = "Numeric",
-                            UpdatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1261),
+                            UpdatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3992),
                             UpdatedByUser = ""
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1261),
+                            CreatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3993),
                             CreatedByUser = "",
                             Name = "Multiple Selection",
-                            UpdatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1262),
+                            UpdatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3993),
                             UpdatedByUser = ""
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1262),
+                            CreatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3994),
                             CreatedByUser = "",
                             Name = "One choice",
-                            UpdatedAt = new DateTime(2023, 8, 7, 22, 55, 39, 527, DateTimeKind.Local).AddTicks(1263),
+                            UpdatedAt = new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3994),
                             UpdatedByUser = ""
                         });
                 });
@@ -453,15 +489,15 @@ namespace Dolunay_Villas.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "13aae919-f3bc-4f8d-a1cf-98647ce09b49",
-                            ConcurrencyStamp = "30db690f-a7db-4e2d-b9cb-4603cdd6eaea",
+                            Id = "64c0f385-65e7-4409-8436-db4bfdc631ed",
+                            ConcurrencyStamp = "8ad34cf4-a8af-4aa2-8781-f8195ac9b933",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "ad63a9de-cd8b-4564-b847-1d2efe6379f5",
-                            ConcurrencyStamp = "a30e71da-1e8a-4541-a4c0-2369178040af",
+                            Id = "8a77d553-4bdf-4b34-ae58-7c80890a0beb",
+                            ConcurrencyStamp = "15466345-43dc-4a13-9015-07a0b037b058",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
@@ -649,6 +685,16 @@ namespace Dolunay_Villas.Migrations
                         .HasForeignKey("ValueTypeId");
                 });
 
+            modelBuilder.Entity("Entity.Models.RealEstateManagement.Region", b =>
+                {
+                    b.HasOne("Entity.Models.RealEstateManagement.Region", "ParentRegion")
+                        .WithMany("SubRegions")
+                        .HasForeignKey("ParentRegionID")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("ParentRegion");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -703,6 +749,11 @@ namespace Dolunay_Villas.Migrations
             modelBuilder.Entity("Entity.Models.RealEstateManagement.ItemTypes", b =>
                 {
                     b.Navigation("BedTypes");
+                });
+
+            modelBuilder.Entity("Entity.Models.RealEstateManagement.Region", b =>
+                {
+                    b.Navigation("SubRegions");
                 });
 
             modelBuilder.Entity("Entity.Models.RealEstateManagement.ValueType", b =>
