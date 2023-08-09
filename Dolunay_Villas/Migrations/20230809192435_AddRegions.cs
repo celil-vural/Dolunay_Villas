@@ -123,7 +123,7 @@ namespace Dolunay_Villas.Migrations
                         column: x => x.ParentRegionID,
                         principalTable: "Regions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -342,8 +342,8 @@ namespace Dolunay_Villas.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "64c0f385-65e7-4409-8436-db4bfdc631ed", "8ad34cf4-a8af-4aa2-8781-f8195ac9b933", "Admin", "ADMIN" },
-                    { "8a77d553-4bdf-4b34-ae58-7c80890a0beb", "15466345-43dc-4a13-9015-07a0b037b058", "Editor", "EDITOR" }
+                    { "1f2b5313-39c0-48e2-a7b4-f67e0526a9ad", "41d774c4-2405-4f6c-ab1d-c9d38211d85d", "Editor", "EDITOR" },
+                    { "4b9366dd-5d46-4144-ac79-e9f25408de82", "f35d10e3-8b28-42c1-b1a4-0ccab7d71ba1", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -351,12 +351,12 @@ namespace Dolunay_Villas.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedByUser", "Name", "UpdatedAt", "UpdatedByUser" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2403), "", "Structural Product", new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2412), "" },
-                    { 2, new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2417), "", "Built-in Furniture", new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2418), "" },
-                    { 3, new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2419), "", "Electronic Product", new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2419), "" },
-                    { 4, new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2420), "", "Bed", new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2420), "" },
-                    { 5, new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2421), "", "Furniture", new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2421), "" },
-                    { 6, new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2422), "", "Floor", new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(2422), "" }
+                    { 1, new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4937), "", "Structural Product", new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4947), "" },
+                    { 2, new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4953), "", "Built-in Furniture", new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4954), "" },
+                    { 3, new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4955), "", "Electronic Product", new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4955), "" },
+                    { 4, new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4956), "", "Bed", new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4957), "" },
+                    { 5, new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4958), "", "Furniture", new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4958), "" },
+                    { 6, new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4959), "", "Floor", new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(4959), "" }
                 });
 
             migrationBuilder.InsertData(
@@ -364,11 +364,11 @@ namespace Dolunay_Villas.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedByUser", "Name", "UpdatedAt", "UpdatedByUser" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3986), "", "Yes/No", new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3988), "" },
-                    { 2, new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3990), "", "Letter", new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3991), "" },
-                    { 3, new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3992), "", "Numeric", new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3992), "" },
-                    { 4, new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3993), "", "Multiple Selection", new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3993), "" },
-                    { 5, new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3994), "", "One choice", new DateTime(2023, 8, 9, 17, 17, 31, 22, DateTimeKind.Local).AddTicks(3994), "" }
+                    { 1, new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(7737), "", "Yes/No", new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(7741), "" },
+                    { 2, new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(7745), "", "Letter", new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(7745), "" },
+                    { 3, new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(7746), "", "Numeric", new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(7747), "" },
+                    { 4, new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(7748), "", "Multiple Selection", new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(7748), "" },
+                    { 5, new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(7749), "", "One choice", new DateTime(2023, 8, 9, 22, 24, 34, 919, DateTimeKind.Local).AddTicks(7749), "" }
                 });
 
             migrationBuilder.CreateIndex(
