@@ -1,0 +1,27 @@
+[
+  {
+    "outputFileName": "output/bundle.css",
+    "inputFiles": [
+      "css/lib/**/*.css", // globbing patterns are supported
+      "css/input/site.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "commentMode": "all"
+    }
+  },
+  {
+    "outputFileName": "output/all.js",
+    "inputFiles": [
+      "js/*.js",
+      "!js/ignore.js" // start with a ! to exclude files
+    ]
+  },
+  {
+    "outputFileName": "output/app.js",
+    "inputFiles": [
+      "input/main.js",
+      "input/core/*.js" // all .js files in input/core/
+    ]
+  }
+]

@@ -24,10 +24,10 @@ namespace Dolunay_Villas.Infrastructure.Extensions
             services.AddScoped<IRealEstateBedTypesRepository, RealEstateBedTypesRepository>();
             services.AddScoped<IRealEstateItemTypesRepository, RealEstateItemTypesRepository>();
             services.AddScoped<IRealEstateValueTypesRepository, RealEstateValueTypesRepository>();
-            services.AddScoped<IFontAwesomeRepository, FontAwesomeRepository>();
+            services.AddSingleton<IFontAwesomeRepository, FontAwesomeRepository>();
             services.AddScoped<IRealEstateHighlightsRepository, RealEstateHighlightsRepository>();
             services.AddScoped<IRealEstateRegionRepository, RealEstateRegionRepository>();
-
+            services.AddSingleton<ILoggerRepository, LoggerRepository>();
             //Services
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IRoleService, RoleService>();
@@ -38,7 +38,7 @@ namespace Dolunay_Villas.Infrastructure.Extensions
             services.AddScoped<IRealEstateBedTypesService, RealEstateBedTypesService>();
             services.AddScoped<IRealEstateItemTypesService, RealEstateItemTypesService>();
             services.AddScoped<IRealEstateValueTypesService, RealEstateValueTypesService>();
-            services.AddScoped<IFontAwesomeService, FontAwesomeService>();
+            services.AddSingleton<IFontAwesomeService, FontAwesomeService>();
             services.AddScoped<IRealEstateHighlightsService, RealEstateHighlightsService>();
             services.AddScoped<IRealEstateRegionService, RealEstateRegionService>();
             //Others

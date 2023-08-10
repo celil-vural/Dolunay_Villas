@@ -6,6 +6,7 @@ using Service.Contract.RealEstateManagement;
 
 namespace Service.Concrete.RealEstateManagement
 {
+
     public class RealEstateRulesService : BaseService<Rules, RulesDto>, IRealEstateRulesService
     {
         public RealEstateRulesService(IRealEstateRulesRepository realEstateRulesRepository, IMapper mapper) : base(realEstateRulesRepository, mapper)

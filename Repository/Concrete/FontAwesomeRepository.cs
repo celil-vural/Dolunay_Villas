@@ -7,10 +7,8 @@ namespace Repository.Concrete
     public class FontAwesomeRepository : IFontAwesomeRepository
     {
         private const string FontAwesomeGitHubUrl = "https://github.com/FortAwesome/Font-Awesome/tree/master/svgs/solid";
-        //[Cache("svgLinks", 60)]
         public async Task<List<string>> GetAllFreeIcons()
         {
-
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0");  // User-Agent eklemek GitHub API için gereklidir.

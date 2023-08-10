@@ -1,4 +1,5 @@
-﻿using Entity.Models.RealEstateManagement;
+﻿using Entity.Models;
+using Entity.Models.RealEstateManagement;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace Repository.Concrete.EntityFramework
         public DbSet<BedTypes> BedTypes { get; set; }
         public DbSet<Highlights> Highlights { get; set; }
         public DbSet<Region> Regions { get; set; }
+        public DbSet<Log> Logs { get; set; }
         #endregion
         public RepositoryContext(DbContextOptions<RepositoryContext> options)
         : base(options)

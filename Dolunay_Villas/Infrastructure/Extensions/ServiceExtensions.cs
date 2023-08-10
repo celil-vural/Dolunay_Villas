@@ -165,7 +165,6 @@ namespace Dolunay_Villas.Infrastructure.Extensions
                 options.AppendTrailingSlash = false;
             });
         }
-
         public static void ConfigureEndPoints(this WebApplication application)
         {
             application.UseEndpoints(endpoint =>

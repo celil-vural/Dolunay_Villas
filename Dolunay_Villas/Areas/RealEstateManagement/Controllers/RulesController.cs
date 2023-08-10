@@ -12,6 +12,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
 {
     [Area("RealEstateManagement")]
     [Authorize(Policy = nameof(Powers.CanManageRealEstateRules))]
+
     public class RulesController : Controller
     {
         private readonly IRealEstateRulesService _realEstateRulesService;

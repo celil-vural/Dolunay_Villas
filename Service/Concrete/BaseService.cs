@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Dolunay_Villas.Core.Aspects.Postsharp.LogAspects;
 using Entity.Contracts;
 using Entity.RequestParameters;
 using Repository.Contracts;
@@ -6,17 +7,20 @@ using Service.Contract;
 
 namespace Service.Concrete
 {
+
     public abstract class BaseService<TEntity, TDto> : IBaseService<TEntity, TDto> where TEntity : class, IEntity, new() where TDto : new()
     {
         private readonly IRepositoryBase<TEntity> _baseRepository;
         private readonly IMapper _mapper;
-
-        protected BaseService(IRepositoryBase<TEntity> baseRepository, IMapper mapper)
+        private readonly ILoggerRepository _loggerRepository;
+        protected BaseService(IRepositoryBase<TEntity> baseRepository, IMapper mapper, ILoggerRepository loggerRepository)
         {
             _baseRepository = baseRepository;
             _mapper = mapper;
+            _loggerRepository = loggerRepository;
         }
 
+        [LogAspect(logger: _loggerRepository, userEmail: "default", userName: "default")]
         public void CreateWithDto<TDtoForInsertion>(TDtoForInsertion dtoForInsertion)
         {
             TEntity entity = _mapper.Map<TEntity>(dtoForInsertion);
@@ -54,7 +58,6 @@ namespace Service.Concrete
             GetNotFoundExceptions(entity);
             _baseRepository.Update(entity);
         }
-
         public IEnumerable<TDto>? GetWithDetail(PageRequestParameters? parameters)
         {
             var entity = _baseRepository.GetWithDetail(parameters);

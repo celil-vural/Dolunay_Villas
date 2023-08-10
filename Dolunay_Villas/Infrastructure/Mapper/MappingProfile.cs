@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Entity.Dtos.Log;
 using Entity.Dtos.RealEstateManagement.BedTypes;
 using Entity.Dtos.RealEstateManagement.HeatingOptions;
 using Entity.Dtos.RealEstateManagement.ItemTypes;
@@ -43,6 +44,9 @@ namespace StoreApp.Infrastructure.Mapper
             CreateMap<Region, RegionDto>().ReverseMap();
             CreateMap<Region, RegionDtoForUpdate>().ReverseMap();
             CreateMap<Region, RegionDtoForInsertion>().ReverseMap();
+            CreateMap<Log, LogDto>().ReverseMap();
+            CreateMap<Log, LogDtoForInsertion>().ReverseMap();
+            CreateMap<Log, LogDtoForUpdate>().ReverseMap();
         }
     }
 }
