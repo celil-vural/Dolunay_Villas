@@ -2,7 +2,7 @@
     <nav id="sidebar" class="active bg-secondary">
         <ul class="components bg-secondary">
             <li class="active">
-                <a type="button" id="sidebarCollapse" class="btn">
+                <a type="button" id="sidebarCollapse" class="btn h-100">
                     <i class="fa fa-bars"></i>
                     <span class="sr-only">Toggle Menu</span>
                 </a>
@@ -11,13 +11,16 @@
                 <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index"><span class="fa fa-home"></span> Dashboard</a>
             </li>
             <li>
+                <a asp-area="Admin" asp-controller="Icon" asp-action="Index"><span class="fa-solid fa-file-invoice-dollar"></span>Icons</a>
+            </li>
+            <li>
                 <a href="#"><span class="fa-solid fa-file-invoice-dollar"></span>Invoice</a>
             </li>
             <li>
                 <a href="#"><span class="fa-solid fa-magnifying-glass"></span>Search Villa</a>
             </li>
             <li>
-                <a href="#"><span class="fa-solid fa-file"></span>Offers</a>
+                <a href="#"><span class="fa-solid fa-file mx-1"></span>Offers</a>
             </li>
             <li>
                 <a href="#reservationManagement" class="list-group-item list-group-item-action d-flex" data-bs-toggle="collapse">

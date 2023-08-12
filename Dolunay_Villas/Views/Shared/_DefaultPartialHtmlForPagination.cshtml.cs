@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Dolunay_Villas.Areas.RealEstateManagement.Views.Shared
+namespace Dolunay_Villas.Views.Shared
 {
-    public class _DefaultPArtialHtmlForCreateButtonModel : PageModel
+    public class _DefaultPartialHtmlForPaginationModel : PageModel
     {
         public void OnGet()
         {

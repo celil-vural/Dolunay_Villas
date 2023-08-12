@@ -1,0 +1,33 @@
+﻿@model PhotoDtoInsertion
+@{
+    ViewData["Title"] = "Upload Icon";
+}
+<div class="text-center">
+    <div class="display-6">
+        Create Photo
+    </div>
+</div>
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label class="form-label" for="formFile">Choose a photo (Max 3 MB):</label>
+        <input type="file" name="formFile" id="formFile" class="form-control" required accept="image/*" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="FileName" class="form-label mt-1"></label>
+        <input required asp-for="FileName" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <div class="btn-group">
+            <button type="submit" class="btn btn-outline-secondary">
+                <i class="fa fa-save"></i>
+                Create
+            </button>
+            <a asp-area="Admin" asp-action="Index" class="btn btn-outline-secondary">
+                <i class="fa fa-list"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+</form>
