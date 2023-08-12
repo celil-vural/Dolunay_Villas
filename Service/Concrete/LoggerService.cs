@@ -8,7 +8,7 @@ namespace Service.Concrete
 {
     public class LoggerService : BaseService<Log, LogDto>, ILoggerService
     {
-        public LoggerService(IRepositoryBase<Log> baseRepository, IMapper mapper) : base(baseRepository, mapper)
+        public LoggerService(ILoggerRepository baseRepository, IMapper mapper) : base(baseRepository, mapper)
         {
         }
     }

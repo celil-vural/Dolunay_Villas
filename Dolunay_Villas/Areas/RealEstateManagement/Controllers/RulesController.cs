@@ -5,6 +5,7 @@ using Entity.Enums;
 using Entity.RequestParameters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Repository.Contracts;
 using Service.Contract;
 using Service.Contract.RealEstateManagement;
 
@@ -12,15 +13,16 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
 {
     [Area("RealEstateManagement")]
     [Authorize(Policy = nameof(Powers.CanManageRealEstateRules))]
-
     public class RulesController : Controller
     {
         private readonly IRealEstateRulesService _realEstateRulesService;
         private readonly IFontAwesomeService _fontAwesomeService;
-        public RulesController(IRealEstateRulesService realEstateRulesService, IFontAwesomeService fontAwesomeService)
+        private readonly ILoggerRepository _loggerRepository;
+        public RulesController(IRealEstateRulesService realEstateRulesService, ILoggerRepository loggerRepository, IFontAwesomeService fontAwesomeService)
         {
             _realEstateRulesService = realEstateRulesService;
             _fontAwesomeService = fontAwesomeService;
+            _loggerRepository = loggerRepository;
         }
         public IActionResult Index([FromQuery] PageRequestParameters? r)
         {

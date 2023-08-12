@@ -1,8 +1,7 @@
-﻿using Dolunay_Villas.CrossCuttingConcerns.Caching.Contract;
+﻿using Dolunay_Villas.Core.CrossCuttingConcerns.Caching.Contract;
 using PostSharp.Aspects;
 using System.Reflection;
-
-namespace Dolunay_Villas.Aspects.Postsharp.CacheAspects
+namespace Dolunay_Villas.Core.Aspects.Postsharp.CacheAspects
 {
     [Serializable]
     public class CacheAspect : MethodInterceptionAspect

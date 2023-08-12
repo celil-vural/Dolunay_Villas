@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Dolunay_Villas.Core.Aspects.Postsharp.LogAspects;
 using Entity.Contracts;
 using Entity.RequestParameters;
 using Repository.Contracts;
@@ -12,15 +11,12 @@ namespace Service.Concrete
     {
         private readonly IRepositoryBase<TEntity> _baseRepository;
         private readonly IMapper _mapper;
-        private readonly ILoggerRepository _loggerRepository;
-        protected BaseService(IRepositoryBase<TEntity> baseRepository, IMapper mapper, ILoggerRepository loggerRepository)
+        protected BaseService(IRepositoryBase<TEntity> baseRepository, IMapper mapper)
         {
             _baseRepository = baseRepository;
             _mapper = mapper;
-            _loggerRepository = loggerRepository;
         }
 
-        [LogAspect(logger: _loggerRepository, userEmail: "default", userName: "default")]
         public void CreateWithDto<TDtoForInsertion>(TDtoForInsertion dtoForInsertion)
         {
             TEntity entity = _mapper.Map<TEntity>(dtoForInsertion);

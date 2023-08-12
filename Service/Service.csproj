@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Dolunay_Villas.Core\Dolunay_Villas.Core.csproj" />
     <ProjectReference Include="..\Entity\Entity.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
