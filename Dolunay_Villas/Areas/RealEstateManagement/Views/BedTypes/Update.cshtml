@@ -1,4 +1,11 @@
 ﻿@model BedTypesUpdateModel
+@{
+    var SelectionModel = new PartialSelectionModel()
+    {
+        FontAwesomeIcons = Model.FontAwesomeIcons ?? new HashSet<string>(),
+        SelectedValue = Model.BedTypesDtoForUpdate.FontAwesomeIcon ?? null 
+    };
+}
 <div class="text-center my-5">
     <div class="dispaly-6">Update (@Model?.BedTypesDtoForUpdate?.Title_Tr)</div>
 </div>
@@ -17,18 +24,29 @@
         <label class="form-label" asp-for="@(Model.BedTypesDtoForUpdate.Title_En)"></label>
         <input asp-for="@(Model.BedTypesDtoForUpdate.Title_En)" class="form-control" />
     </div>
-    <div class="form-group my-3">
-        <input required type="hidden" asp-for="@(Model.BedTypesDtoForUpdate.IconString)" id="IconString" value="@((ViewBag.Icons as List<string>)?.First())" />
-        <partial name="_SelectIcon" model="@(ViewBag.Icons as List<string>)" />
+    <div class="form-group mb-3">
+        <label asp-for="@(Model.BedTypesDtoForUpdate.FontAwesomeIcon)" class="form-label"></label>
+        <input required type="hidden" asp-for="@(Model.BedTypesDtoForUpdate.FontAwesomeIcon)" id="IconString" value="@(null)" />
+        <partial name="_SelectIcon" model="@(SelectionModel)" />
+    </div>
+    <div class="form-group mb-3">
+        <label class="form-label" asp-for="BedTypesDtoForUpdate.LocalIconId"></label>
+        <select asp-for="BedTypesDtoForUpdate.LocalIconId" class="form-control">
+            <option value="@null"> Select a Icon</option>
+            @foreach (var item in Model?.LocalIcons ?? new List<IconDto>())
+            {
+                <option value="@item.Id" selected="@(Model?.BedTypesDtoForUpdate.LocalIconId==item.Id)">@item.FileName</option>
+            }
+        </select>
     </div>
     <div class="form-group mb-3">
         <label class="form-label" asp-for="@(Model.BedTypesDtoForUpdate.ItemTypeKey)">ItemType</label>
-        <select asp-for="@(Model.BedTypesDtoForUpdate.ItemTypeKey)" asp-items="@Model.ItemTypeOptions" class="form-control">
+        <select asp-for="@(Model.BedTypesDtoForUpdate.ItemTypeKey)" asp-items="@Model?.ItemTypeOptions" class="form-control">
         </select>
     </div>
     <div class="form-group mb-3">
         <label class="form-label" asp-for="@(Model.BedTypesDtoForUpdate.ValueTypeKey)">ValueType</label>
-        <select asp-for="@(Model.BedTypesDtoForUpdate.ValueTypeKey)" asp-items="@Model.ValueTypeOptions" class="form-control">
+        <select asp-for="@(Model.BedTypesDtoForUpdate.ValueTypeKey)" asp-items="@Model?.ValueTypeOptions" class="form-control">
         </select>
     </div>
     <partial name="_DefaultPartialHtmlForUpdateByBackButton" />

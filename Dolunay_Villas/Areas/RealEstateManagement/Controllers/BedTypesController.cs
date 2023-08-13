@@ -19,12 +19,14 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         private readonly IRealEstateItemTypesService _itemTypeService;
         private readonly IRealEstateValueTypesService _valueTypeService;
         private readonly IFontAwesomeService _fontAwesomeService;
-        public BedTypesController(IRealEstateBedTypesService service, IRealEstateItemTypesService itemTypeService, IRealEstateValueTypesService valueTypeService, IFontAwesomeService fontAwesomeService)
+        private readonly IIconService _iconService;
+        public BedTypesController(IRealEstateBedTypesService service, IRealEstateItemTypesService itemTypeService, IRealEstateValueTypesService valueTypeService, IFontAwesomeService fontAwesomeService, IIconService iconService)
         {
             _service = service;
             _itemTypeService = itemTypeService;
             _valueTypeService = valueTypeService;
             _fontAwesomeService = fontAwesomeService;
+            _iconService = iconService;
         }
 
         public IActionResult Index([FromQuery] PageRequestParameters? p)
@@ -55,30 +57,58 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         {
             var itemTypes = _itemTypeService.GetList();
             var valueTypes = _valueTypeService.GetList();
+            var icons = await _fontAwesomeService.GetAllFreeIcons();
+            var localIcons = _iconService.GetList();
             var model = new BedTypesInsertionModel
             {
                 ItemTypeOptions = new SelectList(itemTypes, "Id", "Name"),
-                ValueTypeOptions = new SelectList(valueTypes, "Id", "Name")
+                ValueTypeOptions = new SelectList(valueTypes, "Id", "Name"),
+                LocalIcons = localIcons,
+                FontAwesomeIcons = icons
             };
-            var icons = await _fontAwesomeService.GetAllFreeIcons();
-            ViewBag.Icons = icons;
             return View("Create", model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([FromForm] BedTypesInsertionModel model)
+        public async Task<IActionResult> Create([FromForm] BedTypesInsertionModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var dtoForInsertion = model.BedTypesDtoForInsertion;
+                    if (String.IsNullOrEmpty(dtoForInsertion.FontAwesomeIcon) && dtoForInsertion.LocalIconId == null)
+                    {
+                        throw new Exception("Please select an icon");
+                    }
+                    if (!(String.IsNullOrEmpty(dtoForInsertion.FontAwesomeIcon) && dtoForInsertion.LocalIconId == null))
+                    {
+                        throw new Exception("Please just select an icon");
+                    }
                     model.BedTypesDtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
                     _service.CreateWithDto(model.BedTypesDtoForInsertion);
-                    return RedirectToAction("Index", "BedTypes");
+                    return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
+                    var icons = await _fontAwesomeService.GetAllFreeIcons();
+                    var localIcons = _iconService.GetList();
+                    var itemTypes = _itemTypeService.GetList();
+                    var valueTypes = _valueTypeService.GetList();
+                    var newModel = new BedTypesInsertionModel
+                    {
+                        BedTypesDtoForInsertion = new BedTypesDtoForInsertion
+                        {
+                            Title_En = model.BedTypesDtoForInsertion.Title_En,
+                            Title_Tr = model.BedTypesDtoForInsertion.Title_Tr,
+                        },
+                        LocalIcons = localIcons,
+                        FontAwesomeIcons = icons,
+                        ItemTypeOptions = new SelectList(itemTypes, "Id", "Name"),
+                        ValueTypeOptions = new SelectList(valueTypes, "Id", "Name"),
+                    };
                     ModelState.AddModelError("", e.Message);
+                    return View(newModel);
                 }
             }
             model.ItemTypeOptions = new SelectList(_itemTypeService.GetList(), "Id", "Name");
@@ -90,35 +120,54 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             var entity = _service.GetEntity<BedTypesDtoForUpdate>(id);
             var itemTypes = _itemTypeService.GetList();
             var valueTypes = _valueTypeService.GetList();
+            var icons = await _fontAwesomeService.GetAllFreeIcons();
+            var localIcons = _iconService.GetList();
             var model = new BedTypesUpdateModel
             {
                 BedTypesDtoForUpdate = entity ?? new(),
-                ItemTypeOptions = new SelectList(itemTypes, "Id", "Name", entity.ItemTypeKey),
-                ValueTypeOptions = new SelectList(valueTypes, "Id", "Name", entity.ValueTypeKey)
+                ItemTypeOptions = new SelectList(itemTypes, "Id", "Name", entity!.ItemTypeKey),
+                ValueTypeOptions = new SelectList(valueTypes, "Id", "Name", entity.ValueTypeKey),
+                LocalIcons = localIcons,
+                FontAwesomeIcons = icons
             };
-            var icons = await _fontAwesomeService.GetAllFreeIcons();
-            if (entity.IconString != null) icons.Insert(0, entity.IconString);
-            ViewBag.Icons = icons;
             return View("Update", model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update([FromForm] BedTypesUpdateModel model)
+        public async Task<IActionResult> Update([FromForm] BedTypesUpdateModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    model.BedTypesDtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
-                    _service.Update(model.BedTypesDtoForUpdate);
+                    var dtoForUpdate = model.BedTypesDtoForUpdate;
+                    if (String.IsNullOrEmpty(dtoForUpdate.FontAwesomeIcon) && dtoForUpdate.LocalIconId == null)
+                    {
+                        throw new Exception("Please select an icon");
+                    }
+                    if (!(String.IsNullOrEmpty(dtoForUpdate.FontAwesomeIcon) && dtoForUpdate.LocalIconId == null))
+                    {
+                        throw new Exception("Please just select an icon");
+                    }
+                    dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
+                    _service.Update(dtoForUpdate);
                     return RedirectToAction("Index", "BedTypes");
                 }
                 catch (Exception e)
                 {
+                    var icons = await _fontAwesomeService.GetAllFreeIcons();
+                    var localIcons = _iconService.GetList();
+                    var newModel = new BedTypesUpdateModel
+                    {
+                        BedTypesDtoForUpdate = model.BedTypesDtoForUpdate,
+                        LocalIcons = localIcons,
+                        FontAwesomeIcons = icons
+                    };
                     ModelState.AddModelError("", e.Message);
+                    return View(newModel);
                 }
             }
-            return View("Update", model);
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

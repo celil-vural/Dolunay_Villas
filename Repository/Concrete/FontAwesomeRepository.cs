@@ -7,7 +7,7 @@ namespace Repository.Concrete
     public class FontAwesomeRepository : IFontAwesomeRepository
     {
         private const string FontAwesomeGitHubUrl = "https://github.com/FortAwesome/Font-Awesome/tree/master/svgs/solid";
-        public async Task<List<string>> GetAllFreeIcons()
+        public async Task<HashSet<string>> GetAllFreeIcons()
         {
             using (HttpClient client = new HttpClient())
             {
@@ -20,7 +20,7 @@ namespace Repository.Concrete
                     string jsonResult = await response.Content.ReadAsStringAsync();
                     var jsonObject = JObject.Parse(jsonResult);
                     var items = jsonObject["payload"]["tree"]["items"];
-                    var icons = new List<string>();
+                    var icons = new HashSet<string>();
                     foreach (var item in items)
                     {
                         string itemName = item["name"].ToString();

@@ -20,6 +20,7 @@ namespace Repository.Concrete.EntityFramework
         public DbSet<Region> Regions { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Icon> Icons { get; set; }
         #endregion
         public RepositoryContext(DbContextOptions<RepositoryContext> options)
         : base(options)

@@ -3,6 +3,6 @@
     public interface IFontAwesomeRepository
     {
         public string GetIconClassFromSvgLink(string svgLink);
-        public Task<List<string>> GetAllFreeIcons();
+        public Task<HashSet<string>> GetAllFreeIcons();
     }
 }

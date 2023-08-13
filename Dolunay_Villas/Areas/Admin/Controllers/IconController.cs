@@ -1,6 +1,6 @@
-﻿using Dolunay_Villas.Areas.Admin.Models;
+﻿using Dolunay_Villas.Areas.Admin.Models.Icon;
 using Dolunay_Villas.Models;
-using Entity.Dtos.Photo;
+using Entity.Dtos.Icon;
 using Entity.RequestParameters;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contract;
@@ -10,11 +10,11 @@ namespace Dolunay_Villas.Areas.Admin.Controllers
     [Area("Admin")]
     public class IconController : Controller
     {
-        private readonly IPhotoService _service;
+        private readonly IIconService _service;
 
-        public IconController(IPhotoService photoService)
+        public IconController(IIconService service)
         {
-            _service = photoService;
+            _service = service;
         }
 
         public IActionResult Index([FromQuery] PageRequestParameters? r)
@@ -34,7 +34,7 @@ namespace Dolunay_Villas.Areas.Admin.Controllers
                 ItemsPerPage = r.PageSize,
                 TotalItems = _service.GetList()?.Count() ?? 0
             };
-            var model = new PhotoListViewModel
+            var model = new IconListViewModel
             {
                 Entities = entity,
                 Pagination = pagination
@@ -47,7 +47,7 @@ namespace Dolunay_Villas.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] PhotoDtoInsertion model, IFormFile formFile)
+        public async Task<IActionResult> Create([FromForm] IconDtoForInsertion model, IFormFile formFile)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace Dolunay_Villas.Areas.Admin.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("Photo", "The photo size should be between 10 kb and 3 mb");
+                        ModelState.AddModelError("Icon", "The icon size should be between 10 kb and 3 mb");
                     }
                 }
             }
@@ -98,47 +98,48 @@ namespace Dolunay_Villas.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Update([FromRoute(Name = "id")] int id)
         {
-            var entity = _service.GetEntity<PhotoDtoUpdate>(id);
-            var model = new PhotoUpdateModel
+            var entity = _service.GetEntity<IconDtoForUpdate>(id);
+            var model = new IconUpdateModel
             {
-                PhotoDtoUpdate = entity,
+                IconDtoForUpdate = entity,
             };
             return View("Update", model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update([FromForm] PhotoUpdateModel model, [FromForm(Name = "formFile")] IFormFile? formFile)
+        public async Task<IActionResult> Update([FromForm] IconUpdateModel model, [FromForm(Name = "formFile")] IFormFile? formFile)
         {
             if (ModelState.IsValid)
             {
-                if (model.PhotoDtoUpdate == null)
+                if (model.IconDtoForUpdate == null)
                 {
                     ModelState.AddModelError("", "The model is null");
                     return View(model);
                 }
-                if (string.Equals(model.OldFileName, model.PhotoDtoUpdate.FileName, StringComparison.OrdinalIgnoreCase) && formFile == null)
+                if (string.Equals(model.OldFileName, model.IconDtoForUpdate.FileName, StringComparison.OrdinalIgnoreCase) && formFile == null)
                 {
                     return RedirectToAction("Index");
                 }
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "uploads");
                 try
                 {
-                    if (formFile == null && model.OldFileName != model.PhotoDtoUpdate.FileName)
+                    var dtoForUpdate = model.IconDtoForUpdate;
+                    if (formFile == null && model.OldFileName != dtoForUpdate.FileName)
                     {
-                        model.PhotoDtoUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
-                        await _service.ChangeNameFile(model.OldFileName, model.PhotoDtoUpdate.FileName, uploadsFolder);
-                        _service.Update(model.PhotoDtoUpdate);
+                        dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
+                        await _service.ChangeNameFile(model.OldFileName, dtoForUpdate.FileName, uploadsFolder);
+                        _service.Update(dtoForUpdate);
                     }
                     else if (formFile.Length > 0 && formFile.Length <= 3 * 1024 * 1024)
                     {
-                        model.PhotoDtoUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
+                        dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
                         await _service.DeletePhotoAsync(model.OldFileName, uploadsFolder);
-                        await _service.ConvertPhotoAsync(formFile, model.PhotoDtoUpdate.FileName, uploadsFolder);
-                        _service.Update(model.PhotoDtoUpdate);
+                        await _service.ConvertPhotoAsync(formFile, dtoForUpdate.FileName, uploadsFolder);
+                        _service.Update(dtoForUpdate);
                     }
                     else
                     {
-                        ModelState.AddModelError("Photo", "The photo size should be between 10 kb and 3 mb");
+                        ModelState.AddModelError("Icon", "The icon size should be between 10 kb and 3 mb");
                         return View(model);
                     }
                     return RedirectToAction("Index");

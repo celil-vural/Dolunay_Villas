@@ -28,7 +28,7 @@ namespace Service.Concrete
             GetNotFoundExceptions(entity);
             _baseRepository.Delete(entity!);
         }
-        public IEnumerable<TDto>? GetList()
+        public virtual IEnumerable<TDto>? GetList()
         {
             var entities = _baseRepository.GetList();
             var dto = _mapper.Map<IEnumerable<TDto>>(entities);

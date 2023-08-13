@@ -1,4 +1,4 @@
-﻿@model List<string>
+﻿@model PartialSelectionModel
 <style>
     .custom-dropdown-toggle {
         border: 1px solid #ced4da;
@@ -34,11 +34,16 @@
 <ul class="navbar-nav border mb-4 rounded-2" id="selectList">
     <li class="nav-item  dropdown">
         <div class="custom-dropdown-toggle rounded-2 p-2" id="Select" onclick="toggleOptions()">
-            <i id="selectIcon" class="@(Model.First())"></i>
-            <div class="mx-2" id="selectText" style="display:inline-block">@Model.First()</div>
+            <i id="selectIcon" class="@(Model.SelectedValue??"")"></i>
+            <div class="mx-2" id="selectText" style="display:inline-block">@(Model.SelectedValue??"Select a Icon")</div>
         </div>
         <ul class="custom-dropdown-menu ps-1" id="optionsList" style="display:none;">
-            @foreach (string icon in Model ?? new List<string>())
+            <li class="px-1 ps-4">
+                <a class="dropdown-item" href="#" onclick="selectOption(null)">
+                    Select a Icon
+                </a>
+            </li>
+            @foreach (string icon in Model.FontAwesomeIcons ?? new HashSet<string>())
             {
                 <li class="px-1">
                     <a class="dropdown-item" href="#" onclick="selectOption('@icon')">
@@ -58,7 +63,7 @@
     }
     function selectOption(string) {
         toggleOptions();
-        document.getElementById("selectText").innerHTML = string;
+        document.getElementById("selectText").innerHTML = string == null ? "Select a Icon" : string;
         document.getElementById("IconString").value = string;
         var select = document.getElementById("Select");
         select.removeChild(select.firstChild);

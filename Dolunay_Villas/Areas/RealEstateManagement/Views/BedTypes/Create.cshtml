@@ -1,4 +1,11 @@
 ﻿@model BedTypesInsertionModel
+@{
+    var SelectionModel = new PartialSelectionModel()
+    {
+        FontAwesomeIcons = Model.FontAwesomeIcons,
+        SelectedValue=null      
+    };
+}
 <div class="text-center">
     <div class="display-6">
         Create Bed Type
@@ -15,8 +22,19 @@
         <input required asp-for="@(Model.BedTypesDtoForInsertion.Title_En)" class="form-control" />
     </div>
     <div class="form-group mb-3">
-        <input required type="hidden" asp-for="@(Model.BedTypesDtoForInsertion.IconString)" id="IconString" value="@((ViewBag.Icons as List<string>)?.First())" />
-        <partial name="_SelectIcon" model="@(ViewBag.Icons as List<string>)" />
+        <label asp-for="@(Model.BedTypesDtoForInsertion.FontAwesomeIcon)" class="form-label">FontAwesome Icon</label>
+        <input required type="hidden" asp-for="@(Model.BedTypesDtoForInsertion.FontAwesomeIcon)" id="IconString" value="@(null)" />
+        <partial name="_SelectIcon" model="@(SelectionModel)" />
+    </div>
+    <div class="form-group mb-3">
+        <label class="form-label" asp-for="BedTypesDtoForInsertion.LocalIconId">Local Icon</label>
+        <select asp-for="BedTypesDtoForInsertion.LocalIconId" class="form-control">
+            <option value="@null"> Select a Icon</option>
+            @foreach (var item in Model?.LocalIcons ?? new List<IconDto>())
+            {
+                <option value="@item.Id" selected="@(Model?.BedTypesDtoForInsertion.LocalIconId==item.Id)">@item.FileName</option>
+            }
+        </select>
     </div>
     <div class="form-group mb-3">
         <label class="form-label" asp-for="@(Model.BedTypesDtoForInsertion.ItemTypeKey)">ItemType</label>

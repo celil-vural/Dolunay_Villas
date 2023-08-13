@@ -7,6 +7,7 @@
         public string Title_En { get; set; } = string.Empty;
         public string CreatedByUser { get; set; } = string.Empty;
         public string UpdatedByUser { get; set; } = string.Empty;
-        public string IconString { get; set; } = string.Empty;
+        public string? FontAwesomeIcon { get; set; }
+        public int? LocalIconId { get; set; }
     }
 }

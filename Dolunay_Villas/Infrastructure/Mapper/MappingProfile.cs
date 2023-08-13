@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Entity.Dtos.Icon;
 using Entity.Dtos.Log;
 using Entity.Dtos.Photo;
 using Entity.Dtos.RealEstateManagement.BedTypes;
@@ -51,6 +52,9 @@ namespace StoreApp.Infrastructure.Mapper
             CreateMap<Photo, PhotoDto>().ReverseMap();
             CreateMap<Photo, PhotoDtoInsertion>().ReverseMap();
             CreateMap<Photo, PhotoDtoUpdate>().ReverseMap();
+            CreateMap<Icon, IconDto>().ReverseMap();
+            CreateMap<Icon, IconDtoForUpdate>().ReverseMap();
+            CreateMap<Icon, IconDtoForInsertion>().ReverseMap();
         }
     }
 }

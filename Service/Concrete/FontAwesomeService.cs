@@ -14,7 +14,7 @@ namespace Service.Concrete
             _repository = repository;
         }
         [CacheAspect(typeof(MemoryCacheManager), 60)]
-        public Task<List<string>> GetAllFreeIcons()
+        public Task<HashSet<string>> GetAllFreeIcons()
         {
             return _repository.GetAllFreeIcons();
         }
