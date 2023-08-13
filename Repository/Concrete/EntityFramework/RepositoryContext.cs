@@ -19,7 +19,7 @@ namespace Repository.Concrete.EntityFramework
         public DbSet<Highlights> Highlights { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Log> Logs { get; set; }
-        public DbSet<Photo> Photo { get; set; }
+        public DbSet<Photo> Photos { get; set; }
         #endregion
         public RepositoryContext(DbContextOptions<RepositoryContext> options)
         : base(options)

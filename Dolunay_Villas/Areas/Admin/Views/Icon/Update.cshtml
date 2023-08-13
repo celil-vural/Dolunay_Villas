@@ -1,1 +1,25 @@
-﻿
+﻿@model PhotoUpdateModel
+<div class="text-center my-5">
+    <div class="dispaly-6">Update (@Model.PhotoDtoUpdate.FileName)</div>
+</div>
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-center text-danger"></div>
+    <div>
+        <input type="hidden" asp-for="PhotoDtoUpdate.Id" />
+        <input type="hidden" asp-for="PhotoDtoUpdate.CreatedByUser" />
+        <input type="hidden" asp-for="PhotoDtoUpdate.CreatedAt" />
+        <input type="hidden" asp-for="OldFileName" value="@(Model.PhotoDtoUpdate.FileName)"/>
+    </div>
+    <div class="form-group my-3">
+        <div class="my-1">
+            <img height="250" width="250" src="~/images/uploads/@(Model.PhotoDtoUpdate.FileName).webp" />
+        </div>
+        <label class="form-label">File</label>
+        <input type="file" name="formFile" id="formFile" class="form-control" accept="image/*" />
+    </div>
+    <div class="form-group my-3">
+        <label class="form-label" asp-for="PhotoDtoUpdate.FileName"></label>
+        <input asp-for="PhotoDtoUpdate.FileName" class="form-control" />
+    </div>
+    <partial name="_DefaultPartialHtmlForUpdateByBackButton" />
+</form>

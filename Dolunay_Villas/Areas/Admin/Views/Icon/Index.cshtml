@@ -8,6 +8,7 @@
 <table table>
     <thead>
         <tr>
+            <th>Icon</th>
             <th>Title</th>
             <th>Operations</th>
         </tr>
@@ -16,6 +17,9 @@
         @foreach (var entity in Model?.Entities ?? new())
         {
             <tr>
+                <td >
+                    <img class="ms-2" src="~/images/uploads/@(entity.FileName).webp" width="50" height="50" />
+                </td>
                 <td>@entity.FileName</td>
                 <td>
                     <div class="btn-group">
@@ -28,6 +32,7 @@
                         </a>
                         <form method="post" asp-action="Delete">
                             <input type="hidden" name="Entity" value="@entity.Id" />
+                            <input type="hidden" name="EntityName" value="@entity.FileName"/>
                             <button data-toggle="tooltip" data-placement="top" title="Delete" type="submit" class="btn btn-sm btn-danger rounded-3">
                                 <i class="fa-solid fa-trash"></i>
                             </button>

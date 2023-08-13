@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Dolunay_Villas.Migrations
 {
-    public partial class AddPhoto : Migration
+    public partial class AddPhotos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -122,7 +122,7 @@ namespace Dolunay_Villas.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Photo",
+                name: "Photos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -135,7 +135,7 @@ namespace Dolunay_Villas.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Photo", x => x.Id);
+                    table.PrimaryKey("PK_Photos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -378,8 +378,8 @@ namespace Dolunay_Villas.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "39097105-8b0b-48ce-8916-fbd68e00d45f", "a2d79883-0e39-4f91-932a-f86315c46d36", "Admin", "ADMIN" },
-                    { "3b09990c-8426-4d7e-9405-8d5e2f85fd11", "274423f4-3f05-4032-af00-158ee7e960eb", "Editor", "EDITOR" }
+                    { "8cbdabc2-0796-4998-98d7-5e9cfab07e33", "355317f1-c759-4bf1-b40e-a1d739729ba1", "Editor", "EDITOR" },
+                    { "dbc763fa-3852-495a-827d-08b54fc1844e", "4ea3280d-65bf-4e73-9c3f-7dd14d812787", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -387,12 +387,12 @@ namespace Dolunay_Villas.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedByUser", "Name", "UpdatedAt", "UpdatedByUser" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1132), "", "Structural Product", new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1140), "" },
-                    { 2, new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1144), "", "Built-in Furniture", new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1145), "" },
-                    { 3, new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1146), "", "Electronic Product", new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1146), "" },
-                    { 4, new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1146), "", "Bed", new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1147), "" },
-                    { 5, new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1147), "", "Furniture", new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1148), "" },
-                    { 6, new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1148), "", "Floor", new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(1149), "" }
+                    { 1, new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3793), "", "Structural Product", new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3801), "" },
+                    { 2, new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3806), "", "Built-in Furniture", new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3806), "" },
+                    { 3, new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3807), "", "Electronic Product", new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3807), "" },
+                    { 4, new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3808), "", "Bed", new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3808), "" },
+                    { 5, new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3809), "", "Furniture", new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3809), "" },
+                    { 6, new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3810), "", "Floor", new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(3810), "" }
                 });
 
             migrationBuilder.InsertData(
@@ -400,11 +400,11 @@ namespace Dolunay_Villas.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedByUser", "Name", "UpdatedAt", "UpdatedByUser" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(2700), "", "Yes/No", new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(2703), "" },
-                    { 2, new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(2705), "", "Letter", new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(2705), "" },
-                    { 3, new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(2706), "", "Numeric", new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(2707), "" },
-                    { 4, new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(2707), "", "Multiple Selection", new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(2708), "" },
-                    { 5, new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(2708), "", "One choice", new DateTime(2023, 8, 12, 16, 54, 45, 420, DateTimeKind.Local).AddTicks(2708), "" }
+                    { 1, new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(5567), "", "Yes/No", new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(5570), "" },
+                    { 2, new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(5572), "", "Letter", new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(5573), "" },
+                    { 3, new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(5574), "", "Numeric", new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(5574), "" },
+                    { 4, new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(5575), "", "Multiple Selection", new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(5575), "" },
+                    { 5, new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(5576), "", "One choice", new DateTime(2023, 8, 13, 11, 46, 3, 612, DateTimeKind.Local).AddTicks(5577), "" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -492,7 +492,7 @@ namespace Dolunay_Villas.Migrations
                 name: "Logs");
 
             migrationBuilder.DropTable(
-                name: "Photo");
+                name: "Photos");
 
             migrationBuilder.DropTable(
                 name: "Regions");
