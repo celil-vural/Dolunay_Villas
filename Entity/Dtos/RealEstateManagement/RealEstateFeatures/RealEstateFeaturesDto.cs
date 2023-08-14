@@ -1,6 +1,6 @@
-﻿namespace Entity.Dtos.RealEstateManagement.PropertyProperties
+﻿namespace Entity.Dtos.RealEstateManagement.RealEstateFeatures
 {
-    public record PropertyPropertiesDto
+    public record RealEstateFeaturesDto
     {
         public int Id { get; init; }
         public string Title_Tr { get; set; } = string.Empty;

@@ -1,7 +1,7 @@
 ﻿using Entity.Contracts;
 namespace Entity.Models.RealEstateManagement
 {
-    public class PropertyProperties : IEntity
+    public class RealEstateFeatures : IEntity
     {
         public int Id { get; set; }
         public string Title_Tr { get; set; } = string.Empty;

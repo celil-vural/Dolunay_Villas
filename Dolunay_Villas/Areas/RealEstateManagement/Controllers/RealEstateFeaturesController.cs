@@ -1,6 +1,6 @@
-﻿using Dolunay_Villas.Areas.RealEstateManagement.Models.PropertyProperties;
+﻿using Dolunay_Villas.Areas.RealEstateManagement.Models.RealEstateFeatures;
 using Dolunay_Villas.Models;
-using Entity.Dtos.RealEstateManagement.PropertyProperties;
+using Entity.Dtos.RealEstateManagement.RealEstateFeatures;
 using Entity.RequestParameters;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contract;
@@ -9,13 +9,13 @@ using Service.Contract.RealEstateManagement;
 namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
 {
     [Area("RealEstateManagement")]
-    public class PropertyPropertiesController : Controller
+    public class RealEstateFeaturesController : Controller
     {
         private readonly IIconService _iconService;
         private readonly IFontAwesomeService _fontAwesomeService;
-        private readonly IRealEstatePropertyPropertiesService _service;
+        private readonly IRealEstateFeaturesService _service;
 
-        public PropertyPropertiesController(IRealEstatePropertyPropertiesService realEstatePropertyPropertiesService, IFontAwesomeService fontAwesomeService, IIconService iconService)
+        public RealEstateFeaturesController(IRealEstateFeaturesService realEstatePropertyPropertiesService, IFontAwesomeService fontAwesomeService, IIconService iconService)
         {
             _service = realEstatePropertyPropertiesService;
             _fontAwesomeService = fontAwesomeService;
@@ -36,7 +36,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 ItemsPerPage = r.PageSize,
                 TotalItems = _service.GetList()?.Count() ?? 0
             };
-            var model = new RealEstatePropertyPropertiesListViewModel
+            var model = new RealEstateFeaturesListViewModel
             {
                 Entities = entity,
                 Pagination = pagination
@@ -47,7 +47,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         {
             var icons = await _fontAwesomeService.GetAllFreeIcons();
             var localIcons = _iconService.GetList();
-            var model = new RealEstatePropertyPropertiesInsertionModel
+            var model = new RealEstateFeaturesInsertionModel
             {
                 LocalIcons = localIcons,
                 FontAwesomeIcons = icons
@@ -56,7 +56,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] RealEstatePropertyPropertiesInsertionModel model)
+        public async Task<IActionResult> Create([FromForm] RealEstateFeaturesInsertionModel model)
         {
             if (ModelState.IsValid)
             {
@@ -80,9 +80,9 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 {
                     var icons = await _fontAwesomeService.GetAllFreeIcons();
                     var localIcons = _iconService.GetList();
-                    var newModel = new RealEstatePropertyPropertiesInsertionModel
+                    var newModel = new RealEstateFeaturesInsertionModel
                     {
-                        DtoForInsertion = new PropertyPropertiesDtoForInsertion
+                        DtoForInsertion = new RealEstateFeaturesDtoForInsertion
                         {
                             FontAwesomeIcon = null,
                             LocalIconId = null,
@@ -102,8 +102,8 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         {
             var icons = await _fontAwesomeService.GetAllFreeIcons();
             var localIcons = _iconService.GetList();
-            var entity = _service.GetEntity<PropertyPropertiesDtoForUpdate>(id);
-            var model = new RealEstatePropertyPropertiesUpdateModel
+            var entity = _service.GetEntity<RealEstateFeaturesDtoForUpdate>(id);
+            var model = new RealEstateFeaturesUpdateModel
             {
                 DtoForUpdate = entity ?? new(),
                 LocalIcons = localIcons,
@@ -113,7 +113,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update([FromForm] RealEstatePropertyPropertiesUpdateModel model)
+        public async Task<IActionResult> Update([FromForm] RealEstateFeaturesUpdateModel model)
         {
             if (ModelState.IsValid)
             {
@@ -136,7 +136,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 {
                     var icons = await _fontAwesomeService.GetAllFreeIcons();
                     var localIcons = _iconService.GetList();
-                    var newModel = new RealEstatePropertyPropertiesUpdateModel
+                    var newModel = new RealEstateFeaturesUpdateModel
                     {
                         DtoForUpdate = model.DtoForUpdate,
                         LocalIcons = localIcons,

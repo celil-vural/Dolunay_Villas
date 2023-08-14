@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Dolunay_Villas.Areas.RealEstateManagement.Views.PropertyProperties
+namespace Dolunay_Villas.Areas.RealEstateManagement.Views.RealEstateFeatures
 {
-    public class IndexModel : PageModel
+    public class CreateModel : PageModel
     {
         public void OnGet()
         {

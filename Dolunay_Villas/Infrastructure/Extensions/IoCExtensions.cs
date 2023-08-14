@@ -30,7 +30,7 @@ namespace Dolunay_Villas.Infrastructure.Extensions
             services.AddScoped<ILoggerRepository, LoggerRepository>();
             services.AddScoped<IPhotoRepository, PhotoRepository>();
             services.AddScoped<IIconRepository, IconRepository>();
-            services.AddScoped<IRealEstatePropertyPropertiesRepository, RealEstatePropertyPropertiesRepository>();
+            services.AddScoped<IRealEstateFeaturesRepository, RealEstateFeaturesRepository>();
 
             //Services
             services.AddScoped<IAuthService, AuthService>();
@@ -48,7 +48,7 @@ namespace Dolunay_Villas.Infrastructure.Extensions
             services.AddScoped<ILoggerService, LoggerService>();
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<IIconService, IconService>();
-            services.AddScoped<IRealEstatePropertyPropertiesService, RealEstatePropertyPropertiesService>();
+            services.AddScoped<IRealEstateFeaturesService, RealEstateFeaturesService>();
 
 
             //Others

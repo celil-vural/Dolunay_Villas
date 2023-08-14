@@ -1,14 +1,14 @@
-﻿@model RealEstatePropertyPropertiesInsertionModel
+﻿@model RealEstateFeaturesInsertionModel
 @{
     var SelectionModel = new PartialSelectionModel()
-    {
-        FontAwesomeIcons = Model?.FontAwesomeIcons ?? new(),
-        SelectedValue = null
-    };
+            {
+                FontAwesomeIcons = Model?.FontAwesomeIcons ?? new(),
+                SelectedValue = null
+            };
 }
 <div class="text-center">
     <div class="display-6">
-        Create Property Properties
+        Create Real Estate Features
     </div>
 </div>
 <form method="post" asp-action="Create" enctype="multipart/form-data">
@@ -30,7 +30,7 @@
         <label class="form-label" asp-for="DtoForInsertion.LocalIconId">Local Icon</label>
         <select asp-for="DtoForInsertion.LocalIconId" class="form-control">
             <option value="@null"> Select a Icon</option>
-            @foreach (var item in Model.LocalIcons??new List<IconDto>())
+            @foreach (var item in Model.LocalIcons ?? new List<IconDto>())
             {
                 <option value="@item.Id" selected="@(Model?.DtoForInsertion.LocalIconId==item.Id)">@item.FileName</option>
             }

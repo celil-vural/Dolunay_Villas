@@ -1,6 +1,6 @@
-﻿namespace Entity.Dtos.RealEstateManagement.PropertyProperties
+﻿namespace Entity.Dtos.RealEstateManagement.RealEstateFeatures
 {
-    public record PropertyPropertiesDtoForInsertion : PropertyPropertiesDto
+    public record RealEstateFeaturesDtoForInsertion : RealEstateFeaturesDto
     {
         public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; init; } = DateTime.UtcNow;

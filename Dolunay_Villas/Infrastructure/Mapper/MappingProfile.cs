@@ -5,7 +5,7 @@ using Entity.Dtos.Photo;
 using Entity.Dtos.RealEstateManagement.BedTypes;
 using Entity.Dtos.RealEstateManagement.HeatingOptions;
 using Entity.Dtos.RealEstateManagement.ItemTypes;
-using Entity.Dtos.RealEstateManagement.PropertyProperties;
+using Entity.Dtos.RealEstateManagement.RealEstateFeatures;
 using Entity.Dtos.RealEstateManagement.Region;
 using Entity.Dtos.RealEstateManagement.RoomFeatures;
 using Entity.Dtos.RealEstateManagement.Rooms;
@@ -56,9 +56,9 @@ namespace StoreApp.Infrastructure.Mapper
             CreateMap<Icon, IconDto>().ReverseMap();
             CreateMap<Icon, IconDtoForUpdate>().ReverseMap();
             CreateMap<Icon, IconDtoForInsertion>().ReverseMap();
-            CreateMap<PropertyProperties, PropertyPropertiesDto>().ReverseMap();
-            CreateMap<PropertyProperties, PropertyPropertiesDtoForInsertion>().ReverseMap();
-            CreateMap<PropertyProperties, PropertyPropertiesDtoForUpdate>().ReverseMap();
+            CreateMap<RealEstateFeatures, RealEstateFeaturesDto>().ReverseMap();
+            CreateMap<RealEstateFeatures, RealEstateFeaturesDtoForInsertion>().ReverseMap();
+            CreateMap<RealEstateFeatures, RealEstateFeaturesDtoForUpdate>().ReverseMap();
         }
     }
 }
