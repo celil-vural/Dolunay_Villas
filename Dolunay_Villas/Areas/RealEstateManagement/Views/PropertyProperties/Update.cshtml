@@ -1,9 +1,9 @@
-﻿@model RulesUpdateModel
+﻿@model RealEstatePropertyPropertiesUpdateModel
 @{
     var SelectionModel = new PartialSelectionModel()
     {
         FontAwesomeIcons = Model.FontAwesomeIcons ?? new HashSet<string>(),
-                SelectedValue = Model.DtoForUpdate.FontAwesomeIcon ?? null
+        SelectedValue = Model.DtoForUpdate.FontAwesomeIcon ?? null
     };
 }
 <div class="text-center my-5">

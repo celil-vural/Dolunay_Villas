@@ -22,14 +22,11 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
 
         public IActionResult Index([FromQuery] PageRequestParameters? r)
         {
-            if (r == null)
+            r ??= new()
             {
-                r = new()
-                {
-                    PageNumber = 1,
-                    PageSize = 10
-                };
-            }
+                PageNumber = 1,
+                PageSize = 10
+            };
             var entity = _service.GetWithDetail(r)?.ToList() ?? new();
             var pagination = new Pagination
             {

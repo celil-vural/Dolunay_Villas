@@ -7,8 +7,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Folder Include="Areas\RealEstateManagement\Models\Contracts\" />
 		<Folder Include="Pages\" />
-		<Folder Include="wwwroot\images\uploads\" />
+		<Folder Include="wwwroot\images\uploads\icons\" />
 	</ItemGroup>
 
 	<ItemGroup>

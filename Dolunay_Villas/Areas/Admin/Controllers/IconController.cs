@@ -19,14 +19,11 @@ namespace Dolunay_Villas.Areas.Admin.Controllers
 
         public IActionResult Index([FromQuery] PageRequestParameters? r)
         {
-            if (r == null)
+            r ??= new()
             {
-                r = new()
-                {
-                    PageNumber = 1,
-                    PageSize = 10
-                };
-            }
+                PageNumber = 1,
+                PageSize = 10
+            };
             var entity = _service.GetWithDetail(r)?.ToList() ?? new();
             var pagination = new Pagination
             {
@@ -53,14 +50,14 @@ namespace Dolunay_Villas.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "uploads");
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "uploads", "icons");
 
                     if (formFile != null && formFile.Length > 0 && formFile.Length <= 3 * 1024 * 1024)
                     {
-                        await _service.ConvertPhotoAsync(formFile, model.FileName, uploadsFolder);
+                        await _service.ConvertIconAsync(formFile, model.FileName, uploadsFolder);
                         model.CreatedByUser = User.Identity?.Name ?? "null";
+                        model.FilePath = Path.Combine("images", "uploads", "icons");
                         _service.CreateWithDto(model);
-
                         return RedirectToAction("Index");
                     }
                     else
@@ -81,7 +78,7 @@ namespace Dolunay_Villas.Areas.Admin.Controllers
         {
             try
             {
-                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "uploads");
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "uploads", "icons");
                 name = String.Concat(name, ".webp");
                 var path = Path.Combine(uploadsFolder, name);
                 _service.Delete(id);
@@ -120,7 +117,7 @@ namespace Dolunay_Villas.Areas.Admin.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "uploads");
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "uploads", "icons");
                 try
                 {
                     var dtoForUpdate = model.IconDtoForUpdate;
@@ -133,8 +130,8 @@ namespace Dolunay_Villas.Areas.Admin.Controllers
                     else if (formFile.Length > 0 && formFile.Length <= 3 * 1024 * 1024)
                     {
                         dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
-                        await _service.DeletePhotoAsync(model.OldFileName, uploadsFolder);
-                        await _service.ConvertPhotoAsync(formFile, dtoForUpdate.FileName, uploadsFolder);
+                        await _service.DeleteIconAsync(model.OldFileName, uploadsFolder);
+                        await _service.ConvertIconAsync(formFile, dtoForUpdate.FileName, uploadsFolder);
                         _service.Update(dtoForUpdate);
                     }
                     else

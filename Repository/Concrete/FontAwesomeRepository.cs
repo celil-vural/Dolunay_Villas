@@ -9,30 +9,28 @@ namespace Repository.Concrete
         private const string FontAwesomeGitHubUrl = "https://github.com/FortAwesome/Font-Awesome/tree/master/svgs/solid";
         public async Task<HashSet<string>> GetAllFreeIcons()
         {
-            using (HttpClient client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0");  // User-Agent eklemek GitHub API için gereklidir.
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json")); // Accept header eklemek GitHub API için gereklidir.
-                HttpResponseMessage response = await client.GetAsync(FontAwesomeGitHubUrl);
+            using HttpClient client = new();
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0");  // User-Agent eklemek GitHub API için gereklidir.
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json")); // Accept header eklemek GitHub API için gereklidir.
+            HttpResponseMessage response = await client.GetAsync(FontAwesomeGitHubUrl);
 
-                if (response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonResult = await response.Content.ReadAsStringAsync();
+                var jsonObject = JObject.Parse(jsonResult);
+                var items = jsonObject["payload"]["tree"]["items"];
+                var icons = new HashSet<string>();
+                foreach (var item in items)
                 {
-                    string jsonResult = await response.Content.ReadAsStringAsync();
-                    var jsonObject = JObject.Parse(jsonResult);
-                    var items = jsonObject["payload"]["tree"]["items"];
-                    var icons = new HashSet<string>();
-                    foreach (var item in items)
-                    {
-                        string itemName = item["name"].ToString();
-                        string className = GetIconClassFromSvgLink(itemName);
-                        icons.Add(className);
-                    }
-                    return icons;
+                    string itemName = item["name"].ToString();
+                    string className = GetIconClassFromSvgLink(itemName);
+                    icons.Add(className);
                 }
-                else
-                {
-                    throw new Exception("İstek başarısız oldu. Hata kodu: " + response.StatusCode);
-                }
+                return icons;
+            }
+            else
+            {
+                throw new Exception("İstek başarısız oldu. Hata kodu: " + response.StatusCode);
             }
         }
         public string GetIconClassFromSvgLink(string svgLink)

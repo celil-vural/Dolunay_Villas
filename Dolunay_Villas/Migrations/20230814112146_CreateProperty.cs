@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Dolunay_Villas.Migrations
 {
-    public partial class AddIconsForPhoto : Migration
+    public partial class CreateProperty : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -92,6 +92,7 @@ namespace Dolunay_Villas.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedByUser = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -153,6 +154,26 @@ namespace Dolunay_Villas.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Photos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PropertyProperties",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title_Tr = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title_En = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FontAwesomeIcon = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LocalIconId = table.Column<int>(type: "int", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedByUser = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedByUser = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PropertyProperties", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -397,8 +418,8 @@ namespace Dolunay_Villas.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "65a46060-3fee-4787-af7e-f3652e39de83", "306fde40-9852-4f45-b77e-0b116c108f86", "Editor", "EDITOR" },
-                    { "da851c03-d58a-4c8b-844b-570fed4c8a91", "4cf8fec3-4de3-46ed-a550-b07c5e276a5c", "Admin", "ADMIN" }
+                    { "28f36179-16f4-49b0-b5b2-8d5ef01804b2", "847a5975-5fab-4808-824c-196fd5b3ebb8", "Admin", "ADMIN" },
+                    { "f2af6ebf-c949-406b-a425-bb4205884ca3", "d40d7d96-5d44-4b8d-ad9c-70308b0e0710", "Editor", "EDITOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -406,12 +427,12 @@ namespace Dolunay_Villas.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedByUser", "Name", "UpdatedAt", "UpdatedByUser" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2603), "", "Structural Product", new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2610), "" },
-                    { 2, new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2615), "", "Built-in Furniture", new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2616), "" },
-                    { 3, new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2616), "", "Electronic Product", new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2617), "" },
-                    { 4, new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2618), "", "Bed", new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2618), "" },
-                    { 5, new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2619), "", "Furniture", new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2619), "" },
-                    { 6, new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2620), "", "Floor", new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(2620), "" }
+                    { 1, new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2065), "", "Structural Product", new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2073), "" },
+                    { 2, new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2078), "", "Built-in Furniture", new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2078), "" },
+                    { 3, new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2079), "", "Electronic Product", new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2079), "" },
+                    { 4, new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2080), "", "Bed", new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2080), "" },
+                    { 5, new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2081), "", "Furniture", new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2081), "" },
+                    { 6, new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2082), "", "Floor", new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(2082), "" }
                 });
 
             migrationBuilder.InsertData(
@@ -419,11 +440,11 @@ namespace Dolunay_Villas.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedByUser", "Name", "UpdatedAt", "UpdatedByUser" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(4409), "", "Yes/No", new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(4411), "" },
-                    { 2, new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(4414), "", "Letter", new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(4414), "" },
-                    { 3, new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(4415), "", "Numeric", new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(4415), "" },
-                    { 4, new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(4416), "", "Multiple Selection", new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(4416), "" },
-                    { 5, new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(4417), "", "One choice", new DateTime(2023, 8, 13, 19, 43, 52, 506, DateTimeKind.Local).AddTicks(4417), "" }
+                    { 1, new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(3843), "", "Yes/No", new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(3845), "" },
+                    { 2, new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(3847), "", "Letter", new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(3848), "" },
+                    { 3, new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(3849), "", "Numeric", new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(3849), "" },
+                    { 4, new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(3850), "", "Multiple Selection", new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(3850), "" },
+                    { 5, new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(3851), "", "One choice", new DateTime(2023, 8, 14, 14, 21, 46, 155, DateTimeKind.Local).AddTicks(3851), "" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -515,6 +536,9 @@ namespace Dolunay_Villas.Migrations
 
             migrationBuilder.DropTable(
                 name: "Photos");
+
+            migrationBuilder.DropTable(
+                name: "PropertyProperties");
 
             migrationBuilder.DropTable(
                 name: "Regions");

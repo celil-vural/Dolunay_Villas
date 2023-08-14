@@ -46,47 +46,43 @@ namespace Service.Concrete
             }
             fileName = String.Concat(fileName, ".webp");
             string outputFileNameAndPath = Path.Combine(outputPath, fileName);
-            using (var image = Image.Load(formFile.OpenReadStream()))
+            using var image = Image.Load(formFile.OpenReadStream());
+            IImageEncoder webpEncoder = new WebpEncoder();
+            var memoryStream = new MemoryStream();
+            image.Save(memoryStream, webpEncoder);
+            var maxSizeInBytes = 500 * 1024;
+            if (memoryStream.Length > maxSizeInBytes)
             {
-                IImageEncoder webpEncoder = new WebpEncoder();
-                var memoryStream = new MemoryStream();
-                image.Save(memoryStream, webpEncoder);
-                var maxSizeInBytes = 500 * 1024;
-                if (memoryStream.Length > maxSizeInBytes)
-                {
-                    var quality = await CalculateOptimalQualityAsync(formFile, maxSizeInBytes);
-                    image.Save(outputFileNameAndPath, new WebpEncoder { Quality = quality });
-                }
-                else
-                {
-                    image.Save(outputFileNameAndPath, webpEncoder);
-                }
+                var quality = await CalculateOptimalQualityAsync(formFile, maxSizeInBytes);
+                image.Save(outputFileNameAndPath, new WebpEncoder { Quality = quality });
+            }
+            else
+            {
+                image.Save(outputFileNameAndPath, webpEncoder);
             }
         }
 
-        private async Task<int> CalculateOptimalQualityAsync(IFormFile formFile, long targetSize)
+        private static async Task<int> CalculateOptimalQualityAsync(IFormFile formFile, long targetSize)
         {
             int quality = 100;
             while (true)
             {
-                using (var image = Image.Load(formFile.OpenReadStream()))
+                using var image = Image.Load(formFile.OpenReadStream());
+                var memoryStream = new MemoryStream();
+                var webpEncoder = new WebpEncoder { Quality = quality };
+                image.Save(memoryStream, webpEncoder);
+
+                if (memoryStream.Length <= targetSize || quality == 5)
                 {
-                    var memoryStream = new MemoryStream();
-                    var webpEncoder = new WebpEncoder { Quality = quality };
-                    image.Save(memoryStream, webpEncoder);
-
-                    if (memoryStream.Length <= targetSize || quality == 5)
-                    {
-                        break;
-                    }
-
-                    quality -= 5;
+                    break;
                 }
+
+                quality -= 5;
             }
             return quality;
         }
 
-        private async Task<bool> IsPhotoNameExistsAsync(string fileName, string outputPath)
+        private static async Task<bool> IsPhotoNameExistsAsync(string fileName, string outputPath)
         {
             var webpFileName = Path.Combine(outputPath, fileName + ".webp");
             return await Task.Run(() => File.Exists(webpFileName));

@@ -7,8 +7,8 @@ namespace Dolunay_Villas.Core.Aspects.Postsharp.CacheAspects
     [Serializable]
     public class CacheRemoveAspect : OnMethodBoundaryAspect
     {
-        private string _pattern;
-        private Type _cacheType;
+        private readonly string _pattern;
+        private readonly Type _cacheType;
         private ICacheManager _cacheManager;
         public CacheRemoveAspect(Type cacheType)
         {
@@ -34,7 +34,7 @@ namespace Dolunay_Villas.Core.Aspects.Postsharp.CacheAspects
         {
             _cacheManager.RemoveByPattern(
                 string.IsNullOrEmpty(_pattern) ?
-                    string.Format("{0}.{1}.*", args.Method.ReflectedType.Namespace, args.Method.ReflectedType.Name)
+                    string.Format("{0}.{1}.*", args.Method.ReflectedType?.Namespace, args.Method.ReflectedType?.Name)
                     : _pattern
                     );
             base.OnSuccess(args);

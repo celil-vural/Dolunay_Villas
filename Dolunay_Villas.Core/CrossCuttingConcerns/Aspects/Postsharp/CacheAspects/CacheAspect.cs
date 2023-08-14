@@ -6,8 +6,8 @@ namespace Dolunay_Villas.Core.Aspects.Postsharp.CacheAspects
     [Serializable]
     public class CacheAspect : MethodInterceptionAspect
     {
-        private Type _cacheType;
-        private int _cacheByMinute;
+        private readonly Type _cacheType;
+        private readonly int _cacheByMinute;
         private ICacheManager _cacheManager;
         public CacheAspect(Type cacheType, int cacheByMinute = 60)
         {
@@ -29,8 +29,8 @@ namespace Dolunay_Villas.Core.Aspects.Postsharp.CacheAspects
         public override void OnInvoke(MethodInterceptionArgs args)//Method çalışmadan girilmeden önce
         {
             var methodName = string.Format("{0}.{1}.{2}",
-                args.Method.ReflectedType.Namespace,
-                args.Method.ReflectedType.Name,
+                args.Method.ReflectedType?.Namespace ?? "",
+                args.Method.ReflectedType?.Name ?? "",
                 args.Method.Name
                 );
             var arguments = args.Arguments.ToList();
