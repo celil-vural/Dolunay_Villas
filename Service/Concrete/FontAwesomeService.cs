@@ -1,5 +1,4 @@
-﻿using Dolunay_Villas.Core.Aspects.Postsharp.CacheAspects;
-using Dolunay_Villas.Core.CrossCuttingConcerns.Caching.Microsoft;
+﻿using PostSharp.Patterns.Caching;
 using Repository.Contracts;
 using Service.Contract;
 
@@ -13,7 +12,7 @@ namespace Service.Concrete
         {
             _repository = repository;
         }
-        [CacheAspect(typeof(MemoryCacheManager), 60)]
+        [Cache(AbsoluteExpiration = 20)]
         public Task<HashSet<string>> GetAllFreeIcons()
         {
             return _repository.GetAllFreeIcons();

@@ -22,6 +22,7 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="PostSharp" Version="2023.0.7" />
+		<PackageReference Include="PostSharp.Patterns.Caching" Version="2023.0.7" />
 		<PackageReference Include="System.Runtime.Caching" Version="7.0.0" />
 	</ItemGroup>
 

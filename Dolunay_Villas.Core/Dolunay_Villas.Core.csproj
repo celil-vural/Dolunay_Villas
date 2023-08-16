@@ -8,8 +8,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="PostSharp" Version="2023.0.7" />
-		<PackageReference Include="PostSharp.Patterns.Diagnostics" Version="2023.0.7" />
 		<PackageReference Include="System.Runtime.Caching" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="CrossCuttingConcerns\Aspects\Postsharp\" />
+	</ItemGroup>
 </Project>

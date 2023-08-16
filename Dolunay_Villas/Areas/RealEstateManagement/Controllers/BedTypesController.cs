@@ -78,7 +78,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                     {
                         throw new Exception("Please select an icon");
                     }
-                    if (!(String.IsNullOrEmpty(dtoForInsertion.FontAwesomeIcon) && dtoForInsertion.LocalIconId == null))
+                    if (!(String.IsNullOrEmpty(dtoForInsertion.FontAwesomeIcon)) && !(dtoForInsertion.LocalIconId == null))
                     {
                         throw new Exception("Please just select an icon");
                     }

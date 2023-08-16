@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using Dolunay_Villas.Core.Aspects.Postsharp.CacheAspects;
-using Dolunay_Villas.Core.CrossCuttingConcerns.Caching.Microsoft;
 using Entity.Dtos.Icon;
 using Entity.Models;
 using Microsoft.AspNetCore.Http;
+using PostSharp.Patterns.Caching;
 using Repository.Contracts;
 using Service.Contract;
 using SixLabors.ImageSharp.Formats;
@@ -16,7 +15,7 @@ namespace Service.Concrete
         public IconService(IIconRepository baseRepository, IMapper mapper) : base(baseRepository, mapper)
         {
         }
-        [CacheAspect(typeof(MemoryCacheManager), 10)]
+        [Cache(AbsoluteExpiration = 20)]
         public override IEnumerable<IconDto>? GetList()
         {
             return base.GetList();
