@@ -2,6 +2,7 @@
 using Entity.Dtos.Photo;
 using Entity.Models;
 using Microsoft.AspNetCore.Http;
+using PostSharp.Patterns.Caching;
 using Repository.Contracts;
 using Service.Contract;
 using SixLabors.ImageSharp.Formats;
@@ -14,16 +15,20 @@ namespace Service.Concrete
         public PhotoService(IPhotoRepository baseRepository, IMapper mapper) : base(baseRepository, mapper)
         {
         }
+        [Cache(AbsoluteExpiration = 20)]
+        public override IEnumerable<PhotoDto>? GetList()
+        {
+            return base.GetList();
+        }
         public async Task DeletePhotoAsync(string fileName, string outputPath)
         {
             var isExists = await IsPhotoNameExistsAsync(fileName, outputPath);
-            if (!isExists)
+            if (isExists)
             {
-                throw new Exception("This file name does not exist.");
+                fileName = String.Concat(fileName, ".webp");
+                string outputFileNameAndPath = Path.Combine(outputPath, fileName);
+                File.Delete(outputFileNameAndPath);
             }
-            fileName = String.Concat(fileName, ".webp");
-            string outputFileNameAndPath = Path.Combine(outputPath, fileName);
-            File.Delete(outputFileNameAndPath);
         }
         public async Task ChangeNameFile(string oldFileName, string newFileName, string outputPath)
         {

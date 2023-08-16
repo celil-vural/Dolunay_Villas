@@ -50,9 +50,9 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 {
                     ParentRegionID = id
                 };
-                return View("Create", model);
+                return View(model);
             }
-            return View("Create");
+            return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

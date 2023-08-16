@@ -22,6 +22,7 @@ namespace Repository.Concrete.EntityFramework
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Icon> Icons { get; set; }
         public DbSet<RealEstateFeatures> RealEstateFeatures { get; set; }
+        public DbSet<EstateTypes> EstateTypes { get; set; }
         #endregion
         public RepositoryContext(DbContextOptions<RepositoryContext> options)
         : base(options)

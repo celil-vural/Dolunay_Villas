@@ -1,4 +1,5 @@
 ﻿using Dolunay_Villas.Areas.RealEstateManagement.Models;
+using Dolunay_Villas.Areas.RealEstateManagement.Models.BedTypes;
 using Dolunay_Villas.Models;
 using Entity.Dtos.RealEstateManagement.BedTypes;
 using Entity.Enums;

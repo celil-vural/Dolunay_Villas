@@ -3,6 +3,7 @@ using Entity.Dtos.Icon;
 using Entity.Dtos.Log;
 using Entity.Dtos.Photo;
 using Entity.Dtos.RealEstateManagement.BedTypes;
+using Entity.Dtos.RealEstateManagement.EstateTypes;
 using Entity.Dtos.RealEstateManagement.HeatingOptions;
 using Entity.Dtos.RealEstateManagement.ItemTypes;
 using Entity.Dtos.RealEstateManagement.RealEstateFeatures;
@@ -59,6 +60,10 @@ namespace StoreApp.Infrastructure.Mapper
             CreateMap<RealEstateFeatures, RealEstateFeaturesDto>().ReverseMap();
             CreateMap<RealEstateFeatures, RealEstateFeaturesDtoForInsertion>().ReverseMap();
             CreateMap<RealEstateFeatures, RealEstateFeaturesDtoForUpdate>().ReverseMap();
+            CreateMap<EstateTypes, EstateTypesDto>().ReverseMap();
+            CreateMap<EstateTypes, EstateTypesDtoForInsertion>().ReverseMap();
+            CreateMap<EstateTypes, EstateTypesDtoForUpdate>().ReverseMap();
+
         }
     }
 }

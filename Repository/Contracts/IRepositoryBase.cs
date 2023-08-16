@@ -9,7 +9,7 @@ namespace Repository.Contracts
         IEnumerable<TEntity>? GetList(bool trackChanges = false);
         TEntity? Get(Expression<Func<TEntity, bool>> filter, bool trackChanges = false);
         TEntity? GetWithId(int id, bool trackChanges = false);
-        void Add(TEntity entity, bool trackChanges = false);
+        int Add(TEntity entity, bool trackChanges = false);
         void Update(TEntity entity);
         void Delete(TEntity entity, bool trackChanges = false);
         void SaveChanges();

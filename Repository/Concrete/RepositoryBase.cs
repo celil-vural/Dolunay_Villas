@@ -17,10 +17,11 @@ namespace Repository.Concrete
             _context = context;
         }
 
-        public virtual void Add(TEntity entity, bool trackChanges = false)
+        public virtual int Add(TEntity entity, bool trackChanges = false)
         {
-            _context.Set<TEntity>().Add(entity);
+            var entry = _context.Set<TEntity>().Add(entity);
             SaveChanges();
+            return entry.Entity.Id;
         }
 
         public virtual void Delete(TEntity entity, bool trackChanges = false)

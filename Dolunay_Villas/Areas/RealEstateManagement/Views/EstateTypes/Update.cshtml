@@ -1,0 +1,28 @@
+﻿@model EstateTypesUpdateModel
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-center text-danger"></div>
+    <div>
+        <input type="hidden" asp-for="DtoForUpdate.Id" />
+        <input type="hidden" asp-for="DtoForUpdate.CreatedByUser" />
+        <input type="hidden" asp-for="DtoForUpdate.CreatedAt" />
+        <input type="hidden" asp-for="DtoForUpdate.PhotoId" />
+        <input type="hidden" asp-for="DtoForUpdate.ParentEstateTypesId"/>
+        <input type="hidden" asp-for="OldPhotoName" value="@(Model.DtoForUpdate.Name)" />
+    </div>
+    <div class="form-group my-3">
+        <div class="my-1">
+            <img height="250" width="250" src="~/images/uploads/estate_types/@(Model.DtoForUpdate.Name).webp" />
+        </div>
+        <label class="form-label">Photo</label>
+        <input type="file" asp-for="Photo" class="form-control" accept="image/*" />
+    </div>
+    <div class="form-group my-3">
+        <label class="form-label" asp-for="DtoForUpdate.Name"></label>
+        <input asp-for="DtoForUpdate.Name" class="form-control" />
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" asp-for="DtoForUpdate.ShowCase">
+        <label class="form-check-label" asp-for="DtoForUpdate.ShowCase">Show Case</label>
+    </div>
+    <partial name="_DefaultPartialHtmlForUpdateByBackButton" />
+</form>

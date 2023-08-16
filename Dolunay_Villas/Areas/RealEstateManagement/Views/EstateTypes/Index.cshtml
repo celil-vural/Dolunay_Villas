@@ -1,0 +1,56 @@
+﻿@model EstateTypesListViewModel
+<div class="text-center my-2">
+    <div class="display-6">
+        Real Estate Types
+    </div>
+</div>
+@await Html.PartialAsync("_DefaultPartialHtmlForCreateButton")
+<table table>
+    <thead>
+        <tr>
+            <th>Estate Types</th>
+            <th>Sub Estate Types</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entity in Model?.Entities ?? new())
+        {
+            <tr>
+                <td>@(entity.ParentEstateTypes?.Name ?? "Index")</td>
+                <td>@entity.Name</td>
+                <td>
+                    <div class="btn-group">
+                        <a data-toggle="tooltip"
+                           data-placement="top" title="Edit"
+                           class="btn btn-sm btn-success rounded-3"
+                           asp-route-id="@entity.Id"
+                           asp-action="Create">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                        <form method="post" asp-action="ChangeShowCase">
+                            <input type="hidden" value="@entity.Id" name="EntityId" />
+                            <button data-toggle="tooltip" data-placement="top" title="Change Show Case" type="submit" class="btn btn-sm btn-danger rounded-3">
+                                <i class="@(entity.ShowCase ? "fa-solid fa-pause":"fa-solid play")"></i>
+                            </button>
+                        </form>
+                        <a data-toggle="tooltip"
+                           data-placement="top" title="Edit"
+                           class="btn btn-sm btn-warning rounded-3"
+                           asp-route-id="@entity.Id"
+                           asp-action="Update">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <form method="post" asp-action="Delete">
+                            <input type="hidden" name="Entity" value="@entity.Id" />
+                            <button data-toggle="tooltip" data-placement="top" title="Delete" type="submit" class="btn btn-sm btn-danger rounded-3">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@await Html.PartialAsync("_DefaultPartialHtmlForPagination", Model?.Pagination)

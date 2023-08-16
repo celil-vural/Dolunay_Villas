@@ -8,7 +8,8 @@
         <input type="hidden" asp-for="IconDtoForUpdate.Id" />
         <input type="hidden" asp-for="IconDtoForUpdate.CreatedByUser" />
         <input type="hidden" asp-for="IconDtoForUpdate.CreatedAt" />
-        <input type="hidden" asp-for="OldFileName" value="@(Model.IconDtoForUpdate.FileName)" />
+        <input type="hidden" asp-for="IconDtoForUpdate.FilePath"/>
+        <input type="hidden" asp-for="OldFileName" value="@(Model.IconDtoForUpdate.FileName)"/>
     </div>
     <div class="form-group my-3">
         <div class="my-1">

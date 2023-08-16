@@ -17,16 +17,23 @@ namespace Service.Concrete
             _mapper = mapper;
         }
 
-        public void CreateWithDto<TDtoForInsertion>(TDtoForInsertion dtoForInsertion)
+        public virtual int CreateWithDto<TDtoForInsertion>(TDtoForInsertion dtoForInsertion) where TDtoForInsertion : TDto, new()
         {
             TEntity entity = _mapper.Map<TEntity>(dtoForInsertion);
-            _baseRepository.Add(entity);
+            return _baseRepository.Add(entity);
         }
         public void Delete(int id)
         {
-            var entity = _baseRepository.Get((r) => r.Id == id);
+            var entity = _baseRepository.GetWithId(id);
             GetNotFoundExceptions(entity);
             _baseRepository.Delete(entity!);
+        }
+        public virtual TDto? GetWithId(int id)
+        {
+            var entity = _baseRepository.GetWithId(id);
+            GetNotFoundExceptions(entity);
+            var dto = _mapper.Map<TDto>(entity);
+            return dto;
         }
         public virtual IEnumerable<TDto>? GetList()
         {
@@ -42,13 +49,13 @@ namespace Service.Concrete
             }
         }
 
-        public TDtoForUpdate? GetEntity<TDtoForUpdate>(int id)
+        public TDtoForUpdate? GetEntity<TDtoForUpdate>(int id) where TDtoForUpdate : TDto, new()
         {
-            var entity = _baseRepository.Get((r) => r.Id == id);
+            var entity = _baseRepository.GetWithId(id);
             var dto = _mapper.Map<TDtoForUpdate>(entity);
             return dto;
         }
-        public void Update(TDto dto)
+        public virtual void Update(TDto dto)
         {
             var entity = _mapper.Map<TEntity>(dto);
             GetNotFoundExceptions(entity);

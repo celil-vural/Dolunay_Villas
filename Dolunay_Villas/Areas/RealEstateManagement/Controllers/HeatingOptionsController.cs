@@ -1,4 +1,4 @@
-﻿using Dolunay_Villas.Areas.RealEstateManagement.Models;
+﻿using Dolunay_Villas.Areas.RealEstateManagement.Models.HeatingOptions;
 using Dolunay_Villas.Models;
 using Entity.Dtos.RealEstateManagement.HeatingOptions;
 using Entity.Enums;

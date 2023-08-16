@@ -1,0 +1,34 @@
+﻿@model EstateTypesInsertionModel
+<div class="text-center">
+    <div class="display-6">
+        Create Estate Type
+    </div>
+</div>
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="DtoForInsertion.ParentEstateTypesId" value="@(Model?.DtoForInsertion.ParentEstateTypesId ?? null)" />
+    <div class="form-group mb-3">
+        <label asp-for="DtoForInsertion.Name" class="form-label"></label>
+        <input required asp-for="DtoForInsertion.Name" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label class="form-label" for="formFile">Choose a photo (Max 3 MB):</label>
+        <input type="file" asp-for="Photo" class="form-control" required accept="image/*"/>
+    </div>
+    <div class="form-check form-switch mb-3">
+        <input class="form-check-input" type="checkbox" role="switch" asp-for="DtoForInsertion.ShowCase">
+        <label class="form-check-label" asp-for="DtoForInsertion.ShowCase">Show Case</label>
+    </div>
+    <div class="form-group mb-3">
+        <div class="btn-group">
+            <button type="submit" class="btn btn-outline-secondary">
+                <i class="fa fa-save"></i>
+                Create
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="fa fa-list"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+</form>
