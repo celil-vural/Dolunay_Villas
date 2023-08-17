@@ -101,7 +101,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             {
                 ModelState.AddModelError("", e.Message);
             }
-            return RedirectToAction("Index", "HeatingOptions");
+            return RedirectToAction("Index");
         }
     }
 }
