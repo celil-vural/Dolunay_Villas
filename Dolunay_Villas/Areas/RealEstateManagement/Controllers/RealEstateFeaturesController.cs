@@ -63,15 +63,6 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 try
                 {
                     var dtoForInsertion = model.DtoForInsertion;
-                    if (string.IsNullOrEmpty(dtoForInsertion.FontAwesomeIcon) && dtoForInsertion.LocalIconId == null)
-                    {
-                        throw new Exception("Please select an icon");
-
-                    }
-                    if (!(string.IsNullOrEmpty(dtoForInsertion.FontAwesomeIcon)) && !(dtoForInsertion.LocalIconId == null))
-                    {
-                        throw new Exception("Please just select an icon");
-                    }
                     dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
                     _service.CreateWithDto(dtoForInsertion);
                     return RedirectToAction("Index");
@@ -120,14 +111,6 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 try
                 {
                     var dtoForUpdate = model.DtoForUpdate;
-                    if (String.IsNullOrEmpty(dtoForUpdate.FontAwesomeIcon) && dtoForUpdate.LocalIconId == null)
-                    {
-                        throw new Exception("Please select an icon");
-                    }
-                    if (!(String.IsNullOrEmpty(dtoForUpdate.FontAwesomeIcon)) && !(dtoForUpdate.LocalIconId == null))
-                    {
-                        throw new Exception("Please just select an icon");
-                    }
                     dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
                     _service.Update(dtoForUpdate);
                     return RedirectToAction("Index");

@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
+
 namespace Dolunay_Villas.Core.CrossCuttingConcerns.Validation.FluentValidation
 {
     public static class ValidationTool
     {
-        public static void FluentValidate<T>(AbstractValidator<T> validator, T entity) where T : class, IEntity, new()
+        public static void FluentValidate<T>(IValidator<T> validator, T entity)
         {
             var result = validator.Validate(entity);
             if (!result.IsValid)

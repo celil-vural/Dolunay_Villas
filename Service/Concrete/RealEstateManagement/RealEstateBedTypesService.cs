@@ -4,7 +4,7 @@ using Entity.Dtos.RealEstateManagement.BedTypes;
 using Entity.Models.RealEstateManagement;
 using Repository.Contracts.RealEstateManagement;
 using Service.Contract.RealEstateManagement;
-using Service.ValidationRules.FluentValidation.RealEstate;
+using Service.ValidationRules.FluentValidation.RealEstate.BedTypesRules;
 
 namespace Service.Concrete.RealEstateManagement
 {
@@ -12,12 +12,12 @@ namespace Service.Concrete.RealEstateManagement
     {
         public RealEstateBedTypesService(IRealEstateBedTypesRepository baseRepository, IMapper mapper) : base(baseRepository, mapper)
         { }
-        [FluentValidationAspect(typeof(RealEstateBedTypesValidator))]
+        [FluentValidationAspect(typeof(RealEstateBedTypesUpdateValidator))]
         public override void Update(BedTypesDto dto)
         {
             base.Update(dto);
         }
-        [FluentValidationAspect(typeof(RealEstateBedTypesValidator))]
+        [FluentValidationAspect(typeof(RealEstateBedTypesInsertionValidator))]
         public override int CreateWithDto<TDtoForInsertion>(TDtoForInsertion dtoForInsertion)
         {
             return base.CreateWithDto(dtoForInsertion);

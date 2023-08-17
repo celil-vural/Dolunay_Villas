@@ -16,6 +16,7 @@ namespace Dolunay_Villas.Core.CrossCuttingConcerns.Aspects.Postsharp.ValidationA
             if (_validatorType.BaseType == null) return;
             var entityType = _validatorType.BaseType.GetGenericArguments()[0];
             var entities = args.Arguments.Where(t => t.GetType() == entityType);
+            var len = entities.Count();
             var validator = Activator.CreateInstance(_validatorType);
             foreach (var entity in entities)
             {

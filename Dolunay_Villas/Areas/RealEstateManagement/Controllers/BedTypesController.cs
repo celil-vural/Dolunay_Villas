@@ -96,7 +96,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                         ItemTypeOptions = new SelectList(itemTypes, "Id", "Name"),
                         ValueTypeOptions = new SelectList(valueTypes, "Id", "Name"),
                     };
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException.Message);
                     return View(newModel);
                 }
             }
