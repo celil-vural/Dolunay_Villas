@@ -14,7 +14,6 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
         private readonly IIconService _iconService;
         private readonly IFontAwesomeService _fontAwesomeService;
         private readonly IRealEstateFeaturesService _service;
-
         public RealEstateFeaturesController(IRealEstateFeaturesService realEstatePropertyPropertiesService, IFontAwesomeService fontAwesomeService, IIconService iconService)
         {
             _service = realEstatePropertyPropertiesService;
@@ -83,7 +82,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                         LocalIcons = localIcons,
                         FontAwesomeIcons = icons
                     };
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                     return View(newModel);
                 }
             }
@@ -125,7 +124,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                         LocalIcons = localIcons,
                         FontAwesomeIcons = icons
                     };
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                     return View(newModel);
                 }
             }
@@ -141,10 +140,9 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             }
             catch (Exception e)
             {
-                ModelState.AddModelError("", e.Message);
+                ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
             }
             return RedirectToAction("Index");
         }
-
     }
 }

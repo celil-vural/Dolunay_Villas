@@ -96,7 +96,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                         ItemTypeOptions = new SelectList(itemTypes, "Id", "Name"),
                         ValueTypeOptions = new SelectList(valueTypes, "Id", "Name"),
                     };
-                    ModelState.AddModelError("", e.InnerException.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                     return View(newModel);
                 }
             }
@@ -130,14 +130,6 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 try
                 {
                     var dtoForUpdate = model.BedTypesDtoForUpdate;
-                    if (String.IsNullOrEmpty(dtoForUpdate.FontAwesomeIcon) && dtoForUpdate.LocalIconId == null)
-                    {
-                        throw new Exception("Please select an icon");
-                    }
-                    if (!(String.IsNullOrEmpty(dtoForUpdate.FontAwesomeIcon) && dtoForUpdate.LocalIconId == null))
-                    {
-                        throw new Exception("Please just select an icon");
-                    }
                     dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
                     _service.Update(dtoForUpdate);
                     return RedirectToAction("Index", "BedTypes");
@@ -152,7 +144,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                         LocalIcons = localIcons,
                         FontAwesomeIcons = icons
                     };
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                     return View(newModel);
                 }
             }
@@ -168,9 +160,9 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             }
             catch (Exception e)
             {
-                ModelState.AddModelError("", e.Message);
+                ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
             }
-            return RedirectToAction("Index", "BedTypes");
+            return RedirectToAction("Index");
         }
     }
 }
