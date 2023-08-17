@@ -11,12 +11,12 @@ namespace Service.Concrete.RealEstateManagement
     public class RealEstateHeatingOptionsService : BaseService<HeatingOptions, HeatingOptionsDto>, IRealEstateHeatingOptionsService
     {
         public RealEstateHeatingOptionsService(IRealEstateHeatingOptionsRepository realEstateHeatingOptionsRepository, IMapper mapper) : base(realEstateHeatingOptionsRepository, mapper) { }
-        [FluentValidationAspect(typeof(RealEstateHeatingOptionsInsertionValidation))]
+        [FluentValidationAspect(typeof(RealEstateHeatingOptionsInsertionValidatior))]
         public override int CreateWithDto<TDtoForInsertion>(TDtoForInsertion dtoForInsertion)
         {
             return base.CreateWithDto(dtoForInsertion);
         }
-        [FluentValidationAspect(typeof(RealEstateHeatingOptionsUpdateValidation))]
+        [FluentValidationAspect(typeof(RealEstateHeatingOptionsUpdateValidatior))]
         public override void Update(HeatingOptionsDto dto)
         {
             base.Update(dto);

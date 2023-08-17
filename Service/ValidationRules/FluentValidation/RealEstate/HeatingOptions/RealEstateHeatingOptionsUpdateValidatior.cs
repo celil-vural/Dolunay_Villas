@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Service.ValidationRules.FluentValidation.RealEstate.HeatingOptions
 {
-    public class RealEstateHeatingOptionsUpdateValidation : AbstractValidator<HeatingOptionsDtoForUpdate>
+    public class RealEstateHeatingOptionsUpdateValidatior : AbstractValidator<HeatingOptionsDtoForUpdate>
     {
-        public RealEstateHeatingOptionsUpdateValidation()
+        public RealEstateHeatingOptionsUpdateValidatior()
         {
             RuleFor(x => x.Title_Tr).NotEmpty().WithMessage("Name tr is required.");
             RuleFor(x => x.Title_En).NotEmpty().WithMessage("Name en is required.");
