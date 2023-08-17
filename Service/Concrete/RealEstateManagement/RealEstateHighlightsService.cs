@@ -9,5 +9,6 @@ namespace Service.Concrete.RealEstateManagement
     public class RealEstateHighlightsService : BaseService<Highlights, HighlightsDto>, IRealEstateHighlightsService
     {
         public RealEstateHighlightsService(IRealEstateHighlightsRepository baseRepository, IMapper mapper) : base(baseRepository, mapper) { }
+
     }
 }
