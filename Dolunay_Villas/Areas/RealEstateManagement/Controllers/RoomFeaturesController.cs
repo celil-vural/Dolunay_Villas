@@ -6,7 +6,6 @@ using Entity.RequestParameters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contract.RealEstateManagement;
-using System.Diagnostics;
 
 namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
 {
@@ -57,13 +56,14 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             {
                 try
                 {
-                    dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
+                    dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "";
+                    dtoForInsertion.UpdatedByUser = User.Identity?.Name ?? "";
                     _realEstateRoomFeaturesService.CreateWithDto(dtoForInsertion);
-                    return RedirectToAction("Index", "RoomFeatures");
+                    return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                 }
             }
             return View("Create", dtoForInsertion);
@@ -81,14 +81,13 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             {
                 try
                 {
-                    Debug.WriteLine(dtoForUpdate.CreatedByUser + "\n" + dtoForUpdate.CreatedAt + "****************");
-                    dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
+                    dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "";
                     _realEstateRoomFeaturesService.Update(dtoForUpdate);
-                    return RedirectToAction("Index", "RoomFeatures");
+                    return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                 }
             }
             return View("Update", dtoForUpdate);

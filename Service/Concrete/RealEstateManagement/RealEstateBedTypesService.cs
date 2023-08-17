@@ -12,12 +12,12 @@ namespace Service.Concrete.RealEstateManagement
     {
         public RealEstateBedTypesService(IRealEstateBedTypesRepository baseRepository, IMapper mapper) : base(baseRepository, mapper)
         { }
-        [FluentValidationAspect(typeof(RealEstateBedTypesUpdateValidator))]
+        [FluentValidationAspect(typeof(RealEstateBedTypesValidator))]
         public override void Update(BedTypesDto dto)
         {
             base.Update(dto);
         }
-        [FluentValidationAspect(typeof(RealEstateBedTypesInsertionValidator))]
+        [FluentValidationAspect(typeof(RealEstateBedTypesValidator))]
         public override int CreateWithDto<TDtoForInsertion>(TDtoForInsertion dtoForInsertion)
         {
             return base.CreateWithDto(dtoForInsertion);

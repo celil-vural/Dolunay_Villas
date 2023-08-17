@@ -74,7 +74,8 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 try
                 {
                     var dtoForInsertion = model.BedTypesDtoForInsertion;
-                    model.BedTypesDtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
+                    model.BedTypesDtoForInsertion.CreatedByUser = User.Identity?.Name ?? "";
+                    model.BedTypesDtoForInsertion.UpdatedByUser = User.Identity?.Name ?? "";
                     _service.CreateWithDto(model.BedTypesDtoForInsertion);
                     return RedirectToAction("Index");
                 }
@@ -130,9 +131,9 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 try
                 {
                     var dtoForUpdate = model.BedTypesDtoForUpdate;
-                    dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
+                    dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "";
                     _service.Update(dtoForUpdate);
-                    return RedirectToAction("Index", "BedTypes");
+                    return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {

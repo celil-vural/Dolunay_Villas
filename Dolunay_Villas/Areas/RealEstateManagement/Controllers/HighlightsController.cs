@@ -56,13 +56,14 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             {
                 try
                 {
-                    dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
+                    dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "";
+                    dtoForInsertion.UpdatedByUser = User.Identity?.Name ?? "";
                     _service.CreateWithDto(dtoForInsertion);
                     return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                 }
             }
             return View("Create", dtoForInsertion);
@@ -80,13 +81,13 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             {
                 try
                 {
-                    dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
+                    dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "";
                     _service.Update(dtoForUpdate);
                     return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                 }
             }
             return View("Update", dtoForUpdate);

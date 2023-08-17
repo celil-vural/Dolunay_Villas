@@ -71,10 +71,6 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                     {
                         throw new Exception("The photo is required");
                     }
-                    if (dtoForInsertion == null)
-                    {
-                        throw new Exception("The estate type is required");
-                    }
                     if (formFile != null && formFile.Length > 0 && formFile.Length <= 3 * 1024 * 1024)
                     {
                         await _photoService.ConvertPhotoAsync(formFile, dtoForInsertion.Name, uploadsFolder);
@@ -87,7 +83,8 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                             UpdatedAt = DateTime.Now
                         };
                         var photoId = _photoService.CreateWithDto(photoDtoForInsertion);
-                        dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
+                        dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "";
+                        dtoForInsertion.UpdatedByUser = User.Identity?.Name ?? "";
                         dtoForInsertion.PhotoId = photoId;
                         _service.CreateWithDto(dtoForInsertion);
                         return RedirectToAction("Index");
@@ -100,7 +97,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 }
                 catch (Exception e)
                 {
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                     await _photoService.DeletePhotoAsync(model.DtoForInsertion.Name, uploadsFolder);
                 }
             }
@@ -135,11 +132,11 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                         var photoEntity = _photoService.GetEntity<PhotoDtoUpdate>(dtoForUpdate.PhotoId);
                         if (photoEntity != null)
                         {
-                            photoEntity.UpdatedByUser = User.Identity?.Name ?? "null";
+                            photoEntity.UpdatedByUser = User.Identity?.Name ?? "";
                             photoEntity.FileName = dtoForUpdate.Name;
                             _photoService.Update(photoEntity);
                         }
-                        dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
+                        dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "";
                         _service.Update(dtoForUpdate);
                         return RedirectToAction("Index");
                     }
@@ -149,18 +146,18 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                         var photoEntity = _photoService.GetEntity<PhotoDtoUpdate>(dtoForUpdate.PhotoId);
                         if (photoEntity != null)
                         {
-                            photoEntity.UpdatedByUser = User.Identity?.Name ?? "null";
+                            photoEntity.UpdatedByUser = User.Identity?.Name ?? "";
                             photoEntity.FileName = dtoForUpdate.Name;
                             _photoService.Update(photoEntity);
                         }
-                        dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
+                        dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "";
                         _service.Update(dtoForUpdate);
                     }
                     return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                     await _photoService.DeletePhotoAsync(model.DtoForUpdate.Name, uploadsFolder);
                 }
             }
@@ -203,7 +200,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             }
             catch (Exception e)
             {
-                ModelState.AddModelError("", e.Message);
+                ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
             }
             return RedirectToAction("Index");
         }

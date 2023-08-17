@@ -1,5 +1,4 @@
-﻿using Dolunay_Villas.Areas.RealEstateManagement.Models;
-using Dolunay_Villas.Areas.RealEstateManagement.Models.Rules;
+﻿using Dolunay_Villas.Areas.RealEstateManagement.Models.Rules;
 using Dolunay_Villas.Models;
 using Entity.Dtos.RealEstateManagement.Rules;
 using Entity.Enums;
@@ -66,16 +65,8 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 try
                 {
                     var dtoForInsertion = model.DtoForInsertion;
-                    if (string.IsNullOrEmpty(dtoForInsertion.FontAwesomeIcon) && dtoForInsertion.LocalIconId == null)
-                    {
-                        throw new Exception("Please select an icon");
-
-                    }
-                    if (!(string.IsNullOrEmpty(dtoForInsertion.FontAwesomeIcon)) && !(dtoForInsertion.LocalIconId == null))
-                    {
-                        throw new Exception("Please just select an icon");
-                    }
-                    dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
+                    dtoForInsertion.CreatedByUser = User.Identity?.Name ?? "";
+                    dtoForInsertion.UpdatedByUser = User.Identity?.Name ?? "";
                     _service.CreateWithDto(dtoForInsertion);
                     return RedirectToAction("Index");
                 }
@@ -95,7 +86,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                         LocalIcons = localIcons,
                         FontAwesomeIcons = icons
                     };
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                     return View(newModel);
                 }
             }
@@ -123,15 +114,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 try
                 {
                     var dtoForUpdate = model.DtoForUpdate;
-                    if (String.IsNullOrEmpty(dtoForUpdate.FontAwesomeIcon) && dtoForUpdate.LocalIconId == null)
-                    {
-                        throw new Exception("Please select an icon");
-                    }
-                    if (!(String.IsNullOrEmpty(dtoForUpdate.FontAwesomeIcon)) && !(dtoForUpdate.LocalIconId == null))
-                    {
-                        throw new Exception("Please just select an icon");
-                    }
-                    dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "null";
+                    dtoForUpdate.UpdatedByUser = User.Identity?.Name ?? "";
                     _service.Update(dtoForUpdate);
                     return RedirectToAction("Index");
                 }
@@ -145,7 +128,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                         LocalIcons = localIcons,
                         FontAwesomeIcons = icons
                     };
-                    ModelState.AddModelError("", e.Message);
+                    ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
                     return View(newModel);
                 }
             }
@@ -161,7 +144,7 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             }
             catch (Exception e)
             {
-                ModelState.AddModelError("", e.Message);
+                ModelState.AddModelError("", e.InnerException?.Message ?? e.Message);
             }
             return RedirectToAction("Index");
         }
