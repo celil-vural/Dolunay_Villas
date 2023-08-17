@@ -2,7 +2,6 @@
 using Entity.Dtos.Icon;
 using Entity.Models;
 using Microsoft.AspNetCore.Http;
-using PostSharp.Patterns.Caching;
 using Repository.Contracts;
 using Service.Contract;
 using SixLabors.ImageSharp.Formats;
@@ -12,10 +11,7 @@ namespace Service.Concrete
 {
     public class IconService : BaseService<Icon, IconDto>, IIconService
     {
-        public IconService(IIconRepository baseRepository, IMapper mapper) : base(baseRepository, mapper)
-        {
-        }
-        [Cache(AbsoluteExpiration = 20)]
+        public IconService(IIconRepository baseRepository, IMapper mapper) : base(baseRepository, mapper) { }
         public override IEnumerable<IconDto>? GetList()
         {
             return base.GetList();

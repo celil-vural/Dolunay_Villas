@@ -1,5 +1,4 @@
-﻿using Dolunay_Villas.Areas.RealEstateManagement.Models;
-using Dolunay_Villas.Areas.RealEstateManagement.Models.BedTypes;
+﻿using Dolunay_Villas.Areas.RealEstateManagement.Models.BedTypes;
 using Dolunay_Villas.Models;
 using Entity.Dtos.RealEstateManagement.BedTypes;
 using Entity.Enums;
@@ -75,14 +74,6 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
                 try
                 {
                     var dtoForInsertion = model.BedTypesDtoForInsertion;
-                    if (String.IsNullOrEmpty(dtoForInsertion.FontAwesomeIcon) && dtoForInsertion.LocalIconId == null)
-                    {
-                        throw new Exception("Please select an icon");
-                    }
-                    if (!(String.IsNullOrEmpty(dtoForInsertion.FontAwesomeIcon)) && !(dtoForInsertion.LocalIconId == null))
-                    {
-                        throw new Exception("Please just select an icon");
-                    }
                     model.BedTypesDtoForInsertion.CreatedByUser = User.Identity?.Name ?? "null";
                     _service.CreateWithDto(model.BedTypesDtoForInsertion);
                     return RedirectToAction("Index");
