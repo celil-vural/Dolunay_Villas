@@ -1,0 +1,43 @@
+﻿@model DistancesUpdateModel
+@{
+    var SelectionModel = new PartialSelectionModel()
+    {
+        FontAwesomeIcons = Model.FontAwesomeIcons ?? new HashSet<string>(),
+        SelectedValue = Model.DtoForUpdate.FontAwesomeIcon ?? null
+    };
+}
+<div class="text-center my-5">
+    <div class="dispaly-6">Update (@Model.DtoForUpdate.Title_Tr)</div>
+</div>
+<form method="post" asp-action="Update">
+    <div asp-validation-summary="All" class="text-center text-danger"></div>
+    <div>
+        <input type="hidden" asp-for="DtoForUpdate.Id" />
+        <input type="hidden" asp-for="DtoForUpdate.CreatedByUser" />
+        <input type="hidden" asp-for="DtoForUpdate.CreatedAt" />
+    </div>
+    <div class="form-group my-3">
+        <label class="form-label" asp-for="DtoForUpdate.Title_Tr"></label>
+        <input asp-for="DtoForUpdate.Title_Tr" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label class="form-label" asp-for="DtoForUpdate.Title_En"></label>
+        <input asp-for="DtoForUpdate.Title_En" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="@(Model.DtoForUpdate.FontAwesomeIcon)" class="form-label"> FontAwesome Icon</label>
+        <input type="hidden" asp-for="@(Model.DtoForUpdate.FontAwesomeIcon)" id="IconString" value="@(SelectionModel.SelectedValue)" />
+        <partial name="_SelectIcon" model="@(SelectionModel)" />
+    </div>
+    <div class="form-group mb-3">
+        <label class="form-label" asp-for="DtoForUpdate.LocalIconId">Local Icon</label>
+        <select class="form-control" asp-for="DtoForUpdate.LocalIconId" id="localIconSelect" onchange="SelectLocalIcon(this.value)">
+            <option value="@null"> Select a Icon</option>
+            @foreach (var item in Model?.LocalIcons ?? new List<IconDto>())
+            {
+                <option value="@item.Id" selected="@(Model?.DtoForUpdate.LocalIconId==item.Id)">@item.FileName</option>
+            }
+        </select>
+    </div>
+    <partial name="_DefaultPartialHtmlForUpdateByBackButton" />
+</form>

@@ -8,13 +8,13 @@ using Service.ValidationRules.FluentValidation.RealEstate.EstateFeatures;
 
 namespace Service.Concrete.RealEstateManagement
 {
-    public class RealEstateFeaturesService : BaseService<RealEstateFeatures, RealEstateFeaturesDto, RealEstateFeaturesDtoForInsertion, RealEstateFeaturesDtoForUpdate>, IRealEstateFeaturesService
+    public class RealEstateFeaturesService : BaseService<RealEstateFeatures, RealEstateFeaturesDto>, IRealEstateFeaturesService
     {
         public RealEstateFeaturesService(IRealEstateFeaturesRepository baseRepository, IMapper mapper) : base(baseRepository, mapper)
         {
         }
         [FluentValidationAspect(typeof(RealEstateFeaturesValidator))]
-        public override int CreateWithDto(RealEstateFeaturesDtoForInsertion dtoForInsertion)
+        public override int CreateWithDto<TDtoForInsertion>(TDtoForInsertion dtoForInsertion)
         {
             return base.CreateWithDto(dtoForInsertion);
         }

@@ -1,0 +1,51 @@
+﻿@model DistancesInsertionModel
+@{
+    var SelectionModel = new PartialSelectionModel()
+    {
+        FontAwesomeIcons = Model?.FontAwesomeIcons ?? new(),
+        SelectedValue = null
+    };
+}
+<div class="text-center">
+    <div class="display-6">
+        Create Distance
+    </div>
+</div>
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group mb-3">
+        <label asp-for="DtoForInsertion.Title_Tr" class="form-label"></label>
+        <input required asp-for="DtoForInsertion.Title_Tr" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="DtoForInsertion.Title_En" class="form-label"></label>
+        <input required asp-for="DtoForInsertion.Title_En" class="form-control" />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="@(Model.DtoForInsertion.FontAwesomeIcon)" class="form-label">FontAwesome Icon</label>
+        <input required type="hidden" asp-for="@(Model.DtoForInsertion.FontAwesomeIcon)" id="IconString" value="@(null)" />
+        <partial name="_SelectIcon" model="@(SelectionModel)" />
+    </div>
+    <div class="form-group mb-3">
+        <label class="form-label" asp-for="DtoForInsertion.LocalIconId">Local Icon</label>
+        <select asp-for="DtoForInsertion.LocalIconId" class="form-control">
+            <option value="@null"> Select a Icon</option>
+            @foreach (var item in Model.LocalIcons ?? new List<IconDto>())
+            {
+                <option value="@item.Id" selected="@(Model?.DtoForInsertion.LocalIconId==item.Id)">@item.FileName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <div class="btn-group">
+            <button type="submit" class="btn btn-outline-secondary">
+                <i class="fa fa-save"></i>
+                Create
+            </button>
+            <a asp-area="RealEstateManagement" asp-action="Index" class="btn btn-outline-secondary">
+                <i class="fa fa-list"></i>
+                Back to List
+            </a>
+        </div>
+    </div>
+</form>

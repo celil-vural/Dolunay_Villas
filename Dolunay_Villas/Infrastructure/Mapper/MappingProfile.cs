@@ -3,6 +3,8 @@ using Entity.Dtos.Icon;
 using Entity.Dtos.Log;
 using Entity.Dtos.Photo;
 using Entity.Dtos.RealEstateManagement.BedTypes;
+using Entity.Dtos.RealEstateManagement.DistanceRuler;
+using Entity.Dtos.RealEstateManagement.Distances;
 using Entity.Dtos.RealEstateManagement.EstateTypes;
 using Entity.Dtos.RealEstateManagement.HeatingOptions;
 using Entity.Dtos.RealEstateManagement.ItemTypes;
@@ -63,6 +65,12 @@ namespace StoreApp.Infrastructure.Mapper
             CreateMap<EstateTypes, EstateTypesDto>().ReverseMap();
             CreateMap<EstateTypes, EstateTypesDtoForInsertion>().ReverseMap();
             CreateMap<EstateTypes, EstateTypesDtoForUpdate>().ReverseMap();
+            CreateMap<Distances, DistancesDto>().ReverseMap();
+            CreateMap<Distances, DistancesDtoForInsertion>().ReverseMap();
+            CreateMap<Distances, DistancesDtoForUpdate>().ReverseMap();
+            CreateMap<DistanceRuler, DistanceRulerDto>().ReverseMap();
+            CreateMap<DistanceRuler, DistanceRulerDtoForUpdate>().ReverseMap();
+            CreateMap<DistanceRuler, DistanceRulerDtoForInsertion>().ReverseMap();
 
         }
     }

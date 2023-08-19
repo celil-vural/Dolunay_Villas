@@ -23,12 +23,11 @@ namespace Repository.Concrete.EntityFramework
         public DbSet<Icon> Icons { get; set; }
         public DbSet<RealEstateFeatures> RealEstateFeatures { get; set; }
         public DbSet<EstateTypes> EstateTypes { get; set; }
+        public DbSet<Distances> Distances { get; set; }
+        public DbSet<LocationType> LocationTypes { get; set; }
+        public DbSet<DistanceRuler> DistanceRulers { get; set; }
         #endregion
-        public RepositoryContext(DbContextOptions<RepositoryContext> options)
-        : base(options)
-        {
-        }
-
+        public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
