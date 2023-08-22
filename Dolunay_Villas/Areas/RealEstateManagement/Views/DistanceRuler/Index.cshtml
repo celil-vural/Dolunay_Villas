@@ -1,33 +1,41 @@
-﻿@model RealEstateFeaturesListViewModel
+﻿@model DistanceRulerListViewModel
+
 <div class="text-center my-2">
     <div class="display-6">
-        Real Estate Features
+        Distance Ruler
     </div>
 </div>
 @await Html.PartialAsync("_DefaultPartialHtmlForCreateButton")
 <table table>
     <thead>
         <tr>
-            <th>Features</th>
-            <th>SubFeatures</th>
+            <th>Region</th>
+            <th>Name</th>
             <th>Operations</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var entity in Model?.Entities ?? new())
         {
+            #region regionPath
+            var regionPath = "";
+            var region = entity.Region;
+            regionPath += region.Name;
+            regionPath += " / ";
+            region = region.ParentRegion;
+            @while (region != null)
+            {
+                regionPath += region.Name;
+                region = region.ParentRegion;
+            }
+            #endregion
             <tr>
-                <td>@(entity.ParentRealEstateFeatures?.Title_Tr ?? "Index")</td>
-                <td>@entity.Title_Tr</td>
+                <td>
+                    @regionPath
+                </td>
+                <td>@entity.PlaceName</td>
                 <td>
                     <div class="btn-group">
-                        <a data-toggle="tooltip"
-                           data-placement="top" title="Create"
-                           class="btn btn-sm btn-success rounded-3"
-                           asp-route-id="@entity.Id"
-                           asp-action="Create">
-                            <i class="fa fa-plus"></i>
-                        </a>
                         <a data-toggle="tooltip"
                            data-placement="top" title="Edit"
                            class="btn btn-sm btn-warning rounded-3"

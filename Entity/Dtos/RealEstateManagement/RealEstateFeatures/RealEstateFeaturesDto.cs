@@ -9,5 +9,8 @@
         public string UpdatedByUser { get; set; } = string.Empty;
         public string? FontAwesomeIcon { get; set; }
         public int? LocalIconId { get; set; }
+        public int? ParentRealEstateFeaturesId { get; init; }
+        public virtual RealEstateFeaturesDto? ParentRealEstateFeatures { get; init; }
+        public ICollection<RealEstateFeaturesDto> SubRealEstateFeatures { get; init; } = new HashSet<RealEstateFeaturesDto>();
     }
 }

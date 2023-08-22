@@ -1,10 +1,10 @@
 ﻿@model RealEstateFeaturesUpdateModel
 @{
     var SelectionModel = new PartialSelectionModel()
-            {
-                FontAwesomeIcons = Model.FontAwesomeIcons ?? new HashSet<string>(),
-                SelectedValue = Model.DtoForUpdate.FontAwesomeIcon ?? null
-            };
+    {
+        FontAwesomeIcons = Model.FontAwesomeIcons ?? new HashSet<string>(),
+        SelectedValue = Model.DtoForUpdate.FontAwesomeIcon ?? null
+    };
 }
 <div class="text-center my-5">
     <div class="dispaly-6">Update (@Model.DtoForUpdate.Title_Tr)</div>
@@ -15,6 +15,7 @@
         <input type="hidden" asp-for="DtoForUpdate.Id" />
         <input type="hidden" asp-for="DtoForUpdate.CreatedByUser" />
         <input type="hidden" asp-for="DtoForUpdate.CreatedAt" />
+        <input type="hidden" asp-for="DtoForUpdate.ParentRealEstateFeaturesId" />
     </div>
     <div class="form-group my-3">
         <label class="form-label" asp-for="DtoForUpdate.Title_Tr"></label>

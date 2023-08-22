@@ -15,7 +15,7 @@ namespace Repository.Concrete.RealEstateManagement
         }
         public override IEnumerable<EstateTypes>? GetList(bool trackChanges = false)
         {
-            return _context.EstateTypes.Include(r => r.ParentEstateTypes).Include(r => r.SubEstateTypes).Include(r => r.Photo).ToList();
+            return _context.EstateTypes.Include(r => r.ParentEstateTypes).Include(r => r.SubEstateTypes).Include(r => r.Photo);
         }
         public override EstateTypes? Get(Expression<Func<EstateTypes, bool>> filter, bool trackChanges = false)
         {

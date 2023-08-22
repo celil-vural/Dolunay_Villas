@@ -13,6 +13,7 @@
 </div>
 <form method="post" asp-action="Create" enctype="multipart/form-data">
     <div class="text-danger" asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="DtoForInsertion.ParentRealEstateFeaturesId" value="@(Model?.DtoForInsertion.ParentRealEstateFeaturesId ?? null)" />
     <div class="form-group mb-3">
         <label asp-for="DtoForInsertion.Title_Tr" class="form-label"></label>
         <input required asp-for="DtoForInsertion.Title_Tr" class="form-control" />
@@ -44,7 +45,7 @@
             </button>
             <a asp-area="RealEstateManagement" asp-action="Index" class="btn btn-outline-secondary">
                 <i class="fa fa-list"></i>
-                Rules
+                Back To List
             </a>
         </div>
     </div>

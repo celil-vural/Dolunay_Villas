@@ -42,14 +42,28 @@ namespace Dolunay_Villas.Areas.RealEstateManagement.Controllers
             };
             return View("Index", model);
         }
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create([FromRoute(Name = "id")] int? id)
         {
             var icons = await _fontAwesomeService.GetAllFreeIcons();
             var localIcons = _iconService.GetList();
+            if (id != null)
+            {
+                var dto = new RealEstateFeaturesDtoForInsertion
+                {
+                    ParentRealEstateFeaturesId = id
+                };
+                var model2 = new RealEstateFeaturesInsertionModel
+                {
+                    LocalIcons = localIcons,
+                    FontAwesomeIcons = icons,
+                    DtoForInsertion = dto
+                };
+                return View(model2);
+            }
             var model = new RealEstateFeaturesInsertionModel
             {
                 LocalIcons = localIcons,
-                FontAwesomeIcons = icons
+                FontAwesomeIcons = icons,
             };
             return View(model);
         }
