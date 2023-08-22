@@ -4,6 +4,7 @@ namespace Entity.Models.RealEstateManagement
 {
     public class RealEstate : IEntity
     {
+        #region Other
         public int Id { get; set; }
         public string PropertyTitle { get; set; } = string.Empty;
         public string PropertyDescription { get; set; } = string.Empty;
@@ -11,7 +12,7 @@ namespace Entity.Models.RealEstateManagement
         public string Contents { get; set; } = string.Empty;
         public int ReservationTrackingId { get; set; }
         public int RealEstateTypeId { get; set; }
-
+        #endregion
         #region Özellikler
         public int RegionId { get; set; }
         public string RibbonText { get; set; } = string.Empty;
@@ -50,11 +51,42 @@ namespace Entity.Models.RealEstateManagement
         public string? KiddiePoolLength { get; set; } = string.Empty;//10m,15m,20m
         public string? KiddiePoolWidth { get; set; } = string.Empty;//5m,10m,15m
         #endregion
+        #region Mesafeler
+        #endregion
+        #region Features
+        public ICollection<RealEstateFeatures> Features { get; set; } = new HashSet<RealEstateFeatures>();
+        #endregion
+        #region Highlights
+        public ICollection<Highlights> Highlights { get; set; } = new HashSet<Highlights>();
+        #endregion
+        #region Rules
+        public ICollection<Rules> Rules { get; set; } = new HashSet<Rules>();
+        #endregion
+        #region Fiyatlandırma
+        public short DepositRate { get; set; }//0-100
+        public short ForeignCurrency { get; set; }//0-3 1-Tl 2-Pound 3-Dollar 4-Euro
+        public decimal ExchangeRate { get; set; }//  ForeignCurrency Tl ise 0
+        public decimal EarningsRatio { get; set; }//Kazanç Oranı
+        public string PriceNote { get; set; } = string.Empty;
+        public string CalendarNote { get; set; } = string.Empty;
+        #endregion
+        #region Ekstra Ücretler
+        public decimal DamageDeposit { get; set; }//Hasar Depozitosu
+        public decimal CleaningFee { get; set; }//Temizlik Ücreti
+        public decimal ElectricityWaterFee { get; set; } //Elektrik ve Su Ücreti
+        #endregion
+        #region Rooms
+        public ICollection<RoomDetails> RoomDetails { get; set; } = new HashSet<RoomDetails>();
+        #endregion
+        #region Location
+        public string Location { get; set; } = string.Empty;
+        public string LocationNote { get; set; } = string.Empty;
+        #endregion
+        #region Create and Update
         public string CreatedByUser { get; set; } = string.Empty;
         public string UpdatedByUser { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-
-
+        #endregion
     }
 }
