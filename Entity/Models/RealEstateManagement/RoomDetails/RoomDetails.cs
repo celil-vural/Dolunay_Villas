@@ -1,6 +1,7 @@
 ﻿using Entity.Contracts;
+using Entity.Models.RealEstateManagement.Room;
 
-namespace Entity.Models.RealEstateManagement
+namespace Entity.Models.RealEstateManagement.RoomDetails
 {
     public class RoomDetails : IEntity
     {

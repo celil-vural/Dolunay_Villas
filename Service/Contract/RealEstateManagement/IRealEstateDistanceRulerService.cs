@@ -1,5 +1,5 @@
 ﻿using Entity.Dtos.RealEstateManagement.DistanceRuler;
-using Entity.Models.RealEstateManagement;
+using Entity.Models.RealEstateManagement.DistanceRuler;
 
 namespace Service.Contract.RealEstateManagement
 {

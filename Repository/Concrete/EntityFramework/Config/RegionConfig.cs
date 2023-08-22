@@ -1,4 +1,4 @@
-﻿using Entity.Models.RealEstateManagement;
+﻿using Entity.Models.RealEstateManagement.Region;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Repository.Concrete.EntityFramework.Config

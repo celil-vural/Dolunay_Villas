@@ -1,5 +1,5 @@
 ﻿using Entity.Dtos.RealEstateManagement.LocationTypes;
-using Entity.Models.RealEstateManagement;
+using Entity.Models.RealEstateManagement.LocationType;
 
 namespace Service.Contract.RealEstateManagement
 {

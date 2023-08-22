@@ -1,5 +1,5 @@
 ﻿using Entity.Dtos.RealEstateManagement.HeatingOptions;
-using Entity.Models.RealEstateManagement;
+using Entity.Models.RealEstateManagement.HeatingOption;
 
 namespace Service.Contract.RealEstateManagement
 {

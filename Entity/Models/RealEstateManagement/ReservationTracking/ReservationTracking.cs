@@ -1,7 +1,7 @@
 ﻿using Entity.Contracts;
 using Entity.Models.Reservation;
 
-namespace Entity.Models.RealEstateManagement
+namespace Entity.Models.RealEstateManagement.ReservationTracking
 {
     public class ReservationTrackingForVilla : IEntity
     {

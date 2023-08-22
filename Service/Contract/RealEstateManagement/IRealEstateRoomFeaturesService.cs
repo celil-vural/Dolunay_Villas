@@ -1,5 +1,5 @@
 ﻿using Entity.Dtos.RealEstateManagement.RoomFeatures;
-using Entity.Models.RealEstateManagement;
+using Entity.Models.RealEstateManagement.RoomFeature;
 
 namespace Service.Contract.RealEstateManagement
 {

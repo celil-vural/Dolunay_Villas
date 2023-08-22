@@ -1,4 +1,4 @@
-﻿using Entity.Models.RealEstateManagement;
+﻿using Entity.Models.RealEstateManagement.RoomFeature;
 using Repository.Concrete.EntityFramework;
 using Repository.Contracts.RealEstateManagement;
 

@@ -1,6 +1,6 @@
 ﻿using Entity.Contracts;
 
-namespace Entity.Models.RealEstateManagement
+namespace Entity.Models.RealEstateManagement.EstateType
 {
     public class EstateTypes : IEntity
     {

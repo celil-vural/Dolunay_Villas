@@ -4,7 +4,7 @@ using Entity.Dtos.RealEstateManagement.ValueTypes;
 using Repository.Contracts.RealEstateManagement;
 using Service.Contract.RealEstateManagement;
 using Service.ValidationRules.FluentValidation.RealEstate.ValueTypes;
-using ValueType = Entity.Models.RealEstateManagement.ValueType;
+using ValueType = Entity.Models.RealEstateManagement.ValueType.ValueType;
 
 namespace Service.Concrete.RealEstateManagement
 {

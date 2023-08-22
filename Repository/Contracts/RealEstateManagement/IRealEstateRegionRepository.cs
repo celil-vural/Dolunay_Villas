@@ -1,4 +1,4 @@
-﻿using Entity.Models.RealEstateManagement;
+﻿using Entity.Models.RealEstateManagement.Region;
 
 namespace Repository.Contracts.RealEstateManagement
 {

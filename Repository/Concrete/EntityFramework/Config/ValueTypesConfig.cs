@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ValueType = Entity.Models.RealEstateManagement.ValueType;
+using ValueType = Entity.Models.RealEstateManagement.ValueType.ValueType;
 
 namespace Repository.Concrete.EntityFramework.Config
 {

@@ -1,6 +1,7 @@
 ﻿using Entity.Contracts;
+using Entity.Models.RealEstateManagement.Distance;
 
-namespace Entity.Models.RealEstateManagement
+namespace Entity.Models.RealEstateManagement.DistanceRuler
 {
     public class DistanceRuler : IEntity
     {

@@ -1,5 +1,5 @@
 ﻿using Entity.Dtos.RealEstateManagement.BedTypes;
-using Entity.Models.RealEstateManagement;
+using Entity.Models.RealEstateManagement.BedTypes;
 
 namespace Service.Contract.RealEstateManagement
 {

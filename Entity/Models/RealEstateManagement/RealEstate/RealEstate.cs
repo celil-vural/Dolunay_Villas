@@ -1,6 +1,7 @@
 ﻿using Entity.Contracts;
+using Entity.Models.RealEstateManagement.Rule;
 
-namespace Entity.Models.RealEstateManagement
+namespace Entity.Models.RealEstateManagement.RealEstate
 {
     public class RealEstate : IEntity
     {

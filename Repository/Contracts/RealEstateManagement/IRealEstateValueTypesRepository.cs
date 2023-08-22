@@ -1,4 +1,4 @@
-﻿using ValueType = Entity.Models.RealEstateManagement.ValueType;
+﻿using ValueType = Entity.Models.RealEstateManagement.ValueType.ValueType;
 
 namespace Repository.Contracts.RealEstateManagement
 {

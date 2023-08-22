@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Dolunay_Villas.Core.CrossCuttingConcerns.Aspects.Postsharp.ValidationAspect;
 using Entity.Dtos.RealEstateManagement.DistanceRuler;
-using Entity.Models.RealEstateManagement;
+using Entity.Models.RealEstateManagement.DistanceRuler;
 using Repository.Contracts.RealEstateManagement;
 using Service.Contract.RealEstateManagement;
 using Service.ValidationRules.FluentValidation.RealEstate.DistanceRuler;

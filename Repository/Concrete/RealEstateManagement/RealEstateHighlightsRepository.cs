@@ -1,4 +1,4 @@
-﻿using Entity.Models.RealEstateManagement;
+﻿using Entity.Models.RealEstateManagement.Highlights;
 using Repository.Concrete.EntityFramework;
 using Repository.Contracts.RealEstateManagement;
 
