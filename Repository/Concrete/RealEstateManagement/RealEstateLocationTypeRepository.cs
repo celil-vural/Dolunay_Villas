@@ -1,4 +1,4 @@
-﻿using Entity.Models.RealEstateManagement.LocationType;
+﻿using Entity.Models.RealEstateManagement.LocationTypes;
 using Repository.Concrete.EntityFramework;
 using Repository.Contracts.RealEstateManagement;
 

@@ -2,7 +2,7 @@
 
 namespace Repository.Contracts.RealEstateManagement
 {
-    public interface IRealEstateItemTypesRepository : IRepositoryBase<ItemTypes>
+    public interface IRealEstateItemTypesRepository : IRepositoryBase<ItemType>
     {
 
     }

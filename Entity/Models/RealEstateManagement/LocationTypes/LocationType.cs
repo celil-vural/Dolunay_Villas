@@ -1,6 +1,6 @@
 ﻿using Entity.Contracts;
 
-namespace Entity.Models.RealEstateManagement.LocationType
+namespace Entity.Models.RealEstateManagement.LocationTypes
 {
     public class LocationType : IEntity
     {

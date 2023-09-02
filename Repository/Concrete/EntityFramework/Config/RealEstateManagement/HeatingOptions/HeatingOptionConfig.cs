@@ -1,15 +1,15 @@
-﻿using Entity.Models.RealEstateManagement.HeatingOption;
+﻿using Entity.Models.RealEstateManagement.HeatingOptions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.HeatingOption
+namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.HeatingOptions
 {
-    public class HeatingOptionConfig : IEntityTypeConfiguration<HeatingOptions>
+    public class HeatingOptionConfig : IEntityTypeConfiguration<HeatingOption>
     {
-        public void Configure(EntityTypeBuilder<HeatingOptions> builder)
+        public void Configure(EntityTypeBuilder<HeatingOption> builder)
         {
             builder.HasData(
-                new HeatingOptions
+                new HeatingOption
                 {
                     Id = 1,
                     Title_Tr = "Doğalgaz",
@@ -19,7 +19,7 @@ namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.Heatin
                     CreatedByUser = "Default",
                     UpdatedByUser = "Default"
                 },
-                new HeatingOptions
+                new HeatingOption
                 {
                     Id = 2,
                     Title_Tr = "Klima",
@@ -29,7 +29,7 @@ namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.Heatin
                     CreatedByUser = "Default",
                     UpdatedByUser = "Default"
                 },
-                new HeatingOptions
+                new HeatingOption
                 {
                     Id = 3,
                     Title_Tr = "Soba",
@@ -39,7 +39,7 @@ namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.Heatin
                     CreatedByUser = "Default",
                     UpdatedByUser = "Default"
                 },
-                new HeatingOptions
+                new HeatingOption
                 {
                     Id = 4,
                     Title_Tr = "Şömine",
@@ -49,7 +49,7 @@ namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.Heatin
                     CreatedByUser = "Default",
                     UpdatedByUser = "Default"
                 },
-                new HeatingOptions
+                new HeatingOption
                 {
                     Id = 5,
                     Title_Tr = "Yerden Isıtma",

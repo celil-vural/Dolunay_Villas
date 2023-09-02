@@ -2,14 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.BedType
+namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.BedTypeConfig
 {
-    public class BedTypeConfig : IEntityTypeConfiguration<BedTypes>
+    public class BedTypeConfig : IEntityTypeConfiguration<BedType>
     {
-        public void Configure(EntityTypeBuilder<BedTypes> builder)
+        public void Configure(EntityTypeBuilder<BedType> builder)
         {
+            builder.HasKey(b => b.Id);
+            builder.HasOne(b => b.ValueType)
+                   .WithMany(vt => vt.BedTypes)
+                   .HasForeignKey(b => b.ValueTypeId)
+                   .IsRequired();
             builder.HasData(
-                new BedTypes
+                new BedType
                 {
                     Id = 1,
                     Title_Tr = "TV",
@@ -20,10 +25,10 @@ namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.BedTyp
                     UpdatedByUser = "Default",
                     LocalIconId = null,
                     FontAwesomeIcon = "fa-solid fa-tv",
-                    ItemTypeKey = 3,
-                    ValueTypeKey = 1,
+                    ItemTypeId = 3,
+                    ValueTypeId = 1,
                 },
-                new BedTypes
+                new BedType
                 {
                     Id = 2,
                     Title_Tr = "Jakuzi",
@@ -34,10 +39,10 @@ namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.BedTyp
                     UpdatedByUser = "Default",
                     LocalIconId = null,
                     FontAwesomeIcon = "fa-solid fa-tv",
-                    ItemTypeKey = 1,
-                    ValueTypeKey = 3,
+                    ItemTypeId = 1,
+                    ValueTypeId = 3,
                 },
-                new BedTypes
+                new BedType
                 {
                     Id = 3,
                     Title_Tr = "Elbise dolabı",
@@ -48,10 +53,10 @@ namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.BedTyp
                     UpdatedByUser = "Default",
                     LocalIconId = null,
                     FontAwesomeIcon = "fa-solid fa-person-dress",
-                    ItemTypeKey = 2,
-                    ValueTypeKey = 1,
+                    ItemTypeId = 2,
+                    ValueTypeId = 1,
                 },
-               new BedTypes
+               new BedType
                {
                    Id = 4,
                    Title_Tr = "Banyo/WC",
@@ -62,8 +67,8 @@ namespace Repository.Concrete.EntityFramework.Config.RealEstateManagement.BedTyp
                    UpdatedByUser = "Default",
                    LocalIconId = null,
                    FontAwesomeIcon = "fa-solid fa-person-dress",
-                   ItemTypeKey = 1,
-                   ValueTypeKey = 3,
+                   ItemTypeId = 1,
+                   ValueTypeId = 3,
                }
             );
         }

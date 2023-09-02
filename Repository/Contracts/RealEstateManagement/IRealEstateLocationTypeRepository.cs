@@ -1,4 +1,4 @@
-﻿using Entity.Models.RealEstateManagement.LocationType;
+﻿using Entity.Models.RealEstateManagement.LocationTypes;
 
 namespace Repository.Contracts.RealEstateManagement
 {

@@ -3,5 +3,5 @@ using Entity.Models.RealEstateManagement.BedTypes;
 
 namespace Service.Contract.RealEstateManagement
 {
-    public interface IRealEstateBedTypesService : IBaseService<BedTypes, BedTypesDto> { }
+    public interface IRealEstateBedTypesService : IBaseService<BedType, BedTypesDto> { }
 }

@@ -3,5 +3,5 @@ using Entity.Models.RealEstateManagement.Highlights;
 
 namespace Service.Contract.RealEstateManagement
 {
-    public interface IRealEstateHighlightsService : IBaseService<Highlights, HighlightsDto> { }
+    public interface IRealEstateHighlightsService : IBaseService<Highlight, HighlightsDto> { }
 }

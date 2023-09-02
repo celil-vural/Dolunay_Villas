@@ -8,7 +8,7 @@ using Service.ValidationRules.FluentValidation.RealEstate.ItemTypes;
 
 namespace Service.Concrete.RealEstateManagement
 {
-    public class RealEstateItemTypesService : BaseService<ItemTypes, ItemTypeDto>, IRealEstateItemTypesService
+    public class RealEstateItemTypesService : BaseService<ItemType, ItemTypeDto>, IRealEstateItemTypesService
     {
         public RealEstateItemTypesService(IRealEstateItemTypesRepository baseRepository, IMapper mapper) : base(baseRepository, mapper)
         {

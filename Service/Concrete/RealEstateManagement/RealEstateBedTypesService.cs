@@ -8,7 +8,7 @@ using Service.ValidationRules.FluentValidation.RealEstate.BedTypesRules;
 
 namespace Service.Concrete.RealEstateManagement
 {
-    public class RealEstateBedTypesService : BaseService<BedTypes, BedTypesDto>, IRealEstateBedTypesService
+    public class RealEstateBedTypesService : BaseService<BedType, BedTypesDto>, IRealEstateBedTypesService
     {
         public RealEstateBedTypesService(IRealEstateBedTypesRepository baseRepository, IMapper mapper) : base(baseRepository, mapper)
         { }

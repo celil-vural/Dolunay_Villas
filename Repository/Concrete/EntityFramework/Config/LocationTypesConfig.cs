@@ -1,4 +1,4 @@
-﻿using Entity.Models.RealEstateManagement.LocationType;
+﻿using Entity.Models.RealEstateManagement.LocationTypes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

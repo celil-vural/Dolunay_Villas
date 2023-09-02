@@ -1,17 +1,16 @@
 ﻿using Entity.Contracts;
+using Entity.Models.RealEstateManagement.BedTypes;
 
-namespace Entity.Models.RealEstateManagement.Region
+namespace Entity.Models.RealEstateManagement.ItemType
 {
-    public class Region : IEntity
+    public class ItemType : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public int? ParentRegionID { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
         public string CreatedByUser { get; set; } = string.Empty;
         public string UpdatedByUser { get; set; } = string.Empty;
-        public Region? ParentRegion { get; set; }
-        public ICollection<Region> SubRegions { get; set; } = new HashSet<Region>();
+        public virtual ICollection<BedType>? BedTypes { get; set; }
     }
 }

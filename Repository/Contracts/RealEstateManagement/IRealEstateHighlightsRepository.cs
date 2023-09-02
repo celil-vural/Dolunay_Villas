@@ -2,7 +2,7 @@
 
 namespace Repository.Contracts.RealEstateManagement
 {
-    public interface IRealEstateHighlightsRepository : IRepositoryBase<Highlights>
+    public interface IRealEstateHighlightsRepository : IRepositoryBase<Highlight>
     {
     }
 }

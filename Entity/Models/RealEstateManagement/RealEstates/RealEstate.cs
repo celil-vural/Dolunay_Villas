@@ -1,12 +1,15 @@
 ﻿using Entity.Contracts;
+using Entity.Models.RealEstateManagement.Highlights;
+using Entity.Models.RealEstateManagement.RoomsForAddVillas;
 using Entity.Models.RealEstateManagement.Rule;
 
-namespace Entity.Models.RealEstateManagement.RealEstate
+namespace Entity.Models.RealEstateManagement.RealEstates
 {
     public class RealEstate : IEntity
     {
         #region Other
         public int Id { get; set; }
+        public int VillaId { get; set; }
         public string PropertyTitle { get; set; } = string.Empty;
         public string PropertyDescription { get; set; } = string.Empty;
         public string AnnouncementNote { get; set; } = string.Empty;
@@ -55,10 +58,10 @@ namespace Entity.Models.RealEstateManagement.RealEstate
         #region Mesafeler
         #endregion
         #region Features
-        public ICollection<RealEstateFeatures> Features { get; set; } = new HashSet<RealEstateFeatures>();
+        public ICollection<Entity.Models.RealEstateManagement.RealEstateFeatures.RealEstateFeatures> Features { get; set; } = new HashSet<Entity.Models.RealEstateManagement.RealEstateFeatures.RealEstateFeatures>();
         #endregion
         #region Highlights
-        public ICollection<Highlights> Highlights { get; set; } = new HashSet<Highlights>();
+        public ICollection<Highlight> Highlights { get; set; } = new HashSet<Highlight>();
         #endregion
         #region Rules
         public ICollection<Rules> Rules { get; set; } = new HashSet<Rules>();
@@ -77,7 +80,7 @@ namespace Entity.Models.RealEstateManagement.RealEstate
         public decimal ElectricityWaterFee { get; set; } //Elektrik ve Su Ücreti
         #endregion
         #region Rooms
-        public ICollection<RoomDetails> RoomDetails { get; set; } = new HashSet<RoomDetails>();
+        public virtual ICollection<RoomsForAddVilla> Rooms { get; set; } = new List<RoomsForAddVilla>();
         #endregion
         #region Location
         public string Location { get; set; } = string.Empty;
@@ -89,5 +92,6 @@ namespace Entity.Models.RealEstateManagement.RealEstate
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         #endregion
+        public virtual Villa Villa { get; set; } = new Villa();
     }
 }

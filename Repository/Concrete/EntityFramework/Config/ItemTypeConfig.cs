@@ -4,37 +4,37 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Repository.Concrete.EntityFramework.Config
 {
-    public class ItemTypesConfig : IEntityTypeConfiguration<ItemTypes>
+    public class ItemTypeConfig : IEntityTypeConfiguration<ItemType>
     {
-        public void Configure(EntityTypeBuilder<ItemTypes> builder)
+        public void Configure(EntityTypeBuilder<ItemType> builder)
         {
             builder.HasData(
-                new ItemTypes
+                new ItemType
                 {
                     Id = 1,
                     Name = "Structural Product"
                 },
-                new ItemTypes
+                new ItemType
                 {
                     Id = 2,
                     Name = "Built-in Furniture"
                 },
-                new ItemTypes
+                new ItemType
                 {
                     Id = 3,
                     Name = "Electronic Product"
                 },
-                new ItemTypes
+                new ItemType
                 {
                     Id = 4,
                     Name = "Bed"
                 },
-                new ItemTypes
+                new ItemType
                 {
                     Id = 5,
                     Name = "Furniture"
                 },
-                new ItemTypes
+                new ItemType
                 {
                     Id = 6,
                     Name = "Floor"

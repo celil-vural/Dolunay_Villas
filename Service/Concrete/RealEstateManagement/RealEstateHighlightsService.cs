@@ -8,7 +8,7 @@ using Service.ValidationRules.FluentValidation.RealEstate.Highlights;
 
 namespace Service.Concrete.RealEstateManagement
 {
-    public class RealEstateHighlightsService : BaseService<Highlights, HighlightsDto>, IRealEstateHighlightsService
+    public class RealEstateHighlightsService : BaseService<Highlight, HighlightsDto>, IRealEstateHighlightsService
     {
         public RealEstateHighlightsService(IRealEstateHighlightsRepository baseRepository, IMapper mapper) : base(baseRepository, mapper) { }
         [FluentValidationAspect(typeof(RealEstateHighlightsValiditor))]

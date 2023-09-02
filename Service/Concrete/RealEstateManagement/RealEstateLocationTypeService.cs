@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Dolunay_Villas.Core.CrossCuttingConcerns.Aspects.Postsharp.ValidationAspect;
 using Entity.Dtos.RealEstateManagement.LocationTypes;
-using Entity.Models.RealEstateManagement.LocationType;
+using Entity.Models.RealEstateManagement.LocationTypes;
 using Repository.Contracts;
 using Service.Contract.RealEstateManagement;
 using Service.ValidationRules.FluentValidation.RealEstate.LocationTypes;

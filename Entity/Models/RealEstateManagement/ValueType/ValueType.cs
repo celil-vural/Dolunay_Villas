@@ -1,4 +1,5 @@
 ﻿using Entity.Contracts;
+using Entity.Models.RealEstateManagement.BedTypes;
 
 namespace Entity.Models.RealEstateManagement.ValueType
 {
@@ -10,6 +11,6 @@ namespace Entity.Models.RealEstateManagement.ValueType
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
         public string CreatedByUser { get; set; } = string.Empty;
         public string UpdatedByUser { get; set; } = string.Empty;
-        public ICollection<BedTypes> BedTypes { get; set; }
+        public ICollection<BedType> BedTypes { get; set; }
     }
 }

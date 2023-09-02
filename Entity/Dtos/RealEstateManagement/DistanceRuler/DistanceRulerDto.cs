@@ -1,6 +1,6 @@
 ﻿using Entity.Dtos.RealEstateManagement.Distances;
 using Entity.Dtos.RealEstateManagement.Region;
-using Entity.Models.RealEstateManagement.LocationType;
+using Entity.Models.RealEstateManagement.LocationTypes;
 
 namespace Entity.Dtos.RealEstateManagement.DistanceRuler
 {
