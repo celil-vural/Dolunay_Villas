@@ -1,4 +1,4 @@
-﻿using Entity.Dtos.Villa;
+﻿using Entity.Dtos.Villas;
 
 namespace Dolunay_Villas.Models
 {

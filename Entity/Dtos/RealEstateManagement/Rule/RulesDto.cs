@@ -1,4 +1,4 @@
-﻿namespace Entity.Dtos.RealEstateManagement.Rules
+﻿namespace Entity.Dtos.RealEstateManagement.Rule
 {
     public record RulesDto
     {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Dolunay_Villas.Core.CrossCuttingConcerns.Aspects.Postsharp.ValidationAspect;
-using Entity.Dtos.RealEstateManagement.Rules;
+using Entity.Dtos.RealEstateManagement.Rule;
 using Entity.Models.RealEstateManagement.Rule;
 using Repository.Contracts.RealEstateManagement;
 using Service.Contract.RealEstateManagement;

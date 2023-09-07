@@ -1,6 +1,6 @@
 ﻿using Dolunay_Villas.Areas.RealEstateManagement.Models.Rules;
 using Dolunay_Villas.Models;
-using Entity.Dtos.RealEstateManagement.Rules;
+using Entity.Dtos.RealEstateManagement.Rule;
 using Entity.Enums;
 using Entity.RequestParameters;
 using Microsoft.AspNetCore.Authorization;

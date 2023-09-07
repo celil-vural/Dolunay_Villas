@@ -1,4 +1,4 @@
-﻿using Entity.Dtos.RealEstateManagement.Rules;
+﻿using Entity.Dtos.RealEstateManagement.Rule;
 using FluentValidation;
 
 namespace Service.ValidationRules.FluentValidation.RealEstate.Rules

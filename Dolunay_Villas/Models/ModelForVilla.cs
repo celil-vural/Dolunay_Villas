@@ -1,4 +1,4 @@
-﻿using Entity.Dtos.Villa;
+﻿using Entity.Dtos.Villas;
 using Entity.RequestParameters;
 using StoreApp.Models;
 

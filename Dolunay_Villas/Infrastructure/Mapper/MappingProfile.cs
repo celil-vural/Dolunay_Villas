@@ -12,10 +12,10 @@ using Entity.Dtos.RealEstateManagement.RealEstateFeatures;
 using Entity.Dtos.RealEstateManagement.Region;
 using Entity.Dtos.RealEstateManagement.RoomFeatures;
 using Entity.Dtos.RealEstateManagement.Rooms;
-using Entity.Dtos.RealEstateManagement.Rules;
+using Entity.Dtos.RealEstateManagement.Rule;
 using Entity.Dtos.RealEstateManagement.ValueTypes;
 using Entity.Dtos.User;
-using Entity.Dtos.Villa;
+using Entity.Dtos.Villas;
 using Entity.Models;
 using Entity.Models.RealEstateManagement.BedTypes;
 using Entity.Models.RealEstateManagement.Distance;
@@ -36,6 +36,7 @@ namespace StoreApp.Infrastructure.Mapper
     {
         public MappingProfile()
         {
+            #region Dtos
             CreateMap<UserDtoForCreation, IdentityUser>();
             CreateMap<UserDtoForUpdate, IdentityUser>().ReverseMap();
             CreateMap<IdentityUser, UserDto>().ReverseMap();
@@ -81,7 +82,10 @@ namespace StoreApp.Infrastructure.Mapper
             CreateMap<DistanceRuler, DistanceRulerDto>().ReverseMap();
             CreateMap<DistanceRuler, DistanceRulerDtoForUpdate>().ReverseMap();
             CreateMap<DistanceRuler, DistanceRulerDtoForInsertion>().ReverseMap();
-
+            CreateMap<Villa, VillaDto>().ReverseMap();
+            CreateMap<Villa, VillaDtoForInsertion>().ReverseMap();
+            CreateMap<Villa, VillaDtoForUpdate>().ReverseMap();
+            #endregion
         }
     }
 }

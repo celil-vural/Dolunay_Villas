@@ -1,0 +1,39 @@
+﻿@model CreateRealEstateInsertionModel
+<div class="text-center">
+    <div class="display-6">
+        Create Real Estate
+    </div>
+</div>
+<form>
+    <div class="container">
+        <ul class="nav nav-tabs" id="generateRealEstate" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="General-tab" data-toggle="tab" href="#General" role="tab" aria-controls="General" aria-selected="true">General</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="Features-tab" data-toggle="tab" href="#Features" role="tab" aria-controls="Features" aria-selected="false">Features</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="PricesCalendar-tab" data-toggle="tab" href="#PricesCalendar" role="tab" aria-controls="PricesCalendar" aria-selected="false">Prices/Calendar</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="Rooms-tab" data-toggle="tab" href="#Rooms" role="tab" aria-controls="Rooms" aria-selected="false">Rooms</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="Meta-tab" data-toggle="tab" href="#Meta" role="tab" aria-controls="Meta" aria-selected="false">Meta</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabsContent">
+            <div class="tab-pane fade show active" id="General" role="tabpanel" aria-labelledby="General-tab">
+                @await Html.PartialAsync("_CreateRealEstateGeneralPartial", model:Model)
+            </div>
+            <div class="tab-pane fade" id="Features" role="tabpanel" aria-labelledby="Features-tab", model:Model>
+                @await Html.PartialAsync("_CreateRealEstateFeaturesPartial")
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-secondary">
+        <i class="fa fa-save"></i>
+        Create
+    </button>
+</form>

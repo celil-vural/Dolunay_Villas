@@ -1,14 +1,17 @@
-﻿using Entity.Dtos.RealEstateManagement.Highlights;
-using Entity.Dtos.RealEstateManagement.RealEstateFeatures;
-using Entity.Dtos.RealEstateManagement.RoomDetails;
-using Entity.Dtos.RealEstateManagement.Rules;
+﻿using Entity.Models;
+using Entity.Models.RealEstateManagement.Highlights;
+using Entity.Models.RealEstateManagement.RoomsForAddVillas;
+using Entity.Models.RealEstateManagement.Rule;
 
 namespace Entity.Dtos.RealEstateManagement.RealEstate
 {
     public record RealEstateDto
     {
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
         #region Other
         public int Id { get; set; }
+        public int VillaId { get; set; }
         public string PropertyTitle { get; set; } = string.Empty;
         public string PropertyDescription { get; set; } = string.Empty;
         public string AnnouncementNote { get; set; } = string.Empty;
@@ -57,13 +60,13 @@ namespace Entity.Dtos.RealEstateManagement.RealEstate
         #region Mesafeler
         #endregion
         #region Features
-        public ICollection<RealEstateFeaturesDto> Features { get; set; } = new HashSet<RealEstateFeaturesDto>();
+        public ICollection<Entity.Models.RealEstateManagement.RealEstateFeatures.RealEstateFeatures> Features { get; set; } = new HashSet<Entity.Models.RealEstateManagement.RealEstateFeatures.RealEstateFeatures>();
         #endregion
         #region Highlights
-        public ICollection<HighlightsDto> Highlights { get; set; } = new HashSet<HighlightsDto>();
+        public ICollection<Highlight> Highlights { get; set; } = new HashSet<Highlight>();
         #endregion
         #region Rules
-        public ICollection<RulesDto> Rules { get; set; } = new HashSet<RulesDto>();
+        public ICollection<Rules> Rules { get; set; } = new HashSet<Rules>();
         #endregion
         #region Fiyatlandırma
         public short DepositRate { get; set; }//0-100
@@ -79,7 +82,7 @@ namespace Entity.Dtos.RealEstateManagement.RealEstate
         public decimal ElectricityWaterFee { get; set; } //Elektrik ve Su Ücreti
         #endregion
         #region Rooms
-        public ICollection<RoomDetailsDto> RoomDetails { get; set; } = new HashSet<RoomDetailsDto>();
+        public virtual ICollection<RoomsForAddVilla> Rooms { get; set; } = new List<RoomsForAddVilla>();
         #endregion
         #region Location
         public string Location { get; set; } = string.Empty;
@@ -89,5 +92,6 @@ namespace Entity.Dtos.RealEstateManagement.RealEstate
         public string CreatedByUser { get; set; } = string.Empty;
         public string UpdatedByUser { get; set; } = string.Empty;
         #endregion
+        public virtual Villa Villa { get; set; } = new Villa();
     }
 }

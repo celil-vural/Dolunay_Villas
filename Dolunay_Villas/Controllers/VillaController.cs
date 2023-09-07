@@ -1,5 +1,5 @@
 ﻿using Dolunay_Villas.Models;
-using Entity.Dtos.Villa;
+using Entity.Dtos.Villas;
 using Entity.RequestParameters;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contract;

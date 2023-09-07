@@ -1,13 +1,9 @@
-﻿
-using Entity.Dtos.Villa;
-using Entity.RequestParameters;
+﻿using Entity.Dtos.Villas;
+using Entity.Models;
 
 namespace Service.Contract
 {
-    public interface IVillaService
+    public interface IVillaService : IBaseService<Villa, VillaDto>
     {
-        IEnumerable<VillaDto> GetAll();
-        IEnumerable<VillaDto> GetAllWithParameters(VillaRequestParameters v = null);
-        VillaDto GetByName(string name);
     }
 }
